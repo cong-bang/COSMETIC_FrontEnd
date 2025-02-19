@@ -1,0 +1,30 @@
+@import "normalize.css";
+
+:root {
+  // --min-global-width: 1536px;
+  // --min-height: 1500px;
+  // --height-footer: 370px;
+}
+
+* {
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+}
+// $primary-color: #007bff;
+// $secondary-color: #6c757d;
+// $font-family: 'Arial, sans-serif';
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Ngăn chặn cuộn ngang nếu không cần thiết */
+}
+
+.text-center {
+  text-align: center;
+}
+
+.hidden {
+  display: none;
+}
