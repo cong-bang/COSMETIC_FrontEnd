@@ -12,7 +12,8 @@
           "pages": "./src/pages",
           "routes": "./src/routes",
           "services": "./src/services",
-          "hooks": "./src/pages"
+          "hooks": "./src/pages",
+          "images": "./src/assets/images"
         }
       }
     ]

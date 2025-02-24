@@ -1,0 +1,164 @@
+.container_1 {
+    background-image: linear-gradient(rgb(250, 225, 226) 100%, rgb(255, 191, 203) 78%);
+    padding: 5em 5rem 2rem;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+
+    & .div_border_bottom {
+        width: 100%;
+        border-bottom: 0.2rem solid rgb(238, 105, 131);
+    }
+}
+
+.container_2 {
+    background-image: linear-gradient(rgb(250, 225, 226) 100%, rgb(255, 191, 203) 78%);
+    padding: 0px 5rem 5rem;
+
+    & .ctn_2_4col {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+
+        & .ctn_2_col {
+            padding-left: 3rem;
+
+            & .div_logomedia {
+                height: 5rem;
+                display: flex;
+                align-items: flex-end;
+
+                & .ctn_2_div_media {
+                    display: flex;
+                    gap: 8px;
+
+                    & .div_icon_fb_insta_yt {
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 50%;
+                        background: rgb(238, 105, 131);
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+
+                        & img {
+                            height: 1.5rem;
+                            width: 1.5rem;
+                        }
+                    }
+                }
+            }
+
+            & h3 {
+                font-size: 14px;
+                font-weight: bold;
+                color: rgb(102, 102, 102);
+            }
+
+            & .h3_chungnhan {
+                font-size: 14px;
+                font-weight: bold;
+                color: rgb(102, 102, 102);
+                margin-top: 2rem;
+            }
+
+            & ul {
+                list-style: none;
+                padding: 0px;
+                margin-top: 12px;
+                color: rgb(51, 51, 51);
+                font-size: 14px;
+
+                & li {
+                    margin-bottom: 8px;
+                }
+            }
+
+            & p {
+                font-size: 14px;
+                color: rgb(102, 102, 102);
+            }
+
+            & .ctn_2_payImg {
+                margin-top: 8px;
+                display: flex;
+                gap: 8px;
+
+                & img {
+                    height: 3rem;
+                }
+            }
+
+            & .ctn_2_downImg {
+                display: flex;
+                gap: 8px;
+                align-items: center;
+                margin-top: 8px;
+
+                & img {
+                    height: 6.25rem;
+                }
+
+                & .ctn_2_divImg_appgg {
+
+                    & .img_appstore {
+                        height: 3rem;
+                        display: block;
+                        margin-bottom: 4px;
+                    }
+
+                    & .img_ggplay {
+                        height: 48px;
+                        display: block;
+                    }
+                }
+            }
+        }
+
+        & .ctn_2_h25 {
+            height: 5rem;
+        }
+    }
+}
+
+.container_3 {
+    background-color: rgba(255, 155, 159, 0.4);
+    color: rgb(238, 105, 131);
+    text-align: center;
+    padding: 10px 20px;
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+
+    & .ctn_3_text_copyright {
+        color: rgb(136, 136, 136);
+        margin-left: 5%;
+    }
+
+    & .ctn_3_text_and_icon {
+        display: flex;
+        gap: 10px;
+        margin-left: auto;
+
+        & span {
+            text-align: right;
+            max-width: 500px;
+            display: block;
+            overflow-wrap: break-word;
+        }
+
+        & .icon_up {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            color: rgb(238, 105, 131);
+            border: 1px solid rgb(238, 105, 131);
+        }
+    }
+}

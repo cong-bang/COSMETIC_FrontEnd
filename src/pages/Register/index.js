@@ -3,15 +3,14 @@ import AuthForm from "components/AuthForm";
 import Header from "components/Layout/Header"
 import Footer from "components/Layout/Footer"
 
-const Login = () => {
+const Register = () => {
   return(
     <>
     <Header />
-    <AuthForm type="login" />
+    <AuthForm type="register" />
     <Footer />
     </>
   ) 
 };
 
-export default Login;
-
+export default Register;
