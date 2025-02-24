@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
-import banner from '../../../assets/images/header-top.png'
-import logo from '../../../assets/images/PURE_logo.png'
-import down_icon from '../../../assets/images/arrow-narrow-down.png'
-import list_icon from '../../../assets/images/clipboard-list.png'
-import home_icon from '../../../assets/images/home.png'
-import icon_user from '../../../assets/images/icon_user.png'
-import icon_cart from '../../../assets/images/icon_cart.png'
-import icon_search from '../../../assets/images/icon_search.png'
+import banner from 'images/header-top.png'
+import logo from 'images/PURE_logo.png'
+import down_icon from 'images/arrow-narrow-down.png'
+import list_icon from 'images/clipboard-list.png'
+import home_icon from 'images/home.png'
+import icon_user from 'images/icon_user.png'
+import icon_cart from 'images/icon_cart.png'
+import icon_search from 'images/icon_search.png'
 import './Header.module.scss'
 import styles from "./Header.module.scss";
 import { Menu } from "lucide-react";
@@ -26,8 +26,10 @@ const Header = () => {
   return (
     <>
     <div className={styles.container_header}>
+      {/* row1 */}
       <div><img className={styles.banner_img} src={banner} alt='banner-header'/></div>
-      
+
+      {/* row2 */}
       <div className={styles.ctn_2}>
         <div className={styles.div_logo} ><img src={logo} alt='Logo'/></div>
         {/* header-right */}
@@ -60,7 +62,7 @@ const Header = () => {
         {/*  */}
       </div>
 
-      
+      {/* row 3 */}
       <div className={styles.ctn_3}>
         <div className={styles.div_danhmuc}>
           <Menu size={20} /> DANH MỤC
@@ -78,7 +80,6 @@ const Header = () => {
         ))}
         </div>
       </div>
-      
     </div>
     </>
   )

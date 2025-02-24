@@ -11,6 +11,7 @@ module.exports = function override(config) {
     services: path.resolve(__dirname, "src/services"),
     hooks: path.resolve(__dirname, "src/hooks"),
     context: path.resolve(__dirname, "src/context"),
+    images: path.resolve(__dirname, "src/assets/images")
   };
   return config;
 };
