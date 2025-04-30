@@ -11,6 +11,18 @@ import newblog1 from 'images/newblog1.png'
 import newblog2 from 'images/newblog2.png'
 import newblog3 from 'images/newblog3.png'
 import calendar_icon from 'images/calendar_icon.png'
+import blog_fy1 from 'images/blog_fy1.png'
+import blog_fy2 from 'images/blog_fy2.png'
+import blog_fy3 from 'images/blog_fy3.png'
+import blog_fy4 from 'images/blog_fy4.png'
+import blog_fy5 from 'images/blog_fy5.png'
+import blog_fy6 from 'images/blog_fy6.png'
+import blog_banqtam1 from 'images/blog_banqtam1.png'
+import blog_banqtam2 from 'images/blog_banqtam2.png'
+import blog_banqtam3 from 'images/blog_banqtam3.png'
+import blog_banqtam4 from 'images/blog_banqtam4.png'
+import blog_banqtam5 from 'images/blog_banqtam5.png'
+import blog_banqtam6 from 'images/blog_banqtam6.png'
 
 const Blog = () => {
   return(
@@ -94,51 +106,136 @@ const Blog = () => {
               <a href="#" className={styles.btn_seeall}>XEM TẤT CẢ</a>
           </div>
           <div className={styles.blog_fy_list}>
-            <div className={styles.card}>
-              <div className={styles.card_image}>
-                <div className={styles.card_caption}>Mỹ Phẩm hưu cơ giá top 5 thương hiệu mỹ phẩm hưu cơ</div>
-              </div>
-              <div className={styles.card_content}>
-                <div className={styles.card_tag}>Skincare</div>
-                <h2 className={styles.card_title}>CÁCH SỬ DỤNG MỸ PHẨM MURAD...</h2>
-                <div className={styles.card_date}>01 TH6 2023</div>
+            <div className={styles.left_column}>
+              <div className={styles.large_post}>
+                <img src={blog_fy1} alt="Post Title" />
+                <div className={styles.overlay_text}>Mỹ phẩm hữu cơ là gì? Top 5 thương hiệu mỹ phẩm hữu cơ...</div>
               </div>
             </div>
 
-            <div className={styles.card}>
-              <div className={styles.card_image}>
+            <div className={styles.right_column}>
+              <div className={styles.small_posts}>
+                <div className={styles.post_item}>
+                <img src={blog_fy2} alt="Post Foryou" />
+                <div className={styles.post_info}>
+                <div className={styles.category}>Skincare</div>
+                <div className={styles.title}>CÁCH SỬ DỤNG MỸ PHẨM MURAD...</div>
+                <div className={styles.date}>
+                  <img src={calendar_icon} alt="calendar" /> 01 Th6 2023
+                </div>
+                </div>
               </div>
-              <div className={styles.card_content}>
-                <div className={styles.card_tag}>Skincare</div>
-                <h2 className={styles.card_title}>CÁCH SỬ DỤNG MỸ PHẨM MURAD...</h2>
-                <div className={styles.card_date}>01 TH6 2023</div>
+                <div className={styles.post_item}>
+                  <img src={blog_fy3} alt="Post Foryou" />
+                  <div className={styles.post_info}>
+                  <div className={styles.category}>Skincare</div>
+                  <div className={styles.title}>CÁCH SỬ DỤNG MỸ PHẨM MURAD...</div>
+                  <div className={styles.date}>
+                    <img src={calendar_icon} alt="calendar" /> 01 Th6 2023
+                  </div>
+                  </div>
+                </div>
+            <div className={styles.post_item}>
+              <img src={blog_fy4} alt="Post Foryou" />
+                <div className={styles.post_info}>
+                <div className={styles.category}>Skincare</div>
+                <div className={styles.title}>CÁCH SỬ DỤNG MỸ PHẨM MURAD...</div>
+                <div className={styles.date}>
+                  <img src={calendar_icon} alt="calendar" /> 01 Th6 2023
+                </div>
+                </div>
               </div>
+              </div>              
             </div>
 
-            <div className={styles.card}>
-              <div className={styles.card_image}>
+            <div className={styles.wide_posts}>
+                <div className={styles.wide_post}>
+                  <img src={blog_fy5} alt="Post Title" />
+                  <div className={styles.overlay_text}>Làm Đẹp Toàn Diện: Hành Trình Chăm Sóc Da Hiệu Quả</div>
+                </div>
+                <div className={styles.wide_post}>
+                  <img src={blog_fy6} alt="Post Title" />
+                  <div className={styles.overlay_text}>Xu Hướng Làm Đẹp 2025: Từ Skincare Đến Makeup Đột Phá</div>
+                </div>
               </div>
-              <div className={styles.card_content}>
-                <div className={styles.card_tag}>Skincare</div>
-                <h2 className={styles.card_title}>Làm Đẹp Toàn Diện: Hành Trình Chăm Sóc Da Hiệu Quả</h2>
-                <div className={styles.card_date}>01 TH6 2023</div>
-              </div>
-            </div>
-
-            <div className={styles.card}>
-              <div className={styles.card_image}>
-              </div>
-              <div className={styles.card_content}>
-                <div className={styles.card_tag}>Skincare</div>
-                <h2 className={styles.card_title}>Xu Hướng Làm Đẹp 2025: Từ Skincare Đến Makeup Đột Phá</h2>
-                <div className={styles.card_date}>01 TH6 2023</div>
-              </div>
-            </div>
           </div>
         </div>
 
-        <div className={styles.section_recommendations}></div>
+        <div className={styles.section_recommendations}>
+          <div className={styles.section_header}>
+              <h3>CÓ THỂ BẠN QUAN TÂM</h3>
+              <a href="#" className={styles.btn_seeall}>XEM TẤT CẢ</a>
+          </div>
+        </div>
     </div>
+{/* 
+    <div className={styles.blog_grid}>
+      <div className={styles.blog_item_big}>
+        <img src={blog_banqtam1} alt="Post Title" />
+        <div className={styles.overlay_text}>Làm Đẹp Toàn Diện: Hành Trình Chăm Sóc Da Hiệu Quả</div>
+      </div>
+      <div className={styles.blog_item}>
+        <img src={blog_banqtam2} alt="Post Title" />
+        <div className={styles.overlay_text}>Top 5 mã hồng tone lạnh...</div>
+      </div>
+      <div className={styles.blog_item}>
+        <img src={blog_banqtam3} alt="Post Title" />
+        <div className={styles.overlay_text}>Bí Ẩn Sắc Đẹp Hàn Quốc: Xu Hướng Đang Lên Ngôi</div>
+      </div>
+      <div className={styles.blog_item_small}>
+        <img src={blog_banqtam4} alt="Post Title" />
+        <div className={styles.overlay_text}>Làm Đẹp Và Sức Khỏe: Mối Liên Hệ Không Thể Tách Rời</div>
+      </div>
+      <div className={styles.blog_item_small}>
+        <img src={blog_banqtam5} alt="Post Title" />
+        <div className={styles.overlay_text}>Combo mỹ phẩm phù hợp...</div>
+      </div>
+      <div className={styles.blog_item}>
+        <img src={blog_banqtam6} alt="Post Title" />
+        <div className={styles.overlay_text}>Sắc Đẹp Tự Nhiên: Khám Phá Bí Ẩn Làn Da Không Tỳ Vết</div>
+      </div>
+    </div> */}
+
+    <div className={styles.blog_grid}>
+      <div className={styles.col_1}>
+        <div className={styles.blog_item_big}>
+          <img src={blog_banqtam1} alt="" />
+          <div className={styles.overlay_text}>Làm Đẹp Toàn Diện: Hành Trình Chăm Sóc Da Hiệu Quả</div>
+        </div>
+      </div>
+
+      <div className={styles.col_2}>
+        <div className={styles.row}>
+          <div className={styles.blog_item_small}>
+            <img src={blog_banqtam2} alt="" />
+            <div className={styles.overlay_text}>Top 5 mã hồng tone lạnh...</div>
+          </div>
+          <div className={styles.blog_item_small}>
+            <img src={blog_banqtam3} alt="" />
+            <div className={styles.overlay_text}>Bí Ẩn Sắc Đẹp Hàn Quốc: Xu Hướng Đang Lên Ngôi</div>
+          </div>
+        </div>
+        <div className={styles.row}>
+          <div className={styles.blog_item_small}>
+            <img src={blog_banqtam4} alt="" />
+            <div className={styles.overlay_text}>Làm Đẹp Và Sức Khỏe: Mối Liên Hệ Không Thể Tách Rời</div>
+          </div>
+          <div className={styles.blog_item_small}>
+            <img src={blog_banqtam5} alt="" />
+            <div className={styles.overlay_text}>Combo mỹ phẩm phù hợp...</div>
+          </div>
+        </div>
+      </div>
+
+      <div className={styles.col_3}>
+        <div className={styles.blog_item_big}>
+          <img src={blog_banqtam6} alt="" />
+          <div className={styles.overlay_text}>Sắc Đẹp Tự Nhiên: Khám Phá Bí Ẩn Làn Da Không Tỳ Vết</div>
+        </div>
+      </div>
+    </div>
+
+
     <Footer />
     </>
   ) 
