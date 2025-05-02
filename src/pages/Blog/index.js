@@ -107,9 +107,8 @@ const Blog = () => {
           </div>
           <div className={styles.blog_fy_list}>
             <div className={styles.left_column}>
-              <div className={styles.large_post}>
-                <img src={blog_fy1} alt="Post Title" />
-                <div className={styles.overlay_text}>Mỹ phẩm hữu cơ là gì? Top 5 thương hiệu mỹ phẩm hữu cơ...</div>
+              <div className={styles.post_card} style={{backgroundImage: `url(${blog_fy1})`}}>
+                <div className={styles.post_label}>Mỹ phẩm hữu cơ là gì? Top 5 thương hiệu mỹ phẩm hữu cơ...</div>
               </div>
             </div>
 
@@ -157,7 +156,7 @@ const Blog = () => {
                   <img src={blog_fy6} alt="Post Title" />
                   <div className={styles.overlay_text}>Xu Hướng Làm Đẹp 2025: Từ Skincare Đến Makeup Đột Phá</div>
                 </div>
-              </div>
+            </div>
           </div>
         </div>
 
