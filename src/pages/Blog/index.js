@@ -167,72 +167,47 @@ const Blog = () => {
           </div>
         </div>
     </div>
-{/* 
-    <div className={styles.blog_grid}>
-      <div className={styles.blog_item_big}>
-        <img src={blog_banqtam1} alt="Post Title" />
-        <div className={styles.overlay_text}>Làm Đẹp Toàn Diện: Hành Trình Chăm Sóc Da Hiệu Quả</div>
-      </div>
-      <div className={styles.blog_item}>
-        <img src={blog_banqtam2} alt="Post Title" />
-        <div className={styles.overlay_text}>Top 5 mã hồng tone lạnh...</div>
-      </div>
-      <div className={styles.blog_item}>
-        <img src={blog_banqtam3} alt="Post Title" />
-        <div className={styles.overlay_text}>Bí Ẩn Sắc Đẹp Hàn Quốc: Xu Hướng Đang Lên Ngôi</div>
-      </div>
-      <div className={styles.blog_item_small}>
-        <img src={blog_banqtam4} alt="Post Title" />
-        <div className={styles.overlay_text}>Làm Đẹp Và Sức Khỏe: Mối Liên Hệ Không Thể Tách Rời</div>
-      </div>
-      <div className={styles.blog_item_small}>
-        <img src={blog_banqtam5} alt="Post Title" />
-        <div className={styles.overlay_text}>Combo mỹ phẩm phù hợp...</div>
-      </div>
-      <div className={styles.blog_item}>
-        <img src={blog_banqtam6} alt="Post Title" />
-        <div className={styles.overlay_text}>Sắc Đẹp Tự Nhiên: Khám Phá Bí Ẩn Làn Da Không Tỳ Vết</div>
-      </div>
-    </div> */}
 
-    <div className={styles.blog_grid}>
-      <div className={styles.col_1}>
-        <div className={styles.blog_item_big}>
-          <img src={blog_banqtam1} alt="" />
-          <div className={styles.overlay_text}>Làm Đẹp Toàn Diện: Hành Trình Chăm Sóc Da Hiệu Quả</div>
-        </div>
-      </div>
+    <div className={styles.bg_blog}>
+        <div className={styles.blog_grid}>
+          <div className={styles.col_1}>
+            <div className={styles.blog_item_big}>
+              <img src={blog_banqtam1} alt="" />
+              <div className={styles.overlay_text}>Làm Đẹp Toàn Diện: Hành Trình Chăm Sóc Da Hiệu Quả</div>
+            </div>
+          </div>
 
-      <div className={styles.col_2}>
-        <div className={styles.row}>
-          <div className={styles.blog_item_small}>
-            <img src={blog_banqtam2} alt="" />
-            <div className={styles.overlay_text}>Top 5 mã hồng tone lạnh...</div>
+          <div className={styles.col_2}>
+            <div className={styles.row}>
+              <div className={styles.blog_item_small}>
+                <img src={blog_banqtam2} alt="" />
+                <div className={styles.overlay_text}>Top 5 mã hồng tone lạnh...</div>
+              </div>
+              <div className={styles.blog_item_small}>
+                <img src={blog_banqtam3} alt="" />
+                <div className={styles.overlay_text}>Bí Ẩn Sắc Đẹp Hàn Quốc: Xu Hướng Đang Lên Ngôi</div>
+              </div>
+            </div>
+            <div className={styles.row}>
+              <div className={styles.blog_item_small}>
+                <img src={blog_banqtam4} alt="" />
+                <div className={styles.overlay_text}>Làm Đẹp Và Sức Khỏe: Mối Liên Hệ Không Thể Tách Rời</div>
+              </div>
+              <div className={styles.blog_item_small}>
+                <img src={blog_banqtam5} alt="" />
+                <div className={styles.overlay_text}>Combo mỹ phẩm phù hợp...</div>
+              </div>
+            </div>
           </div>
-          <div className={styles.blog_item_small}>
-            <img src={blog_banqtam3} alt="" />
-            <div className={styles.overlay_text}>Bí Ẩn Sắc Đẹp Hàn Quốc: Xu Hướng Đang Lên Ngôi</div>
-          </div>
-        </div>
-        <div className={styles.row}>
-          <div className={styles.blog_item_small}>
-            <img src={blog_banqtam4} alt="" />
-            <div className={styles.overlay_text}>Làm Đẹp Và Sức Khỏe: Mối Liên Hệ Không Thể Tách Rời</div>
-          </div>
-          <div className={styles.blog_item_small}>
-            <img src={blog_banqtam5} alt="" />
-            <div className={styles.overlay_text}>Combo mỹ phẩm phù hợp...</div>
-          </div>
-        </div>
-      </div>
 
-      <div className={styles.col_3}>
-        <div className={styles.blog_item_big}>
-          <img src={blog_banqtam6} alt="" />
-          <div className={styles.overlay_text}>Sắc Đẹp Tự Nhiên: Khám Phá Bí Ẩn Làn Da Không Tỳ Vết</div>
+          <div className={styles.col_3}>
+            <div className={styles.blog_item_big}>
+              <img src={blog_banqtam6} alt="" />
+              <div className={styles.overlay_text}>Sắc Đẹp Tự Nhiên: Khám Phá Bí Ẩn Làn Da Không Tỳ Vết</div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
 
 
     <Footer />
