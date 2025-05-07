@@ -23,6 +23,7 @@ import blog_banqtam3 from 'images/blog_banqtam3.png'
 import blog_banqtam4 from 'images/blog_banqtam4.png'
 import blog_banqtam5 from 'images/blog_banqtam5.png'
 import blog_banqtam6 from 'images/blog_banqtam6.png'
+import { Link } from 'react-router-dom';
 
 const Blog = () => {
   return(
@@ -43,10 +44,14 @@ const Blog = () => {
         </div>
 
         <div className={styles.section_categories}>
+          
           <div className={styles.category_card} style={{backgroundImage: `url(${chamsocda})`}}>
-            <div className={styles.category_label}>CHĂM SÓC DA</div>
+            <Link to="/blog-category">
+              <div className={styles.category_label}>CHĂM SÓC DA</div>
+            </Link>
             <div className={styles.category_bottom_line_1}></div>
           </div>
+          
           <div className={styles.category_card} style={{backgroundImage: `url(${chamsocsuckhoe})`}}>
             <div className={styles.category_label}>CHĂM SÓC SỨC KHỎE</div>
             <div className={styles.category_bottom_line_2}></div>
