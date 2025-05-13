@@ -6,6 +6,9 @@ import BlogCategory from "pages/BlogCategory";
 import BlogDetail from "pages/BlogDetail";
 import ForgotPassword from "pages/ForgotPassword";
 import ConfirmPassword from "pages/ConfirmPassword";
+import AboutUs from "pages/AboutUs";
+import SuccessPayment from "pages/SuccessPayment";
+import FailurePayment from "pages/FailurePayment";
 
 const publicRoutes = [
   { path: "/", component: Home, layout: Home },
@@ -16,6 +19,9 @@ const publicRoutes = [
   { path: "/blog-detail", component: BlogDetail, layout: BlogDetail},
   { path: "/forgot-password", component: ForgotPassword, layout: ForgotPassword},
   { path: "/confirm-password", component: ConfirmPassword, layout: ConfirmPassword},
+  { path: "/aboutus", component: AboutUs, layout: AboutUs},
+  { path: "/success-payment", component: SuccessPayment, layout: SuccessPayment},
+  { path: "/failure-payment", component: FailurePayment, layout: FailurePayment},
 ];
 
 const privateRoutes = [];
