@@ -10,6 +10,7 @@ import AboutUs from "pages/AboutUs";
 import SuccessPayment from "pages/SuccessPayment";
 import FailurePayment from "pages/FailurePayment";
 import Cart from "pages/Cart";
+import Order from "pages/Order";
 
 const publicRoutes = [
   { path: "/", component: Home, layout: Home },
@@ -24,6 +25,7 @@ const publicRoutes = [
   { path: "/success-payment", component: SuccessPayment, layout: SuccessPayment},
   { path: "/failure-payment", component: FailurePayment, layout: FailurePayment},
   { path: "/cart", component: Cart, layout: Cart},
+  { path: "/order", component: Order, layout: Order},
 ];
 
 const privateRoutes = [];
