@@ -4,6 +4,13 @@ import Header from "components/Layout/Header"
 import Footer from "components/Layout/Footer"
 import product from 'images/product.png'
 import viuudai from 'images/viuudai.png'
+import product_1 from 'images/product_1.png'
+import product_2 from 'images/product_2.png'
+import product_3 from 'images/product_3.png'
+import product_4 from 'images/product_4.png'
+import product_5 from 'images/product_5.png'
+import product_6 from 'images/product_6.png'
+import product_7 from 'images/product_7.png'
 
 
 const Cart = () => {
@@ -140,6 +147,34 @@ const Cart = () => {
             <button className={styles.checkout_btn}>Tiến Hành Đặt Hàng</button>
         </div>
 
+    </div>
+
+    {/* Mua thêm */}
+    <div className={styles.product_list}>
+        <p className={styles.title}><span class="icon">&lt;</span>Tiếp tục mua hàng</p>
+        <div className={styles.product_items}>
+            <div className={styles.product_item}>
+                <img src={product_1} alt="Product 1" />
+            </div>
+            <div className={styles.product_item}>
+                <img src={product_2} alt="Product 2" />
+            </div>
+            <div className={styles.product_item}>
+                <img src={product_3} alt="Product 3" />
+            </div>
+            <div className={styles.product_item}>
+                <img src={product_4} alt="Product 3" />
+            </div>
+            <div className={styles.product_item}>
+                <img src={product_5} alt="Product 3" />
+            </div>
+            <div className={styles.product_item}>
+                <img src={product_6} alt="Product 3" />
+            </div>
+            <div className={styles.product_item}>
+                <img src={product_7} alt="Product 3" />
+            </div>
+        </div>
     </div>
     <Footer />
     </>
