@@ -4,6 +4,7 @@ import classNames from "classnames/bind";
 import styles from "./Home.module.scss";
 import NavLeft from "../../components/NavLeft";
 import MyProfile from "../../components/MyProfile";
+import PaymentCard from "../../components/PaymentCard";
 
 const cx = classNames.bind(styles);
 
