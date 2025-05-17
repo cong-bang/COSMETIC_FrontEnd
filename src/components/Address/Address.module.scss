@@ -1,0 +1,243 @@
+.addressContainer {
+    background-color: #ffffff;
+    border-radius: 0.16px;
+    padding: 1.5rem;
+    width: 100%;
+    max-width: 48rem;
+    margin: 0;
+    box-shadow: 0 0 12px 2px rgba(0, 0, 0, 0.08);
+    margin-bottom: 24px;
+
+  & .title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #4E4663;
+        margin-bottom: 0.5rem;
+    }
+
+    & .subtitle {
+        color: #837D92;
+        margin-bottom: 1.5rem;
+    }
+
+    & .formWrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+
+        & .inputGroup {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            margin-bottom: 0.5rem;
+            
+            @media (min-width: 768px) {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            & .inputField {
+                width: 100%;
+                padding: 0.75rem 1rem;
+                border-radius: 9999px;
+                border: 1px solid #e2e8f0;
+                transition: all 0.2s ease;
+                font-size: 14px;
+                
+                &:focus {
+                    outline: none;
+                    box-shadow: 0 0 0 2px rgba(237, 100, 166, 0.3);
+                    border-color: #ed64a6;
+                }
+                
+                &::placeholder {
+                    color: #a0aec0;
+                }
+            }
+        }
+
+        & .dropdownContainer {
+            position: relative;
+            margin-bottom: 0.5rem;
+
+            & .dropdownField {
+                width: 100%;
+                padding: 0.75rem 1rem;
+                border-radius: 9999px;
+                border: 1px solid #e2e8f0;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                cursor: pointer;
+
+                & .dropdownIcon {
+                    width: 1.25rem;
+                    height: 1.25rem;
+                    transition: transform 0.2s ease;
+                }
+
+                & .rotateIcon {
+                    transform: rotate(180deg);
+                }
+
+                & .textBlack {
+                    color: #000000;
+                }
+
+                & .textGray {
+                    color: #a0aec0;
+                }
+
+                & span {
+                    font-size: 14px;
+                }
+            }
+
+            & .dropdownMenu {
+                position: absolute;
+                z-index: 10;
+                margin-top: 0.25rem;
+                width: 100%;
+                background-color: #ffffff;
+                border: 1px solid #e2e8f0;
+                border-radius: 0.375rem;
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+
+                & .optionsList {
+                    padding: 0.25rem 0;
+                    max-height: 15rem;
+                    overflow: auto;
+
+                    & .option {
+                        padding: 0.5rem 1rem;
+                        cursor: pointer;
+                        
+                        &:hover {
+                            background-color: #f7fafc;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    & .inputField {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        border-radius: 9999px;
+        border: 1px solid #e2e8f0;
+        transition: all 0.2s ease;
+        font-size: 14px;
+                
+            &:focus {
+                outline: none;
+                box-shadow: 0 0 0 2px rgba(237, 100, 166, 0.3);
+                border-color: #ed64a6;
+            }
+                
+            &::placeholder {
+                color: #a0aec0;
+        }
+    }
+
+    & .mapContainer {
+        position: relative;
+        height: 9.375rem;
+        margin-bottom: 1.5rem;
+        border-radius: 0.5rem;
+        overflow: hidden;
+        background-color: #edf2f7;
+
+        & .mapCenterContent {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            & .mapPlaceholder {
+                text-align: center;
+
+                & .mapIcon {
+                    margin: 0 auto;
+                    color: #718096;
+                    margin-bottom: 0.5rem;
+                }
+
+                & .addLocationBtn {
+                    color: #4E4663;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 0.5rem;
+                    font-size: 0.875rem;
+                    //background: none;
+                    //border: none;
+                    cursor: pointer;
+                    font-weight: 500;
+                    padding: 0.5rem 3rem;
+                    border-radius: 9999px;
+                    border: none;
+                    cursor: pointer;
+                    transition: background-color 0.2s ease;
+                    background-color: #ffffff;
+                }
+            }
+        }
+
+        & .locationLabel {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-start;
+            padding: 0.5rem;
+            
+            div {
+                background-color: #ffffff;
+                font-size: 0.75rem;
+                padding: 0 0.25rem;
+                border-radius: 0.25rem;
+                color: #4a5568;
+            }
+        }
+    }
+
+    & .buttonContainer {
+        display: flex;
+        justify-content: flex-end;
+
+        & .saveButton {
+            background-color: #EE6983;
+            color: #ffffff;
+            font-weight: 500;
+            padding: 0.5rem 3rem;
+            border-radius: 9999px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            
+            &:hover {
+                background-color: #ec407a;
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

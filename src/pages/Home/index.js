@@ -5,6 +5,7 @@ import styles from "./Home.module.scss";
 import NavLeft from "../../components/NavLeft";
 import MyProfile from "../../components/MyProfile";
 import PaymentCard from "../../components/PaymentCard";
+import Address from "../../components/Address";
 
 const cx = classNames.bind(styles);
 
@@ -15,7 +16,7 @@ const Home = () => {
       <h2>My Home</h2>
       <div className={cx("container")}>
         <NavLeft />
-        <MyProfile />
+        <Address />
       </div>
     </div>
     </>
