@@ -6,7 +6,7 @@ import shopping_bag_icon from 'images/shopping_bag_icon.png'
 import bell_icon from 'images/bell_icon.png'
 import ticket_icon from 'images/ticket_icon.png'
 
-function NavLeft() {
+const NavLeft = () => {
   return (
     <div className={styles.nav_left}>
     <div className={styles.profile}>

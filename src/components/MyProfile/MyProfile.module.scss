@@ -1,0 +1,159 @@
+.profileInfo {
+  background: #fff;
+  padding: 16px;
+  border-radius: 16px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  margin-bottom: 24px;
+
+  & h2 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 0;
+  }
+
+  & p {
+    font-size: 14px;
+    color: #5C5570;
+    margin-bottom: 16px;
+  }
+
+  & hr {
+    border: none;
+    border-top: 1px solid #eee;
+    margin: 16px 0 24px;
+  }
+
+  & .form {
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+    margin: 20px;
+
+    & .fieldGroup {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+
+        & label {
+            width: 140px;
+            font-size: 14px;
+            color: #5C5570;
+        }
+
+        & span {
+            flex: 1;
+            font-size: 14px;
+            color: #5C5570;
+
+            & a {
+            margin-left: 8px;
+            color: #EE6983;
+            text-decoration: none;
+            font-weight: 500;
+
+            &:hover {
+                text-decoration: underline;
+            }
+          }
+        }
+
+        & input[type="text"] {
+            flex: 1;
+            padding: 10px 16px;
+            border: 1px solid #ddd;
+            border-radius: 24px;
+            outline: none;
+            font-size: 14px;
+
+            &:focus {
+            border-color: #f45c8c;
+            }
+        }
+    }
+
+    & .radioGroup {
+        display: flex;
+        gap: 16px;
+
+        & label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 14px;
+            color: #5C5570;
+
+            input[type="radio"] {
+            accent-color: #f45c8c;
+            }
+        }
+    }
+
+    & .birthdayGroup {
+        display: flex;
+        gap: 12px;
+
+        & label {
+            width: 140px;
+            font-size: 14px;
+            color: #5C5570;
+        }
+
+        & .selectWrapper {
+            position: relative;
+            flex: 1;
+
+            & select {
+                width: 100%;
+                padding: 8px 36px 8px 12px;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                font-size: 14px;
+                color: #5C5570;
+                appearance: none;
+
+            &:focus {
+                    border-color: #f48fb1;
+                    outline: none;
+                    box-shadow: 0 0 0 2px rgba(244, 143, 177, 0.2);
+                }
+            }
+
+            & .dropdownIcon {
+                position: absolute;
+                right: 12px;
+                top: 50%;
+                transform: translateY(-50%);
+                color: #888;
+                pointer-events: none;
+                font-size: 14px;
+            }
+        }
+    }
+
+    & .saveButton {
+        align-self: flex-end;
+        padding: 12px 32px;
+        background: #f45c8c;
+        color: #fff;
+        border: none;
+        border-radius: 24px;
+        font-size: 14px;
+        cursor: pointer;
+        box-shadow: 0 4px 8px rgba(244, 92, 140, 0.2);
+
+        &:hover {
+            background: #e64c7f;
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+

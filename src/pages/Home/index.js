@@ -3,6 +3,7 @@ import React from "react";
 import classNames from "classnames/bind";
 import styles from "./Home.module.scss";
 import NavLeft from "../../components/NavLeft";
+import MyProfile from "../../components/MyProfile";
 
 const cx = classNames.bind(styles);
 
@@ -11,7 +12,10 @@ const Home = () => {
     <>
     <div className={cx("wrapper-home")}>
       <h2>My Home</h2>
-      <NavLeft />
+      <div className={cx("container")}>
+        <NavLeft />
+        <MyProfile />
+      </div>
     </div>
     </>
   );
