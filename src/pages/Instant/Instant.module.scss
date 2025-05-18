@@ -1,0 +1,325 @@
+.instant_container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.breadcrumb {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  color: #999;
+  font-size: 14px;
+
+  span {
+    margin: 0 4px;
+  }
+
+  .separator {
+    color: #999;
+  }
+
+  .active {
+    color: #EE6983;
+    font-weight: 600;
+  }
+}
+
+.banner_section {
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 40px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+}
+
+.content_section {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px;
+  text-align: center;
+  margin-bottom: 60px;
+
+  .description {
+    color: #666;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+}
+
+@media (max-width: 768px) {
+  .banner_section {
+    height: 300px;
+  }
+
+  .content_section {
+    .description {
+      font-size: 14px;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .banner_section {
+    height: 200px;
+  }
+}
+
+.how_it_works {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  margin-bottom: 80px;
+
+  h2 {
+    color: #FF6B8F;
+    font-size: 28px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+}
+
+.steps_grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.step_item {
+  text-align: center;
+
+  .step_image {
+    width: 100%;
+    height: 200px;
+    background: #FFF5F7;
+    border-radius: 16px;
+    margin-bottom: 20px;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  h3 {
+    color: #333;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  p {
+    color: #666;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+}
+
+@media (max-width: 1024px) {
+  .steps_grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  .how_it_works {
+    h2 {
+      font-size: 24px;
+    }
+  }
+
+  .step_item {
+    .step_image {
+      height: 160px;
+    }
+
+    h3 {
+      font-size: 16px;
+    }
+
+    p {
+      font-size: 13px;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .steps_grid {
+    grid-template-columns: 1fr;
+  }
+
+  .step_item {
+    .step_image {
+      height: 180px;
+    }
+  }
+}
+
+.skin_analysis {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.skin_analysis_content {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+}
+
+.skin_analysis_images {
+  flex: 1.2;
+  display: flex;
+  gap: 20px;
+  
+  .analysis_image {
+    border-radius: 12px;
+    height: 400px;
+    object-fit: cover;
+
+    &:first-child {
+      width: 55%;
+    }
+
+    &:nth-child(2) {
+      width: 45%;
+    }
+  }
+}
+
+.skin_analysis_info {
+  flex: 1;
+  padding-left: 40px;
+
+  h2 {
+    color: #FF6B8F;
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    line-height: 1.4;
+  }
+
+  .main_desc {
+    color: #666;
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 32px;
+  }
+}
+
+.feature_list {
+  .feature_item {
+    margin-bottom: 24px;
+
+    h3 {
+      color: #333;
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    p {
+      color: #666;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .skin_analysis_content {
+    flex-direction: column;
+  }
+
+  .skin_analysis_images {
+    width: 100%;
+    margin-bottom: 40px;
+    
+    .analysis_image {
+      height: 350px;
+    }
+  }
+
+  .skin_analysis_info {
+    padding-left: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .skin_analysis_images {
+    flex-direction: column;
+    
+    .analysis_image {
+      width: 100% !important;
+      height: 300px;
+    }
+  }
+
+  .skin_analysis_info {
+    h2 {
+      font-size: 28px;
+    }
+
+    .main_desc {
+      font-size: 15px;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .skin_analysis_images {
+    height: 400px;
+    
+    .analysis_image {
+      &:first-child {
+        height: 250px;
+      }
+
+      &:nth-child(2) {
+        height: 200px;
+        width: 80%;
+      }
+    }
+  }
+}
+
+.qr_banner {
+  width: 100%;
+  margin-top: 40px;
+
+  img {
+    width: 100%;
+    height: 396px;
+    object-fit: cover;
+    display: block;
+  }
+}
+
+@media (max-width: 768px) {
+  .qr_banner {
+    img {
+      height: 300px;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .qr_banner {
+    img {
+      height: 200px;
+    }
+  }
+} 

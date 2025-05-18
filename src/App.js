@@ -3,6 +3,7 @@ import "react-toastify/dist/ReactToastify.css"; // Import CSS cho react-toastify
 import { publicRoutes } from "routes";
 import { Fragment } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Instant from "pages/Instant";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
               />
             );
           })}
+          <Route path="/instant" element={<Instant />} />
         </Routes>
       </div>
     </Router>

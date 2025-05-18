@@ -22,11 +22,25 @@ const Header = () => {
     "Chăm Sóc Sức Khỏe",
     "Chăm Sóc Tóc",
     "Tất Cả Thương Hiệu",
+    "Beauty Tools",
   ];
   const [activeCategory, setActiveCategory] = useState("Trang Điểm");
+  const [showMenu, setShowMenu] = useState(false);
 
   const handleLookupClick = () => {
     navigate("/lookup");
+  };
+
+  const handleDanhMucClick = () => {
+    console.log("Đã nhấn DANH MỤC");
+    setShowMenu((prev) => !prev);
+  };
+
+  const handleCloseMenu = (e) => {
+    // Only close if clicking outside the menu
+    if (e.target.classList.contains(styles.menu_overlay)) {
+      setShowMenu(false);
+    }
   };
 
   return (
@@ -89,7 +103,7 @@ const Header = () => {
 
         {/* row 3 */}
         <div className={styles.ctn_3}>
-          <div className={styles.div_danhmuc}>
+          <div className={styles.div_danhmuc} onClick={handleDanhMucClick}>
             <Menu size={20} /> DANH MỤC
           </div>
           <div className={styles.div_menu}>
@@ -106,6 +120,64 @@ const Header = () => {
           </div>
         </div>
       </div>
+      {/* Dropdown menu overlay */}
+      {showMenu && (
+        <div className={styles.menu_overlay} onClick={handleCloseMenu}>
+          <div className={styles.dropdown_menu}>
+            <div className={styles.menu_col}>
+              <div className={styles.menu_col_title}>ĐỘC QUYỀN TẠI PURE</div>
+              <div className={styles.menu_col_item}>
+                Chăm Sóc Da <span>&gt;</span>
+              </div>
+              <div className={styles.menu_col_item}>
+                Trang Điểm <span>&gt;</span>
+              </div>
+              <div className={styles.menu_col_item}>
+                Chăm Sóc Cơ Thể <span>&gt;</span>
+              </div>
+              <div className={styles.menu_col_item}>
+                Chăm Sóc Tóc <span>&gt;</span>
+              </div>
+            </div>
+            <div className={styles.menu_col}>
+              <div className={styles.menu_col_title}>CÁC SẢN PHẨM TẠI PURE</div>
+              <div className={styles.menu_col_item}>Chăm Sóc Da</div>
+              <div className={styles.menu_col_item}>Trang Điểm</div>
+              <div className={styles.menu_col_item}>Chăm Sóc Cơ Thể</div>
+              <div className={styles.menu_col_item}>Chăm Sóc Tóc</div>
+              <div className={styles.menu_col_item}>Vệ Sinh Phụ Nữ</div>
+              <div className={styles.menu_col_item}>
+                Khăn Giấy - Bông Tẩy Trang
+              </div>
+              <div className={styles.menu_col_item}>Dụng Cụ Trang Điểm</div>
+            </div>
+            <div className={styles.menu_col}>
+              <div className={styles.menu_col_title}>THƯƠNG HIỆU</div>
+              <div className={styles.menu_col_item}>Dosque</div>
+              <div className={styles.menu_col_item}>Dele</div>
+              <div className={styles.menu_col_item}>Forsy</div>
+              <div className={styles.menu_col_item}>ImUnd</div>
+              <div className={styles.menu_col_item}>Magnet</div>
+              <div className={styles.menu_col_item}>Bidal</div>
+            </div>
+            <div className={styles.menu_col}>
+              <div className={styles.menu_col_title}>BEAUTY TOOL</div>
+              <Link to="/virtual" className={styles.menu_col_item}>
+                Virtual makeup try-on
+              </Link>
+              <Link to="/instant" className={styles.menu_col_item}>
+                Instant skin reader
+              </Link>
+            </div>
+            <div className={styles.menu_dots}>
+              <span className={styles.menu_dot}></span>
+              <span className={styles.menu_dot}></span>
+              <span className={styles.menu_dot}></span>
+              <span className={styles.menu_dot}></span>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 };
