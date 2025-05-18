@@ -7,6 +7,7 @@ import MyProfile from "../../components/MyProfile";
 import PaymentCard from "../../components/PaymentCard";
 import Address from "../../components/Address";
 import ChangePassword from "../../components/ChangePassword";
+import Wishlist from "../../components/Wishlist";
 
 const cx = classNames.bind(styles);
 
@@ -17,7 +18,7 @@ const Home = () => {
       <h2>My Home</h2>
       <div className={cx("container")}>
         <NavLeft />
-        <ChangePassword />
+        <Wishlist />
       </div>
     </div>
     </>
