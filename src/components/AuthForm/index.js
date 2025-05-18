@@ -28,13 +28,12 @@ const AuthForm = ({ type }) => {
                         
                         <form className={styles.form}>
                             <div className={styles.div_input}>
-                            {!isLogin && <input type="text" placeholder="Họ và tên" />}
 
                             <input type="email" placeholder="Email của bạn" />
 
                             {!isLogin && <input type="tel" placeholder="Số điện thoại của bạn" />}
 
-                            <input type="text" placeholder="User name" />
+                            {!isLogin && <input type="text" placeholder="User name" />}
 
                             <div className={styles.passwordWrapper}>
                                 <input

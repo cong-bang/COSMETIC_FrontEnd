@@ -6,6 +6,7 @@ import NavLeft from "../../components/NavLeft";
 import MyProfile from "../../components/MyProfile";
 import PaymentCard from "../../components/PaymentCard";
 import Address from "../../components/Address";
+import ChangePassword from "../../components/ChangePassword";
 
 const cx = classNames.bind(styles);
 
@@ -16,7 +17,7 @@ const Home = () => {
       <h2>My Home</h2>
       <div className={cx("container")}>
         <NavLeft />
-        <Address />
+        <ChangePassword />
       </div>
     </div>
     </>

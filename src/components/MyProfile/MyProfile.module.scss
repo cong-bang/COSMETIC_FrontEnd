@@ -7,8 +7,8 @@
   height: fit-content;
 
   & h2 {
-    font-size: 20px;
-    color: #333;
+    color: #4E4663;
+    font-weight: 600;
     margin-bottom: 0;
   }
 
@@ -67,7 +67,9 @@
             font-size: 14px;
 
             &:focus {
-            border-color: #f45c8c;
+                outline: none;
+                box-shadow: 0 0 0 2px rgba(237, 100, 166, 0.3);
+                border-color: #ed64a6;
             }
         }
     }
@@ -133,7 +135,7 @@
 
     & .saveButton {
         align-self: flex-end;
-        padding: 12px 32px;
+        padding: 0.5rem 3rem;
         background: #f45c8c;
         color: #fff;
         border: none;
