@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Wishlist.module.scss";
-import product_wishlist from '../../assets/images/product_wishlist.png'
+import product_wishlist from 'images/product_wishlist.png'
 import icon_search from 'images/icon_search.png'
 
 const Wishlist = () => {
