@@ -10,6 +10,7 @@ import ChangePassword from "../../components/ChangePassword";
 import Wishlist from "../../components/Wishlist";
 import Notification from "../../components/Notification";
 import MyVoucher from "../../components/MyVoucher";
+import MyOrder from "../../components/MyOrder";
 
 const cx = classNames.bind(styles);
 
@@ -20,7 +21,7 @@ const Home = () => {
       <h2>My Home</h2>
       <div className={cx("container")}>
         <NavLeft />
-        <MyVoucher />
+        <MyOrder />
       </div>
     </div>
     </>
