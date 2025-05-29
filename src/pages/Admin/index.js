@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Layout, Menu } from "antd";
+import { Layout, Menu, Image } from "antd";
 import {
   DashboardOutlined,
   ShoppingOutlined,
@@ -14,7 +14,9 @@ import { Link, Routes, Route } from "react-router-dom";
 import "./Admin.scss";
 import Dashboard from "./Dashboard";
 import ProductManagement from "./ProductManagement";
-import logo from "../../assets/images/PURE_logo.png";
+import CategoryManagement from "./CategoryManagement";
+import pureLogo from "../../assets/images/PURE_logo.png";
+import pureLogo2 from "../../assets/images/pure_logo_2.png";
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -79,7 +81,12 @@ const Admin = () => {
       >
         <div className="admin-logo">
           {!collapsed ? (
-            <img src={logo} alt="Pure Logo" style={{ height: "40px" }} />
+            <Image
+              src={pureLogo2}
+              alt="Pure Logo"
+              preview={false}
+              style={{ height: "40px", objectFit: "contain" }}
+            />
           ) : (
             <div className="logo-small">P</div>
           )}
@@ -104,12 +111,12 @@ const Admin = () => {
           <div className="admin-content">
             <Routes>
               <Route path="/" element={<Dashboard />} />
-              <Route path="/products" element={<ProductManagement />} />
-              <Route path="/users" element={<div>Quản lý người dùng</div>} />
-              <Route path="/orders" element={<div>Quản lý đơn hàng</div>} />
-              <Route path="/categories" element={<div>Quản lý danh mục</div>} />
-              <Route path="/blog" element={<div>Quản lý blog</div>} />
-              <Route path="/settings" element={<div>Cài đặt hệ thống</div>} />
+              <Route path="products" element={<ProductManagement />} />
+              <Route path="users" element={<div>Quản lý người dùng</div>} />
+              <Route path="orders" element={<div>Quản lý đơn hàng</div>} />
+              <Route path="categories" element={<CategoryManagement />} />
+              <Route path="blog" element={<div>Quản lý blog</div>} />
+              <Route path="settings" element={<div>Cài đặt hệ thống</div>} />
             </Routes>
           </div>
         </Content>

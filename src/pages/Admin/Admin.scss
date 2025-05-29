@@ -1,0 +1,59 @@
+.admin-sider {
+  .admin-logo {
+    height: 64px;
+    padding: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.1);
+    margin-bottom: 1px;
+    
+    .logo-small {
+      color: white;
+      font-size: 24px;
+      font-weight: bold;
+    }
+  }
+}
+
+.admin-header {
+  padding: 0 24px;
+  background: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+  .admin-header-title {
+    font-size: 18px;
+    font-weight: 600;
+  }
+  
+  .admin-header-user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    
+    .admin-username {
+      font-weight: 500;
+    }
+    
+    .admin-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #1890ff;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+    }
+  }
+}
+
+.admin-content {
+  margin: 24px 0;
+  padding: 24px;
+  background: white;
+  border-radius: 4px;
+} 

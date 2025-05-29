@@ -18,6 +18,8 @@ import Virtual from "../pages/Virtual";
 import Products from "../pages/Products";
 import Voucher from "../pages/Voucher";
 import Admin from "../pages/Admin";
+import { Fragment } from "react";
+
 const publicRoutes = [
   { path: "/", component: Home, layout: Home },
   { path: "/login", component: Login, layout: Login },
@@ -54,7 +56,7 @@ const publicRoutes = [
   { path: "/virtual", component: Virtual, layout: Virtual },
   { path: "/products", component: Products, layout: Products },
   { path: "/voucher", component: Voucher, layout: Voucher },
-  // { path: "/admin", component: Admin, layout: Admin },
+  { path: "/admin/*", component: Admin, layout: Fragment },
 ];
 
 const privateRoutes = [];
