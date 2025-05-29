@@ -23,6 +23,7 @@ const Header = () => {
     "Chăm Sóc Tóc",
     "Tất Cả Thương Hiệu",
     "Beauty Tools",
+    "Voucher",
   ];
   const [activeCategory, setActiveCategory] = useState("Trang Điểm");
   const [showMenu, setShowMenu] = useState(false);
@@ -40,6 +41,13 @@ const Header = () => {
     // Only close if clicking outside the menu
     if (e.target.classList.contains(styles.menu_overlay)) {
       setShowMenu(false);
+    }
+  };
+
+  const handleCategoryClick = (category) => {
+    setActiveCategory(category);
+    if (category === "Voucher") {
+      navigate("/voucher");
     }
   };
 
@@ -110,7 +118,7 @@ const Header = () => {
             {categories.map((category) => (
               <button
                 key={category}
-                onClick={() => setActiveCategory(category)}
+                onClick={() => handleCategoryClick(category)}
                 className={activeCategory === category ? styles.active : ""}
               >
                 <span>●</span>
@@ -127,7 +135,7 @@ const Header = () => {
             <div className={styles.menu_col}>
               <div className={styles.menu_col_title}>ĐỘC QUYỀN TẠI PURE</div>
               <div className={styles.menu_col_item}>
-                Chăm Sóc Da <span>&gt;</span>
+                <Link to="/products">Chăm Sóc Da</Link> <span>&gt;</span>
               </div>
               <div className={styles.menu_col_item}>
                 Trang Điểm <span>&gt;</span>
@@ -137,6 +145,9 @@ const Header = () => {
               </div>
               <div className={styles.menu_col_item}>
                 Chăm Sóc Tóc <span>&gt;</span>
+              </div>
+              <div className={styles.menu_col_item}>
+                <Link to="/voucher">Voucher</Link> <span>&gt;</span>
               </div>
             </div>
             <div className={styles.menu_col}>
@@ -150,6 +161,9 @@ const Header = () => {
                 Khăn Giấy - Bông Tẩy Trang
               </div>
               <div className={styles.menu_col_item}>Dụng Cụ Trang Điểm</div>
+              <div className={styles.menu_col_item}>
+                <Link to="/voucher">Voucher</Link>
+              </div>
             </div>
             <div className={styles.menu_col}>
               <div className={styles.menu_col_title}>THƯƠNG HIỆU</div>

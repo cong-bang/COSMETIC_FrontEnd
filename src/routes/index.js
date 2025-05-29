@@ -15,7 +15,9 @@ import Lookup from "pages/Lookup";
 import OrderTracking from "pages/Ordertracking";
 import BeautyTools from "../pages/BeautyTools";
 import Virtual from "../pages/Virtual";
-
+import Products from "../pages/Products";
+import Voucher from "../pages/Voucher";
+import Admin from "../pages/Admin";
 const publicRoutes = [
   { path: "/", component: Home, layout: Home },
   { path: "/login", component: Login, layout: Login },
@@ -50,6 +52,9 @@ const publicRoutes = [
   { path: "/order-tracking", component: OrderTracking, layout: OrderTracking },
   { path: "/beauty-tools", component: BeautyTools, layout: BeautyTools },
   { path: "/virtual", component: Virtual, layout: Virtual },
+  { path: "/products", component: Products, layout: Products },
+  { path: "/voucher", component: Voucher, layout: Voucher },
+  // { path: "/admin", component: Admin, layout: Admin },
 ];
 
 const privateRoutes = [];
