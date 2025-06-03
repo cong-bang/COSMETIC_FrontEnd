@@ -5,7 +5,7 @@ import icon_search from 'images/icon_search.png'
 
 const Wishlist = () => {
   
-  const products = Array(12).fill({
+  const products = Array(8).fill({
     brand: "COCOON",
     name: "Tinh Chất Nghệ Hưng Yên C22 Cocoon 30ml",
     price: 372000,

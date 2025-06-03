@@ -22,6 +22,15 @@ import Notification from "../components/Notification";
 import MyVoucher from "../components/MyVoucher";
 import MyOrder from "../components/MyOrder";
 
+import Lookup from "pages/Lookup";
+import OrderTracking from "pages/Ordertracking";
+import BeautyTools from "../pages/BeautyTools";
+import Virtual from "../pages/Virtual";
+import Products from "../pages/Products";
+import Voucher from "../pages/Voucher";
+import Admin from "../pages/Admin";
+import { Fragment } from "react";
+
 const publicRoutes = [
   { path: "/", component: Home, layout: HomeLayout },
   { path: "/login", component: Login, layout: HomeLayout },
@@ -36,8 +45,13 @@ const publicRoutes = [
   { path: "/failure-payment", component: FailurePayment, layout: FailurePayment},
   { path: "/cart", component: Cart, layout: HomeLayout},
   { path: "/order", component: Order, layout: HomeLayout},
-
-  
+  { path: "/lookup", component: Lookup, layout: HomeLayout },
+  { path: "/order-tracking", component: OrderTracking, layout: HomeLayout },
+  { path: "/beauty-tools", component: BeautyTools, layout: HomeLayout },
+  { path: "/virtual", component: Virtual, layout: HomeLayout },
+  { path: "/products", component: Products, layout: HomeLayout },
+  { path: "/voucher", component: Voucher, layout: HomeLayout },
+  { path: "/admin/*", component: Admin, layout: Fragment },
 ];
 
 const privateRoutes = [

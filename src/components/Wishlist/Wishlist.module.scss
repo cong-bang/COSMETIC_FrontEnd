@@ -73,6 +73,7 @@
         padding: 30px;
         border-radius: 10px;
         box-shadow: 0 0 12px 2px rgba(0, 0, 0, 0.08);
+        width: 900px;
         max-width: 1200px;
         margin: 40px auto;
 
@@ -92,7 +93,7 @@
 
         & .product_grid {
             display: grid;
-            grid-template-columns: repeat(6, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             gap: 20px;
 
             & .product_card {
@@ -104,6 +105,9 @@
                     height: 160px;
                     object-fit: cover;
                     margin-bottom: 10px;
+                    display: block;
+                    margin-left: auto;
+                    margin-right: auto;
                 }
 
                 & h4 {

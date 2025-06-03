@@ -1,16 +1,15 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import styles from "./NavLeft.module.scss"
-import user from 'images/user.png'
-import photograph_icon from 'images/photograph_icon.png'
-import shopping_bag_icon from 'images/shopping_bag_icon.png'
-import bell_icon from 'images/bell_icon.png'
-import ticket_icon from 'images/ticket_icon.png'
+import { NavLink } from 'react-router-dom';
+import styles from './NavLeft.module.scss';
+import user from 'images/user.png';
+import photograph_icon from 'images/photograph_icon.png';
+import shopping_bag_icon from 'images/shopping_bag_icon.png';
+import bell_icon from 'images/bell_icon.png';
+import ticket_icon from 'images/ticket_icon.png';
 
 const NavLeft = () => {
-  const navigate = useNavigate();
-
   return (
+    <>
     <div className={styles.nav_left}>
       <div className={styles.profile}>
         <div className={styles.avatar}>
@@ -25,58 +24,74 @@ const NavLeft = () => {
       <div className={styles.nav_section}>
         <h4>Tài khoản của tôi</h4>
         <div className={styles.account_menu}>
-          <label>
-            <input
-              type="radio"
-              name="menu"
-              onClick={() => navigate("/my-profile")}
-              defaultChecked
-            />
+          <NavLink
+            to="/my-profile"
+            className={({ isActive }) =>
+              isActive ? styles.active : styles.checkbox_empty
+            }
+          >
             Hồ sơ
-          </label>
-          <label>
-            <input
-              type="radio"
-              name="menu"
-              onClick={() => navigate("/paymentcard")}
-            />
+          </NavLink>
+          <NavLink
+            to="/paymentcard"
+            className={({ isActive }) =>
+              isActive ? styles.active : styles.checkbox_empty
+            }
+          >
             Thanh toán
-          </label>
-          <label>
-            <input
-              type="radio"
-              name="menu"
-              onClick={() => navigate("/address")}
-            />
+          </NavLink>
+          <NavLink
+            to="/address"
+            className={({ isActive }) =>
+              isActive ? styles.active : styles.checkbox_empty
+            }
+          >
             Địa chỉ
-          </label>
-          <label>
-            <input
-              type="radio"
-              name="menu"
-              onClick={() => navigate("/change-password")}
-            />
+          </NavLink>
+          <NavLink
+            to="/change-password"
+            className={({ isActive }) =>
+              isActive ? styles.active : styles.checkbox_empty
+            }
+          >
             Đổi mật khẩu
-          </label>
+          </NavLink>
         </div>
       </div>
 
       <div className={styles.button_group}>
-        <button onClick={() => navigate("/wishlist")}>
-          <img src={photograph_icon} alt='' /> Wishlist
-        </button>
-        <button onClick={() => navigate("/my-order")}>
-          <img src={shopping_bag_icon} alt='' /> Đơn hàng
-        </button>
-        <button onClick={() => navigate("/notifications")}>
-          <img src={bell_icon} alt='' /> Thông báo
-        </button>
-        <button onClick={() => navigate("/my-voucher")}>
-          <img src={ticket_icon} alt='' /> Voucher
-        </button>
+        <NavLink
+          to="/wishlist"
+          className={({ isActive }) => (isActive ? styles.active : '')}
+        >
+          <img src={photograph_icon} alt="Wishlist icon" />
+          Wishlist
+        </NavLink>
+        <NavLink
+          to="/my-order"
+          className={({ isActive }) => (isActive ? styles.active : '')}
+        >
+          <img src={shopping_bag_icon} alt="Đơn hàng icon" />
+          Đơn hàng
+        </NavLink>
+        <NavLink
+          to="/notifications"
+          className={({ isActive }) => (isActive ? styles.active : '')}
+        >
+          <img src={bell_icon} alt="Thông báo icon" />
+          Thông báo
+        </NavLink>
+        <NavLink
+          to="/my-voucher"
+          className={({ isActive }) => (isActive ? styles.active : '')}
+        >
+          <img src={ticket_icon} alt="Voucher icon" />
+          Voucher
+        </NavLink>
       </div>
     </div>
+    </>
   );
-}
+};
 
 export default NavLeft;
