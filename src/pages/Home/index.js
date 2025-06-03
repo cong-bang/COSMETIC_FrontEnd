@@ -371,7 +371,6 @@ const Home = () => {
 
   return (
     <>
-      <Header />
       <div className={cx("wrapper-home")}>
         {/* Side discount tag - fixed position */}
         <div className={cx("side-discount-tag")}>
@@ -912,7 +911,6 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 };
