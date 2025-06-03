@@ -4,8 +4,6 @@ import styles from "./ConfirmPassword.module.scss";
 import login from 'images/login.png'
 import logo_fb from 'images/logo_fb_login.png'
 import logo_gg from 'images/logo_gg_login.png'
-import Header from "components/Layout/Header"
-import Footer from "components/Layout/Footer"
 import { FaEye, FaEyeSlash} from "react-icons/fa";
 
 const ConfirmPassword = () => {
@@ -14,7 +12,6 @@ const ConfirmPassword = () => {
 
   return (
     <>
-    <Header />
     <div className={styles.container_auth}>
         <div className={styles.container_left}>
             <div className={styles.ctn_form_link}>
@@ -86,7 +83,6 @@ const ConfirmPassword = () => {
         <img src={login} alt="Authentication" />
       </div>
     </div>
-    <Footer />
     </>
   );
 };

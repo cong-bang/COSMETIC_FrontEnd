@@ -1,7 +1,5 @@
 import React from 'react'
 import styles from "./Cart.module.scss"
-import Header from "components/Layout/Header"
-import Footer from "components/Layout/Footer"
 import product from 'images/product.png'
 import viuudai from 'images/viuudai.png'
 import product_1 from 'images/product_1.png'
@@ -16,7 +14,6 @@ import product_7 from 'images/product_7.png'
 const Cart = () => {
   return (
     <>
-    <Header />
     <div className={styles.container}>
         <div className={styles.cart_left} >
             <div className={styles.cart_header}>
@@ -176,7 +173,6 @@ const Cart = () => {
             </div>
         </div>
     </div>
-    <Footer />
     </>
   )
 }

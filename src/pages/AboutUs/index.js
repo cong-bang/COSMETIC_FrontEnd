@@ -1,7 +1,5 @@
 import React from 'react'
 import styles from "./AboutUs.module.scss"
-import Header from "components/Layout/Header"
-import Footer from "components/Layout/Footer"
 import aboutus from 'images/aboutus.png'
 import aboutus_1 from 'images/aboutus_1.png'
 import aboutus_2 from 'images/aboutus_2.png'
@@ -10,7 +8,6 @@ import aboutus_3 from 'images/aboutus_3.png'
 const AboutUs = () => {
   return (
     <>
-    <Header />
         <div className={styles.container}>
             <h2 className={styles.section_title}>VỀ PURÉ</h2>
 
@@ -55,7 +52,6 @@ const AboutUs = () => {
                 </div>
             </div>
         </div>
-    <Footer />
     </>
   )
 }

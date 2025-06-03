@@ -1,7 +1,5 @@
 import React from 'react'
 import styles from "./BlogDetail.module.scss"
-import Header from "components/Layout/Header"
-import Footer from "components/Layout/Footer"
 import blog_cate1 from 'images/blog_cate1.png'
 import view from 'images/view.png'
 import calendar_icon from 'images/calendar_icon.png'
@@ -15,7 +13,6 @@ import blog_banqtam6 from 'images/blog_banqtam6.png'
 const BlogDetail = () => {
   return (
     <>
-    <Header />
     <div className={styles.blog_container}>
         <div className={styles.blog_content}>
             <div className={styles.header}>
@@ -125,7 +122,6 @@ const BlogDetail = () => {
             </div>
         </div>
       </div>
-    <Footer />
     </>
   )
 }

@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
 import styles from "./Order.module.scss"
-import Header from "components/Layout/Header"
-import Footer from "components/Layout/Footer"
 import viuudai from 'images/viuudai.png'
 import location_marker from 'images/location_marker.png'
 import product from 'images/product.png'
@@ -12,7 +10,6 @@ const Order = () => {
 
   return (
     <>
-    <Header />
     <div className={styles.container}>
         <div className={styles.left}>
             <div className={styles.section}>
@@ -125,8 +122,6 @@ const Order = () => {
             </div>
         </div>
     </div>
-
-    <Footer />
     </>
   )
 }
