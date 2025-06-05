@@ -1,8 +1,12 @@
-import { ToastContainer } from "react-toastify"; // Import ToastContainer
-import "react-toastify/dist/ReactToastify.css"; // Import CSS cho react-toastify
-import { publicRoutes } from "routes";
-import { Fragment } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { publicRoutes, privateRoutes } from './routes';
+import { Fragment } from 'react';
+import HomeLayout from './layouts/HomeLayout';
+import UserProfileLayout from './layouts/UserProfileLayout';
+import Instant from 'pages/Instant';
+import Admin from './pages/Admin';
 
 function App() {
   return (
@@ -10,21 +14,25 @@ function App() {
       <div className="App">
         <ToastContainer />
         <Routes>
-          {publicRoutes.map((route, index) => {
-            const Layout = route.layout || Fragment;
-            const Page = route.component;
-            return (
-              <Route
-                key={index}
-                path={route.path}
-                element={
-                  <Layout>
-                    <Page />
-                  </Layout>
-                }
-              />
-            );
-          })}
+          {/* Public routes with HomeLayout */}
+          <Route element={<HomeLayout />}>
+            {publicRoutes
+              .filter((route) => route.path !== '/admin/*')
+              .map((route, index) => {
+                const Page = route.component;
+                return <Route key={index} path={route.path} element={<Page />} />;
+              })}
+            <Route path="/instant" element={<Instant />} />
+          </Route>
+          {/* Private routes with UserProfileLayout (which includes HomeLayout) */}
+          <Route element={<UserProfileLayout />}>
+            {privateRoutes.map((route, index) => {
+              const Page = route.component;
+              return <Route key={index} path={route.path} element={<Page />} />;
+            })}
+          </Route>
+          {/* Admin route */}
+          <Route path="/admin/*" element={<Admin />} />
         </Routes>
       </div>
     </Router>

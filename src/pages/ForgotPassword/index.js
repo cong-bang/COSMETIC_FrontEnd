@@ -4,8 +4,6 @@ import styles from "./ForgotPassword.module.scss";
 import login from 'images/login.png'
 import logo_fb from 'images/logo_fb_login.png'
 import logo_gg from 'images/logo_gg_login.png'
-import Header from "components/Layout/Header"
-import Footer from "components/Layout/Footer"
 
 const ForgotPassword = () => {
     const navigate = useNavigate();
@@ -16,7 +14,6 @@ const ForgotPassword = () => {
 
   return (
     <>
-    <Header />
     <div className={styles.container_auth}>
         <div className={styles.container_left}>
             <div className={styles.ctn_form_link}>
@@ -56,7 +53,6 @@ const ForgotPassword = () => {
         <img src={login} alt="Authentication" />
       </div>
     </div>
-    <Footer />
     </>
   );
 };

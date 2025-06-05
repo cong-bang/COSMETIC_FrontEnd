@@ -1,6 +1,4 @@
 import React from "react";
-import Header from "components/Layout/Header"
-import Footer from "components/Layout/Footer"
 import styles from "./Blog.module.scss";
 import blog_intro from 'images/blog_intro.png'
 import chamsocda from 'images/chamsocda.png'
@@ -28,7 +26,6 @@ import { Link } from 'react-router-dom';
 const Blog = () => {
   return(
     <>
-    <Header />
     {/* Blog Page*/}
     <div className={styles.blogpage_container}>
         <div className={styles.section_intro}>
@@ -213,8 +210,6 @@ const Blog = () => {
           </div>
         </div>
       </div>
-
-    <Footer />
     </>
   ) 
 };

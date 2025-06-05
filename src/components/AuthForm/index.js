@@ -22,20 +22,19 @@ const AuthForm = ({ type }) => {
                     <div className={styles.card_form}>
                         <h2>{isLogin ? "ĐĂNG NHẬP" : "ĐĂNG KÝ"}</h2>
                         <div className={styles.div_toggle_email_sdt}>
-                            <span className={!useEmail ? styles.active : ""}
-                                onClick={() => setUseEmail(false)}>Số điện thoại</span>
-                            <span className={useEmail ? styles.active : ""}
-                                onClick={() => setUseEmail(true)}>Email</span>
+                            <span className={styles.active}></span>
+                            <span></span>
                         </div>
                         
                         <form className={styles.form}>
                             <div className={styles.div_input}>
-                            {!isLogin && <input type="text" placeholder="Họ và tên" />}
-                            {useEmail ? (
-                                <input type="email" placeholder="Email của bạn" />
-                            ) : (
-                                <input type="tel" placeholder="Số điện thoại của bạn" />
-                            )}
+
+                            <input type="email" placeholder="Email của bạn" />
+
+                            {!isLogin && <input type="tel" placeholder="Số điện thoại của bạn" />}
+
+                            {!isLogin && <input type="text" placeholder="User name" />}
+
                             <div className={styles.passwordWrapper}>
                                 <input
                                 type={passwordVisible ? "text" : "password"}
