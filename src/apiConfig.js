@@ -1,4 +1,24 @@
 // apiConfig.js
-const BASE_API_URL = "https://localhost:7269/api";
+import axios from "axios";
 
-export default BASE_API_URL;
+const API_BASE_URL = import.meta.env.COSMETIC_API_BASE_URL;
+
+export const axiosInstance = axios.create({
+    baseURL: API_BASE_URL,
+    withCredentials: true,
+});
+
+axiosInstance.interceptors.request.use(
+    (config) => {
+        const token = localStorage.getItem("token");
+        if (token) {
+            config.headers.Authorization = `Bearer ${token}`;
+        }
+        return config;
+    },
+    (error) => {
+        return Promise.reject(error);
+    }
+);
+
+
