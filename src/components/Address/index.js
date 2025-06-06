@@ -1,8 +1,24 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Map } from "lucide-react";
 import styles from "./Address.module.scss";
+import { getAllProvinces } from '../../services/mapApiService';
 
 const Address = () => {
+
+  //Map API
+  const [provinceList, setProvinceList] = useState([]);
+
+  useEffect(() => {
+    const fetchProvinces = async () => {
+      const data = await getAllProvinces();
+      if (data) {
+        setProvinceList(data);
+      }
+    };
+    fetchProvinces();
+  }, []);
+
+
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -53,7 +69,7 @@ const Address = () => {
           </div>
         </div>
         
-        <div className={styles.dropdownContainer}>
+        {/* <div className={styles.dropdownContainer}>
           <div 
             className={styles.dropdownField}
             onClick={() => setShowRegionDropdown(!showRegionDropdown)}
@@ -99,6 +115,49 @@ const Address = () => {
                   Cần Thơ
                 </li>
               </ul>
+            </div>
+          )}
+        </div> */}
+
+        {/* MAP API */}
+        <div className={styles.dropdownContainer}>
+          <div 
+            className={styles.dropdownField}
+            onClick={() => setShowRegionDropdown(!showRegionDropdown)}
+          >
+            <span className={formData.region ? styles.textBlack : styles.textGray}>
+              {formData.region || "Tỉnh/Thành phố, Huyện/Quận, Phường/Xã"}
+            </span>
+            <svg 
+              className={`${styles.dropdownIcon} ${showRegionDropdown ? styles.rotateIcon : ""}`} 
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
+          </div>
+
+          {showRegionDropdown && (
+            <div className={styles.dropdownMenu}>
+              {provinceList.length === 0 ? (
+                <div className={styles.loadingText}>Đang tải dữ liệu...</div>
+              ) : (
+                <ul className={styles.optionsList}>
+                  {provinceList.map((province) => (
+                    <li
+                      key={province.code}
+                      className={styles.option}
+                      onClick={() => {
+                        setFormData({ ...formData, region: province.name });
+                        setShowRegionDropdown(false);
+                      }}
+                    >
+                      {province.name}
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
           )}
         </div>
