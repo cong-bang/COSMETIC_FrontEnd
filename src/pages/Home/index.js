@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 //import className và scss
 import classNames from "classnames/bind";
 import styles from "./Home.module.scss";
@@ -17,8 +17,8 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-import Header from "components/Layout/Header";
-import Footer from "components/Layout/Footer";
+import { get5Products } from "../../services/productService";
+import { Link, NavLink } from "react-router-dom";
 
 const cx = classNames.bind(styles);
 
@@ -264,8 +264,29 @@ const Home = () => {
   const [minutes, setMinutes] = useState(13);
   const [seconds, setSeconds] = useState(45);
   const [email, setEmail] = useState("");
+  const [productCards, setProductCards] = useState([]);
 
   const productsSliderRef = useRef(null);
+
+  //Get Product
+  useEffect(() => {
+    fetchFlashSale();
+  }, []);
+
+  const fetchFlashSale = async () => {
+    try {
+      const result = await get5Products(1, 5);
+      console.log(result.data);
+      setProductCards(result.data);
+    } catch (error) {
+      console.log(error);
+      //toast.error("Lỗi khi tải danh sách sản phẩm");
+    } finally {
+    }
+  };
+
+  
+  
 
   const nextSlide = () =>
     setCurrent((prev) => (prev + 1) % bannerSlides.length);
@@ -459,7 +480,7 @@ const Home = () => {
           </div>
 
           <div className={cx("product-card-container")}>
-            {productCards.map((product, index) => (
+            {/* {productCards.map((product, index) => (
               <div key={index} className={cx("product-card")}>
                 <div className={cx("product-image")}>
                   <div className={cx("discount-label")}>
@@ -477,15 +498,48 @@ const Home = () => {
                   </div>
                   <div className={cx("product-price")}>
                     <span className={cx("sale-price")}>
-                      {product.salePrice.toLocaleString()} đ
+                      {product.salePrice} đ
                     </span>
                     <span className={cx("original-price")}>
-                      {product.originalPrice.toLocaleString()} đ
+                      {product.originalPrice} đ
                     </span>
                   </div>
                 </div>
               </div>
+            ))} */}
+            {/* API Products */}
+            {productCards.map((product) => (
+              
+              <div className={cx("product-card")}>
+                <Link key={product.id} to={`/detail-product/${product.id}`}>
+                <div className={cx("product-image")}>
+                  <div className={cx("discount-label")}>
+                    -{20}%
+                  </div>
+                </div>
+                <div className={cx("product-info")}>
+                  <div className={cx("product-brand")}>{product.brand.name}</div>
+                  <h3 className={cx("product-name")}>{product.name}</h3>
+                  <div className={cx("product-rating")}>
+                    <div className={cx("stars")}>★★★★★</div>
+                    <span className={cx("review-count")}>
+                      ({product.categoryName})
+                    </span>
+                  </div>
+                  <div className={cx("product-price")}>
+                    <span className={cx("sale-price")}>
+                      {product.price} đ
+                    </span>
+                    <span className={cx("original-price")}>
+                      {product.price} đ
+                    </span>
+                  </div>
+                </div>
+                </Link>
+              </div>
+              
             ))}
+
           </div>
         </div>
 
@@ -543,10 +597,10 @@ const Home = () => {
                   </div>
                   <div className={cx("product-price")}>
                     <span className={cx("sale-price")}>
-                      {product.salePrice.toLocaleString()} đ
+                      {product.salePrice} đ
                     </span>
                     <span className={cx("original-price")}>
-                      {product.originalPrice.toLocaleString()} đ
+                      {product.originalPrice} đ
                     </span>
                   </div>
                   <div className={cx("product-sold-count")}>
@@ -633,10 +687,10 @@ const Home = () => {
                     </div>
                     <div className={cx("product-price")}>
                       <span className={cx("sale-price")}>
-                        {product.salePrice.toLocaleString()} đ
+                        {product.salePrice} đ
                       </span>
                       <span className={cx("original-price")}>
-                        {product.originalPrice.toLocaleString()} đ
+                        {product.originalPrice} đ
                       </span>
                     </div>
                     <div className={cx("selling-fast-tag")}>
@@ -727,10 +781,10 @@ const Home = () => {
                   </div>
                   <div className={cx("product-price")}>
                     <span className={cx("sale-price")}>
-                      {product.salePrice.toLocaleString()} đ
+                      {product.salePrice} đ
                     </span>
                     <span className={cx("original-price")}>
-                      {product.originalPrice.toLocaleString()} đ
+                      {product.originalPrice} đ
                     </span>
                   </div>
                 </div>

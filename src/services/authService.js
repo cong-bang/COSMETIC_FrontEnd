@@ -2,7 +2,7 @@ import { axiosInstance } from "../apiConfig";
 
 export async function login(data) {
     try {
-        const response = await axiosInstance.post("/api/authen/login", data);
+        const response = await axiosInstance.post("/authen/login", data);
         return response.data;
     } catch (error) {
         if (error.response && error.response.status === 401) {
@@ -14,7 +14,7 @@ export async function login(data) {
 
 export async function logout() {
     try {
-        const response = await axiosInstance.post("/api/authen/logout");
+        const response = await axiosInstance.post("/authen/logout");
         return response.data;
     } catch (error) {
         console.log(error)
@@ -24,7 +24,7 @@ export async function logout() {
 
 export async function registerUser(data) {
     try {
-        const response = await axiosInstance.post("/api/authen/register", data);
+        const response = await axiosInstance.post("/authen/register", data);
         return response.data;
     } catch (error) {
         if (error.response && error.response.status === 400) {
@@ -37,7 +37,7 @@ export async function registerUser(data) {
 export const changePassword = async (data) => {
     try {
         const response = await axiosInstance.put(
-            "/api/authen/change-password",
+            "/authen/change-password",
             data
         );
         return response.data;
@@ -50,7 +50,7 @@ export const changePassword = async (data) => {
 export async function sendOtpForgotPassword(email) {
     try {
         const response = await axiosInstance.post(
-            "/api/authen/send-otp-forgot-password",
+            "/authen/send-otp-forgot-password",
             { email },
         );
         return response.data;
@@ -63,7 +63,7 @@ export async function sendOtpForgotPassword(email) {
 export async function verifyOtp({ email, otpCode, otpTime }) {
     try {
         const response = await axiosInstance.post(
-            "/api/authen/verify-otp",
+            "/authen/verify-otp",
             {
                 email,
                 otpCode,
@@ -80,7 +80,7 @@ export async function verifyOtp({ email, otpCode, otpTime }) {
 export async function forgotPassword({ email, password, confirmPassword }) {
     try {
         const response = await axiosInstance.post(
-            "/api/authen/forgot-password",
+            "/authen/forgot-password",
             {
                 email,
                 password,
@@ -100,14 +100,13 @@ export async function forgotPassword({ email, password, confirmPassword }) {
 }
 
 export async function sendConfirmEmail(token) {
-    try {
-        const response = await axiosInstance.post(
-            "/api/authen/confirm-email",
-            { token },
-        );
-        return response.data;
-    } catch (error) {
-        console.error("Lỗi xác thực email:", error);
-        throw error;
-    }
+  try {
+    const response = await axiosInstance.get(
+      `/authen/confirm-token?token=${token}`
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Lỗi xác thực email:", error);
+    throw error;
+  }
 }

@@ -1,14 +1,19 @@
 import React from "react";
 import styles from "./BeautyTools.module.scss";
+import Breadcrumb from "../../components/Breadcrumb";
 
 const BeautyTools = () => {
   return (
     <>
+      <div className={styles.breadcrumb}>
+        <Breadcrumb pageName={"Beauty tools"}/>
+      </div>
       <div className={styles.beautytools_container}>
-        <div className={styles.breadcrumb}>
+        {/* <div className={styles.breadcrumb}>
           TRANG CHỦ <span> &gt; </span>{" "}
           <span className={styles.active}>BEAUTY TOOL</span>
-        </div>
+        </div> */}
+
 
         {/* Block 1: Makeup Try-on */}
         <div className={styles.tool_block}>

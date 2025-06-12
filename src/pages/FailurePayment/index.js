@@ -1,7 +1,5 @@
 import React from 'react'
 import styles from "./FailurePayment.module.scss"
-import Header from "components/Layout/Header"
-import Footer from "components/Layout/Footer"
 import failure_icon from 'images/failure_icon.png'
 import { useNavigate } from 'react-router-dom'
 
@@ -14,7 +12,6 @@ const FailurePayment = () => {
     }
   return (
     <>
-    <Header />
     <div className={styles.container}>
       <img src={failure_icon} alt="Failure" className={styles.failure_icon} />
       <h2>Thanh toán không thành công!</h2>
@@ -27,7 +24,6 @@ const FailurePayment = () => {
         <button className={`${styles.btn} ${styles.primary}`} onClick={handleNavigate}>Quay lại</button>
       </div>
     </div>
-    <Footer />
     </>
   )
 }

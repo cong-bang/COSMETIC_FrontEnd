@@ -29,7 +29,9 @@ import Virtual from "../pages/Virtual";
 import Products from "../pages/Products";
 import Voucher from "../pages/Voucher";
 import Admin from "../pages/Admin";
+
 import { Fragment } from "react";
+import DetailProduct from "pages/DetailProduct";
 
 const publicRoutes = [
   { path: "/", component: Home, layout: HomeLayout },
@@ -41,8 +43,8 @@ const publicRoutes = [
   { path: "/forgot-password", component: ForgotPassword, layout: HomeLayout},
   { path: "/confirm-password", component: ConfirmPassword, layout: HomeLayout},
   { path: "/aboutus", component: AboutUs, layout: HomeLayout},
-  { path: "/success-payment", component: SuccessPayment, layout: SuccessPayment},
-  { path: "/failure-payment", component: FailurePayment, layout: FailurePayment},
+  { path: "/payment-success", component: SuccessPayment, layout: SuccessPayment},
+  { path: "/payment-cancel", component: FailurePayment, layout: FailurePayment},
   { path: "/cart", component: Cart, layout: HomeLayout},
   { path: "/order", component: Order, layout: HomeLayout},
   { path: "/lookup", component: Lookup, layout: HomeLayout },
@@ -52,6 +54,7 @@ const publicRoutes = [
   { path: "/products", component: Products, layout: HomeLayout },
   { path: "/voucher", component: Voucher, layout: HomeLayout },
   { path: "/admin/*", component: Admin, layout: Fragment },
+  { path: "/detail-product/:id", component: DetailProduct, layout: HomeLayout},
 ];
 
 const privateRoutes = [

@@ -7,6 +7,7 @@ import HomeLayout from './layouts/HomeLayout';
 import UserProfileLayout from './layouts/UserProfileLayout';
 import Instant from 'pages/Instant';
 import Admin from './pages/Admin';
+import ConfirmEmail from './components/AuthForm/ConfirmEmail';
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
           </Route>
           {/* Admin route */}
           <Route path="/admin/*" element={<Admin />} />
+          <Route path="/confirm-token/:id" element={<ConfirmEmail />} />
         </Routes>
       </div>
     </Router>

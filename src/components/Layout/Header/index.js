@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import banner from "images/header-top.png";
 import logo from "images/PURE_logo.png";
 import down_icon from "images/arrow-narrow-down.png";
@@ -11,9 +11,13 @@ import "./Header.module.scss";
 import styles from "./Header.module.scss";
 import { Menu } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserById } from "../../../services/userService";
 
 const Header = () => {
   const navigate = useNavigate();
+  const user = useSelector((state) => state.user.user);
+  const dispatch = useDispatch();
 
   const categories = [
     "Chăm Sóc Da Mặt",
@@ -46,8 +50,22 @@ const Header = () => {
 
   const handleCategoryClick = (category) => {
     setActiveCategory(category);
-    if (category === "Voucher") {
+    if (category == "Voucher") {
       navigate("/voucher");
+    } else if (category == "Beauty Tools") {
+      navigate("/beauty-tools");
+    } else {
+      navigate("/products");
+    }
+  };
+
+  const handleAuthen = () => {
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    if (user && user.id) {
+      navigate("/my-profile");
+    } else {
+      navigate("/login");
     }
   };
 
@@ -93,17 +111,17 @@ const Header = () => {
                 </div>
               </div>
               <div className={styles.div_button}>
-                <div className={styles.button}>
+                <div className={styles.button} onClick={handleAuthen}>
                   <img src={icon_user} alt="icon_user" />
-                  <span>Tài Khoản</span>
+                  <span>{JSON.parse(localStorage.getItem("user"))?.username || "Tài khoản"}</span>
                 </div>
               </div>
-              <div className={styles.div_button}>
-                <div className={styles.button}>
-                  <img src={icon_cart} alt="icon_cart" />
-                  <span>Giỏ Hàng</span>
-                </div>
-              </div>
+              <Link to="/cart" className={styles.div_button}>
+                  <div className={styles.button}>
+                    <img src={icon_cart} alt="icon_cart" />
+                    <span>Giỏ Hàng</span>
+                  </div>
+              </Link>
             </div>
           </div>
           {/*  */}

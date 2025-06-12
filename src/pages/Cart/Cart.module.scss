@@ -1,3 +1,8 @@
+.breadcrumb {
+  margin: 0 0;
+  margin-top: 40px;
+}
+
 .container {
   display: flex;
   gap: 30px;
@@ -94,7 +99,7 @@
         }
 
         & .actions {
-          & a {
+          & span {
             font-size: 12px;
             color: #999;
             margin-right: 5%;
