@@ -1,33 +1,42 @@
-import React from 'react'
-import styles from "./SuccessPayment.module.scss"
-import Header from "components/Layout/Header"
-import Footer from "components/Layout/Footer"
-import success_icon from 'images/success_icon.png'
-
+import React from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import styles from "./SuccessPayment.module.scss";
+import success_icon from 'images/success_icon.png';
 
 const SuccessPayment = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const queryParams = new URLSearchParams(location.search);
+  const orderId = queryParams.get('orderId');
+  const status = queryParams.get('status');
+  const amount = queryParams.get('amount');
+
   return (
     <>
-    <Header />
-    <div className={styles.container}>
-      <img src={success_icon} alt="Success" className={styles.success_icon} />
-      <h2>Cảm ơn bạn!</h2>
-      <p className={styles.order_id}>
-        Mã đặt hàng: <span>167499587JKP</span>
-      </p>
-      <p className={styles.description}>
-        Cảm ơn bạn đã sử dụng dịch vụ của Puré. <br />
-        Nếu bạn có bất kỳ vấn đề gì, vui lòng liên hệ với chúng tôi.
-      </p>
+      <div className={styles.container}>
+        <img src={success_icon} alt="Success" className={styles.success_icon} />
+        <h2>Cảm ơn bạn!</h2>
+        <p className={styles.order_id}>
+          Mã đặt hàng: <span>{orderId}</span>
+        </p>
+        <p className={styles.description}>
+          Trạng thái đơn hàng: <strong>{status}</strong><br />
+          Số tiền thanh toán: <strong>{amount || "0"} VNĐ</strong><br />
+          Cảm ơn bạn đã sử dụng dịch vụ của Puré.
+        </p>
 
-      <div className={styles.btn_group}>
-        <button className={`${styles.btn} ${styles.primary}`}>Tiếp tục mua sắm</button>
-        <button className={`${styles.btn} ${styles.primary}`}>Chi tiết đơn hàng</button>
+        <div className={styles.btn_group}>
+          <button className={`${styles.btn} ${styles.primary}`} onClick={() => navigate("/")}>
+            Tiếp tục mua sắm
+          </button>
+          <button className={`${styles.btn} ${styles.primary}`} onClick={() => navigate(`/order-detail/${orderId}`)}>
+            Chi tiết đơn hàng
+          </button>
+        </div>
       </div>
-    </div>
-    <Footer />
     </>
-  )
-}
+  );
+};
 
 export default SuccessPayment;

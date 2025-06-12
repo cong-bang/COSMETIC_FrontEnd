@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from "./Voucher.module.scss";
 import vouchermain from "images/vouchermain.png";
+import Breadcrumb from "../../components/Breadcrumb";
 
 const Voucher = () => {
   // State để lưu trạng thái của voucher đã nhận hay chưa
@@ -103,6 +104,9 @@ const Voucher = () => {
 
   return (
     <>
+      <div className={styles.breadcrumb}>
+          <Breadcrumb pageName={"Voucher"}/>
+        </div>
       <div className={styles.voucher_page}>
         {/* Thông báo khi lưu voucher thành công */}
         {notification.show && (

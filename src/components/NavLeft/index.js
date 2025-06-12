@@ -1,13 +1,25 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import styles from './NavLeft.module.scss';
 import user from 'images/user.png';
 import photograph_icon from 'images/photograph_icon.png';
 import shopping_bag_icon from 'images/shopping_bag_icon.png';
 import bell_icon from 'images/bell_icon.png';
 import ticket_icon from 'images/ticket_icon.png';
+import { toast } from 'react-toastify';
+import { FiLogOut } from 'react-icons/fi';
+import { useSelector } from "react-redux";
 
 const NavLeft = () => {
+  const navigate = useNavigate();
+  const user = useSelector((state) => state.user.user);
+
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    toast.success("Đăng xuất thành công!");
+    navigate("/");
+  };
+
   return (
     <>
     <div className={styles.nav_left}>
@@ -88,6 +100,11 @@ const NavLeft = () => {
           <img src={ticket_icon} alt="Voucher icon" />
           Voucher
         </NavLink>
+        <NavLink to="/" onClick={handleLogout}>
+          <FiLogOut size={20} />
+          Logout
+        </NavLink>
+
       </div>
     </div>
     </>
