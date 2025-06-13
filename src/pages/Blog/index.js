@@ -22,10 +22,14 @@ import blog_banqtam4 from 'images/blog_banqtam4.png'
 import blog_banqtam5 from 'images/blog_banqtam5.png'
 import blog_banqtam6 from 'images/blog_banqtam6.png'
 import { Link } from 'react-router-dom';
+import Breadcrumb from "../../components/Breadcrumb";
 
 const Blog = () => {
   return(
     <>
+    <div className={styles.breadcrumb}>
+        <Breadcrumb pageName={"Blog"} />
+      </div>
     {/* Blog Page*/}
     <div className={styles.blogpage_container}>
         <div className={styles.section_intro}>
@@ -36,31 +40,30 @@ const Blog = () => {
                 <h2 className={styles.intro_title}>Nature's Bounty – Kho Báu Thiên Nhiên: Nâng 
                 Tầm Sức Khỏe Và Vẻ Đẹp Tự Nhiên</h2>
                 <p className={styles.intro_description}>“Nature's Bounty – Kho Báu Thiên Nhiên: Nâng Tầm Sức Khỏe Và Vẻ Đẹp Tự Nhiên” mở ra cánh cửa khám phá hành trình và triết lý đằng sau thương hiệu nổi tiếng này. Trong bối cảnh cuộc sống hiện đại đầy áp lực và ô nhiễm, nhu cầu tìm về thiên nhiên để cân bằng sức khỏe và duy trì vẻ đẹp trở nên cấp thiết. </p>
+                <Link to="/blog-detail">
                 <button className={styles.btn_seemore}>XEM THÊM</button>
+                </Link>
             </div>
         </div>
 
         <div className={styles.section_categories}>
-          
-          <div className={styles.category_card} style={{backgroundImage: `url(${chamsocda})`}}>
-            <Link to="/blog-category">
-              <div className={styles.category_label}>CHĂM SÓC DA</div>
-            </Link>
+          <Link to="/blog-category" className={styles.category_card} style={{backgroundImage: `url(${chamsocda})`}}>         
+            <div className={styles.category_label}>CHĂM SÓC DA</div>
             <div className={styles.category_bottom_line_1}></div>
-          </div>
+          </Link>
           
-          <div className={styles.category_card} style={{backgroundImage: `url(${chamsocsuckhoe})`}}>
+          <Link to="/blog-category" className={styles.category_card} style={{backgroundImage: `url(${chamsocsuckhoe})`}}>
             <div className={styles.category_label}>CHĂM SÓC SỨC KHỎE</div>
             <div className={styles.category_bottom_line_2}></div>
-          </div>
-          <div className={styles.category_card} style={{backgroundImage: `url(${xuhuonglamdep})`}}>
+          </Link>
+          <Link to="/blog-category" className={styles.category_card} style={{backgroundImage: `url(${xuhuonglamdep})`}}>
             <div className={styles.category_label}>XU HƯỚNG LÀM ĐẸP</div>
             <div className={styles.category_bottom_line_3}></div>
-          </div>
-          <div className={styles.category_card} style={{backgroundImage: `url(${reviewsanpham})`}}>
+          </Link>
+          <Link to="/blog-category" className={styles.category_card} style={{backgroundImage: `url(${reviewsanpham})`}}>
             <div className={styles.category_label}>REVIEW SẢN PHẨM</div>
             <div className={styles.category_bottom_line_4}></div>
-          </div>
+          </Link>
         </div>
 
         <div className={styles.section_lastest_posts}>

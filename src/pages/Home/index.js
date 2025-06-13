@@ -895,9 +895,11 @@ const Home = () => {
             <h2 className={cx("section-title", "news-title")}>
               TIN TỨC & CẨM NANG LÀM ĐẸP
             </h2>
+            <Link to="/blog">
             <button className={cx("view-all-btn")}>
               XEM TẤT CẢ <span>›</span>
             </button>
+            </Link>
           </div>
 
           <div className={cx("news-grid")}>
