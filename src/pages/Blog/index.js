@@ -28,8 +28,8 @@ const Blog = () => {
   return(
     <>
     <div className={styles.breadcrumb}>
-        <Breadcrumb pageName={"Blog"} />
-      </div>
+      <Breadcrumb pageName={"Blog"} />
+    </div>
     {/* Blog Page*/}
     <div className={styles.blogpage_container}>
         <div className={styles.section_intro}>

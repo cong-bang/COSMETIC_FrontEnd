@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 //import className và scss
 import classNames from "classnames/bind";
 import styles from "./Home.module.scss";
+import { useNavigate } from "react-router-dom";
 
 // Import hình ảnh
 import img1 from "../../assets/images/imagehome/1.png";
@@ -11,6 +12,41 @@ import img4 from "../../assets/images/imagehome/4.png";
 import img5 from "../../assets/images/imagehome/5.png";
 import img6 from "../../assets/images/imagehome/6.png";
 import img7 from "../../assets/images/imagehome/7.png";
+import img8 from "../../assets/images/imagehome/8.png";
+import img9 from "../../assets/images/imagehome/9.png";
+import img10 from "../../assets/images/imagehome/10.png";
+import img11 from "../../assets/images/imagehome/11.png";
+import img12 from "../../assets/images/imagehome/12.png";
+import img13 from "../../assets/images/imagehome/13.png";
+import img14 from "../../assets/images/imagehome/14.png";
+import img15 from "../../assets/images/imagehome/15.png";
+import img16 from "../../assets/images/imagehome/16.png";
+import img17 from "../../assets/images/imagehome/17.png";
+import img18 from "../../assets/images/imagehome/18.png";
+import img19 from "../../assets/images/imagehome/19.png";
+import img20 from "../../assets/images/imagehome/20.jpg";
+import img21 from "../../assets/images/imagehome/21.jpg";
+import img22 from "../../assets/images/imagehome/22.png";
+import img23 from "../../assets/images/imagehome/23.jpg";
+import img24 from "../../assets/images/imagehome/24.jpg";
+import img25 from "../../assets/images/imagehome/25.jpg";
+import img26 from "../../assets/images/imagehome/26.png";
+import img27 from "../../assets/images/imagehome/27.jpg";
+import img28 from "../../assets/images/imagehome/28.jpg";
+import img29 from "../../assets/images/imagehome/29.png";
+import img30 from "../../assets/images/imagehome/30.png";
+import img31 from "../../assets/images/imagehome/31.png";
+import img32 from "../../assets/images/imagehome/32.png";
+import img33 from "../../assets/images/imagehome/33.png";
+import img34 from "../../assets/images/imagehome/34.png";
+import img35 from "../../assets/images/imagehome/35.png";
+import img36 from "../../assets/images/imagehome/36.png";
+import img37 from "../../assets/images/imagehome/37.png";
+import img38 from "../../assets/images/imagehome/38.jpg";
+import img39 from "../../assets/images/imagehome/39.png";
+import img40 from "../../assets/images/imagehome/40.png";
+import img41 from "../../assets/images/imagehome/41.png";
+import img42 from "../../assets/images/imagehome/42.png";
 
 // Import Slick Carousel
 import Slider from "react-slick";
@@ -109,6 +145,8 @@ const categories = [
   { name: "Dưỡng thể", icon: "lotion-icon" },
 ];
 
+const categoryImages = [img16, img17, img18, img19, img20, img21, img22, img23];
+
 // Health & Beauty Services data
 const healthBeautyServices = [
   {
@@ -154,6 +192,8 @@ const healthBeautyServices = [
     buttonText: "CHI TIẾT",
   },
 ];
+
+const healthBeautyImages = [img24, img25, img26, img27, img28, img28];
 
 // Popular brands data
 const popularBrands = [
@@ -201,6 +241,9 @@ const popularBrands = [
   },
 ];
 
+const popularBrandsImages = [img29, img30, img31, img32];
+const popularBrandsLogos = [img33, img34, img35, img36];
+
 // Beauty news data
 const beautyNews = [
   {
@@ -228,6 +271,8 @@ const beautyNews = [
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
   },
 ];
+
+const beautyNewsImages = [img37, img38, img39];
 
 // Trust badges data
 const trustBadges = [
@@ -258,6 +303,8 @@ const trustBadges = [
   },
 ];
 
+const trustBadgesImages = [img40, img41, img42];
+
 const Home = () => {
   const [current, setCurrent] = useState(0);
   const [hours, setHours] = useState(7);
@@ -267,6 +314,7 @@ const Home = () => {
   const [productCards, setProductCards] = useState([]);
 
   const productsSliderRef = useRef(null);
+  const navigate = useNavigate();
 
   //Get Product
   useEffect(() => {
@@ -480,12 +528,25 @@ const Home = () => {
           </div>
 
           <div className={cx("product-card-container")}>
-            {/* {productCards.map((product, index) => (
-              <div key={index} className={cx("product-card")}>
+            {/* <>
+            {productCards.map((product, index) => (
+              <div
+                key={index}
+                className={cx("product-card")}
+                style={{ cursor: "pointer" }}
+                onClick={() => navigate("/products")}
+              >
                 <div className={cx("product-image")}>
-                  <div className={cx("discount-label")}>
-                    -{product.discount}%
-                  </div>
+                  <img
+                    src={img8}
+                    alt={product.name}
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "contain",
+                    }}
+                  />
+                 
                 </div>
                 <div className={cx("product-info")}>
                   <div className={cx("product-brand")}>COCOON</div>
@@ -506,7 +567,9 @@ const Home = () => {
                   </div>
                 </div>
               </div>
-            ))} */}
+            ))}
+            </> */}
+            
             {/* API Products */}
             {productCards.map((product) => (
               
@@ -537,7 +600,6 @@ const Home = () => {
                 </div>
                 </Link>
               </div>
-              
             ))}
 
           </div>
@@ -547,13 +609,40 @@ const Home = () => {
         <div className={cx("promo-banners")}>
           <div className={cx("promo-row")}>
             <div className={cx("promo-banner")}>
-              <div className={cx("banner-placeholder")}>Siêu hội ngày hè</div>
+              <img
+                src={img9}
+                alt="Siêu hội ngày hè"
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  display: "block",
+                }}
+              />
             </div>
             <div className={cx("promo-banner")}>
-              <div className={cx("banner-placeholder")}>Siêu sale</div>
+              <img
+                src={img10}
+                alt="Siêu sale"
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  display: "block",
+                }}
+              />
             </div>
             <div className={cx("promo-banner")}>
-              <div className={cx("banner-placeholder")}>Ngày vàng mua sắm</div>
+              <img
+                src={img11}
+                alt="Ngày vàng mua sắm"
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  display: "block",
+                }}
+              />
             </div>
           </div>
         </div>
@@ -571,9 +660,16 @@ const Home = () => {
 
           {/* Campaign banner as a full image */}
           <div className={cx("campaign-banner-wrapper")}>
-            <div className={cx("campaign-banner-image")}>
-              {/* This will be replaced with your actual banner image */}
-            </div>
+            <img
+              src={img12}
+              alt="Tháng của nàng ngàn ưu đãi"
+              style={{
+                width: "100%",
+                height: "400px",
+                objectFit: "cover",
+                display: "block",
+              }}
+            />
           </div>
 
           {/* Product cards - same style as flash sale */}
@@ -581,10 +677,20 @@ const Home = () => {
             {productCards.map((product, index) => (
               <div key={index} className={cx("product-card")}>
                 <div className={cx("product-image", "blue-bg")}>
-                  <div className={cx("price-tag")}>20.000đ</div>
+                  <img
+                    src={img13}
+                    alt={product.name}
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "contain",
+                      display: "block",
+                    }}
+                  />
+                  {/* <div className={cx("price-tag")}>20.000đ</div>
                   <div className={cx("discount-label")}>
                     -{product.discount}%
-                  </div>
+                  </div> */}
                 </div>
                 <div className={cx("product-info")}>
                   <div className={cx("product-brand")}>COCOON</div>
@@ -623,7 +729,12 @@ const Home = () => {
 
           <div className={cx("voucher-container")}>
             {voucherData.map((voucher, index) => (
-              <div key={index} className={cx("voucher-card")}>
+              <div
+                key={index}
+                className={cx("voucher-card")}
+                style={{ cursor: "pointer" }}
+                onClick={() => navigate("/voucher")}
+              >
                 <div className={cx("voucher-content")}>
                   <div className={cx("voucher-label")}>VOUCHER</div>
                   <div className={cx("discount-percent")}>
@@ -672,9 +783,19 @@ const Home = () => {
               {productCards.map((product, index) => (
                 <div key={index} className={cx("product-card", "slider-card")}>
                   <div className={cx("product-image", "pink-bg")}>
-                    <div className={cx("discount-label")}>
+                    <img
+                      src={img8}
+                      alt={product.name}
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "contain",
+                        display: "block",
+                      }}
+                    />
+                    {/* <div className={cx("discount-label")}>
                       -{product.discount}%
-                    </div>
+                    </div> */}
                   </div>
                   <div className={cx("product-info")}>
                     <div className={cx("product-brand")}>COCOON</div>
@@ -723,40 +844,32 @@ const Home = () => {
           <div className={cx("banner-grid")}>
             <div className={cx("banner-grid-item")}>
               <div className={cx("promo-banner", "large-banner", "red-banner")}>
-                <div className={cx("banner-content")}>
-                  <div>
-                    <div className={cx("banner-title")}>24H ƯU ĐÃI</div>
-                    <div className={cx("banner-subtitle")}>SĂN SALE NGAY!</div>
-                  </div>
-                  <div className={cx("banner-icons")}>
-                    <div className={cx("clock-icon")}></div>
-                    <div className={cx("calendar-icon")}></div>
-                  </div>
-                </div>
+                <img
+                  src={img14}
+                  alt="24H ƯU ĐÃI"
+                  style={{
+                    width: "100%",
+                    height: "250px",
+                    objectFit: "cover",
+                    display: "block",
+                  }}
+                />
               </div>
             </div>
             <div className={cx("banner-grid-item")}>
               <div
                 className={cx("promo-banner", "large-banner", "orange-banner")}
               >
-                <div className={cx("banner-content")}>
-                  <div className={cx("banner-large-text")}>20.03</div>
-                  <div className={cx("banner-info")}>
-                    <div className={cx("banner-special-title")}>
-                      THÁNG CỦA NÀNG
-                    </div>
-                    <div className={cx("banner-special-subtitle")}>
-                      GỬI NGÀN YÊU THƯƠNG
-                    </div>
-                    <div className={cx("banner-tags")}>
-                      <span>GIẢM 50%</span>
-                      <span>VOUCHER 500K</span>
-                      <span>FREESHIP 0Đ</span>
-                    </div>
-                    <div className={cx("banner-date")}>TỪ 10.03 ĐẾN 20.03</div>
-                  </div>
-                  <div className={cx("banner-decoration")}></div>
-                </div>
+                <img
+                  src={img15}
+                  alt="20.03 Tháng của nàng"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    display: "block",
+                  }}
+                />
               </div>
             </div>
           </div>
@@ -766,9 +879,16 @@ const Home = () => {
             {productCards.map((product, index) => (
               <div key={index} className={cx("product-card")}>
                 <div className={cx("product-image", "pink-bg")}>
-                  <div className={cx("discount-label")}>
-                    -{product.discount}%
-                  </div>
+                  <img
+                    src={img8}
+                    alt={product.name}
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "contain",
+                      display: "block",
+                    }}
+                  />
                 </div>
                 <div className={cx("product-info")}>
                   <div className={cx("product-brand")}>COCOON</div>
@@ -776,16 +896,17 @@ const Home = () => {
                   <div className={cx("product-rating")}>
                     <div className={cx("stars")}>★★★★★</div>
                     <span className={cx("review-count")}>
-                      ({product.reviews})
+                      {" "}
+                      ({product.reviews}){" "}
                     </span>
                   </div>
                   <div className={cx("product-price")}>
-                    <span className={cx("sale-price")}>
-                      {product.salePrice} đ
-                    </span>
-                    <span className={cx("original-price")}>
-                      {product.originalPrice} đ
-                    </span>
+                    {" "}
+                    {product.salePrice.toLocaleString()} đ{" "}
+                  </div>
+                  <div className={cx("selling-fast-tag")}>
+                    {" "}
+                    <span>ĐANG BÁN CHẠY</span>{" "}
                   </div>
                 </div>
               </div>
@@ -810,11 +931,22 @@ const Home = () => {
           </div>
 
           <div className={cx("categories-container")}>
-            {categories.map((category, index) => (
-              <a key={index} href="#" className={cx("category-item")}>
-                <div className={cx("category-icon", category.icon)}></div>
+            {categories.map((category, idx) => (
+              <div key={category.name} className={cx("category-item")}>
+                <div className={cx("category-icon")}>
+                  <img
+                    src={categoryImages[idx]}
+                    alt={category.name}
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "contain",
+                      display: "block",
+                    }}
+                  />
+                </div>
                 <div className={cx("category-name")}>{category.name}</div>
-              </a>
+              </div>
             ))}
           </div>
         </div>
@@ -835,11 +967,11 @@ const Home = () => {
               {...healthBeautySliderSettings}
               className={cx("services-slider")}
             >
-              {healthBeautyServices.map((service) => (
+              {healthBeautyServices.map((service, idx) => (
                 <div key={service.id} className={cx("service-slide")}>
                   <div className={cx("service-card")}>
                     <div className={cx("service-image")}>
-                      <img src={service.image} alt={service.title} />
+                      <img src={healthBeautyImages[idx]} alt={service.title} />
                     </div>
                     <div className={cx("service-content")}>
                       <h3 className={cx("service-title")}>{service.title}</h3>
@@ -870,17 +1002,32 @@ const Home = () => {
 
           <div className={cx("brands-slider-container")}>
             <Slider {...popularBrandsSettings} className={cx("brands-slider")}>
-              {popularBrands.map((brand) => (
+              {popularBrands.map((brand, idx) => (
                 <div key={brand.id} className={cx("brand-slide")}>
                   <div className={cx("brand-card")}>
-                    <div
-                      className={cx("brand-image")}
-                      style={{ backgroundColor: brand.background }}
-                    >
-                      <img src={brand.image} alt={`${brand.name} products`} />
+                    <div className={cx("brand-image")}>
+                      <img
+                        src={popularBrandsImages[idx]}
+                        alt={brand.name}
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          objectFit: "contain",
+                          display: "block",
+                        }}
+                      />
                     </div>
                     <div className={cx("brand-logo")}>
-                      <div className={cx("brand-name")}>{brand.name}</div>
+                      <img
+                        src={popularBrandsLogos[idx]}
+                        alt={brand.name + " logo"}
+                        style={{
+                          maxWidth: "120px",
+                          maxHeight: "40px",
+                          display: "block",
+                          margin: "0 auto",
+                        }}
+                      />
                     </div>
                   </div>
                 </div>
@@ -903,16 +1050,18 @@ const Home = () => {
           </div>
 
           <div className={cx("news-grid")}>
-            {beautyNews.map((news) => (
+            {beautyNews.map((news, idx) => (
               <div key={news.id} className={cx("news-item")}>
                 <div className={cx("news-image")}>
-                  <img src={news.image} alt={news.title} />
+                  <img src={beautyNewsImages[idx]} alt={news.title} />
                   <div className={cx("news-date")}>{news.date}</div>
                 </div>
                 <div className={cx("news-content")}>
                   <h3 className={cx("news-title")}>{news.title}</h3>
-                  <p className={cx("news-description")}>{news.description}</p>
-                  <button className={cx("learn-more-btn")}>Xem Thêm</button>
+                  <div className={cx("news-description")}>
+                    {news.description}
+                  </div>
+                  <button className={cx("learn-more-btn")}>XEM THÊM</button>
                 </div>
               </div>
             ))}
@@ -931,13 +1080,13 @@ const Home = () => {
             </div>
 
             <div className={cx("regular-badges")}>
-              {trustBadges.slice(1).map((badge) => (
+              {trustBadges.slice(1).map((badge, idx) => (
                 <div key={badge.id} className={cx("badge-item")}>
                   <div className={cx("badge-icon")}>
-                    <img src={badge.icon} alt={badge.title} />
+                    <img src={trustBadgesImages[idx]} alt={badge.title} />
                   </div>
-                  <h3 className={cx("badge-title")}>{badge.title}</h3>
-                  <p className={cx("badge-subtitle")}>{badge.subtitle}</p>
+                  <div className={cx("badge-title")}>{badge.title}</div>
+                  <div className={cx("badge-subtitle")}>{badge.subtitle}</div>
                 </div>
               ))}
             </div>
