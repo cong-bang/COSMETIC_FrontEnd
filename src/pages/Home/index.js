@@ -902,7 +902,7 @@ const Home = () => {
                   </div>
                   <div className={cx("product-price")}>
                     {" "}
-                    {product.salePrice.toLocaleString()} đ{" "}
+                    {product.salePrice} đ{" "}
                   </div>
                   <div className={cx("selling-fast-tag")}>
                     {" "}
