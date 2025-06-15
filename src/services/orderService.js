@@ -9,6 +9,18 @@ export async function createOrder(data) {
   }
 }
 
+//Get order by id
+export async function getOrderByUserId() {
+  try {
+    const response = await axiosInstance.get(`/order/userId?newestFirst=true`);
+    return response.data;
+  } catch (error) {
+    return handleError(error);
+  }
+}
+
+
+
 // Xử lý lỗi
 function handleError(error) {
   if (error.response && error.response.status === 401) {
