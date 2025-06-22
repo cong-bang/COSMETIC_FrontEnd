@@ -36,7 +36,8 @@ export async function removeFromCart(id) {
     const response = await axiosInstance.delete(`/cart/remove/${id}`);
     return response.data;
   } catch (error) {
-    return handleError(error);
+    const message = error.response?.data?.message || "Error!";
+    throw new Error(message);
   }
 }
 

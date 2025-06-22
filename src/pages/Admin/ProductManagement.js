@@ -13,6 +13,8 @@ import {
   Upload,
   message,
   Popconfirm,
+  Checkbox,
+  Spin,
 } from "antd";
 import {
   SearchOutlined,
@@ -20,65 +22,16 @@ import {
   EditOutlined,
   DeleteOutlined,
   UploadOutlined,
+  ReloadOutlined,
 } from "@ant-design/icons";
-
-// Mock data for products
-const mockProducts = [
-  {
-    id: 1,
-    name: "Kem Dưỡng Ẩm PURE Hydration",
-    price: 450000,
-    category: "Skincare",
-    stock: 25,
-    image: "https://via.placeholder.com/150",
-    status: "active",
-  },
-  {
-    id: 2,
-    name: "Sữa Rửa Mặt PURE Clean",
-    price: 250000,
-    category: "Skincare",
-    stock: 35,
-    image: "https://via.placeholder.com/150",
-    status: "active",
-  },
-  {
-    id: 3,
-    name: "Phấn Mắt PURE Colors",
-    price: 350000,
-    category: "Makeup",
-    stock: 15,
-    image: "https://via.placeholder.com/150",
-    status: "active",
-  },
-  {
-    id: 4,
-    name: "Son Môi PURE Lips",
-    price: 200000,
-    category: "Makeup",
-    stock: 40,
-    image: "https://via.placeholder.com/150",
-    status: "active",
-  },
-  {
-    id: 5,
-    name: "Serum Vitamin C PURE",
-    price: 550000,
-    category: "Skincare",
-    stock: 0,
-    image: "https://via.placeholder.com/150",
-    status: "out_of_stock",
-  },
-];
-
-// Mock categories for dropdown
-const mockCategories = [
-  { id: 1, name: "Skincare" },
-  { id: 2, name: "Makeup" },
-  { id: 3, name: "Hair Care" },
-  { id: 4, name: "Body Care" },
-  { id: 5, name: "Fragrance" },
-];
+import {
+  getAllProducts,
+  createProduct,
+  updateProduct,
+  deleteProduct,
+} from "../../services/productService";
+import { getBrands } from "../../services/brandService";
+import { getCategories } from "../../services/categoryService";
 
 const ProductManagement = () => {
   const [products, setProducts] = useState([]);
@@ -86,29 +39,203 @@ const ProductManagement = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [editingProduct, setEditingProduct] = useState(null);
   const [form] = Form.useForm();
+  const [brands, setBrands] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [fileList, setFileList] = useState([]);
+  const [refreshKey, setRefreshKey] = useState(0);
+  const [categoryMap, setCategoryMap] = useState({});
+  const [brandMap, setBrandMap] = useState({});
 
   useEffect(() => {
-    // Simulate API fetch
-    setProducts(mockProducts);
-  }, []);
+    const loadData = async () => {
+      await fetchBrands();
+      await fetchCategories();
+      await fetchProducts();
+    };
+
+    loadData();
+  }, [refreshKey]);
+
+  const fetchProducts = async () => {
+    setLoading(true);
+    try {
+      const response = await getAllProducts();
+      console.log("Products API Response:", response);
+
+      // Kiểm tra cấu trúc phản hồi và trích xuất dữ liệu sản phẩm
+      let productsData = [];
+
+      if (response && response.data) {
+        // Kiểm tra nếu response.data là một mảng
+        if (Array.isArray(response.data)) {
+          productsData = response.data;
+        }
+        // Kiểm tra nếu response.data là một đối tượng có thuộc tính data
+        else if (response.data.data && Array.isArray(response.data.data)) {
+          productsData = response.data.data;
+        }
+        // Kiểm tra các cấu trúc phổ biến khác
+        else if (response.data.items && Array.isArray(response.data.items)) {
+          productsData = response.data.items;
+        } else if (
+          response.data.content &&
+          Array.isArray(response.data.content)
+        ) {
+          productsData = response.data.content;
+        }
+      }
+
+      console.log("Extracted products data:", productsData);
+      console.log("Current categoryMap:", categoryMap);
+      console.log("Current brandMap:", brandMap);
+
+      // Thêm tên danh mục và nhãn hiệu vào sản phẩm
+      const enhancedProducts = productsData.map((product) => {
+        const categoryName =
+          product.categoryId && categoryMap[product.categoryId]
+            ? categoryMap[product.categoryId]
+            : product.categoryName || "Không xác định";
+
+        const brandName =
+          product.brandId && brandMap[product.brandId]
+            ? brandMap[product.brandId]
+            : product.brandName || "Không xác định";
+
+        console.log(
+          `Product ID: ${product.id}, CategoryID: ${product.categoryId}, CategoryName: ${categoryName}, BrandID: ${product.brandId}, BrandName: ${brandName}`
+        );
+
+        return {
+          ...product,
+          categoryName,
+          brandName,
+        };
+      });
+
+      console.log("Enhanced products:", enhancedProducts);
+      setProducts(Array.isArray(enhancedProducts) ? enhancedProducts : []);
+    } catch (error) {
+      console.error("Error fetching products:", error);
+      message.error("Không thể tải danh sách sản phẩm");
+      setProducts([]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const fetchBrands = async () => {
+    try {
+      const response = await getBrands();
+      console.log("Brands API Response:", response);
+
+      // Xử lý nhiều cấu trúc phản hồi khác nhau
+      let brandsData = [];
+
+      // Xử lý cấu trúc phản hồi từ API
+      if (response && response.statusCode === 200 && response.data) {
+        if (Array.isArray(response.data)) {
+          brandsData = response.data;
+        } else if (response.data.data && Array.isArray(response.data.data)) {
+          brandsData = response.data.data;
+        } else {
+          brandsData = [response.data];
+        }
+      } else if (response && response.data) {
+        brandsData = Array.isArray(response.data) ? response.data : [];
+      } else if (response && Array.isArray(response)) {
+        brandsData = response;
+      }
+
+      console.log("Brands Data after processing:", brandsData);
+      setBrands(brandsData);
+
+      // Tạo map brandId -> brandName để dễ dàng tra cứu
+      const brandMapping = {};
+      if (Array.isArray(brandsData)) {
+        brandsData.forEach((brand) => {
+          if (brand && brand.id && (brand.name || brand.brandName)) {
+            brandMapping[brand.id] = brand.brandName || brand.name;
+          }
+        });
+      }
+      console.log("Brand Mapping:", brandMapping);
+      setBrandMap(brandMapping);
+    } catch (error) {
+      console.error("Error fetching brands:", error);
+      message.error("Không thể tải danh sách thương hiệu");
+      setBrands([]);
+    }
+  };
+
+  const fetchCategories = async () => {
+    try {
+      const response = await getCategories();
+      console.log("Categories API Response:", response);
+
+      // Xử lý cấu trúc phản hồi từ API
+      let categoriesData = [];
+
+      if (response && response.data && response.data.data) {
+        // Cấu trúc API mới
+        categoriesData = response.data.data;
+      } else if (response && response.data) {
+        // Cấu trúc cũ
+        categoriesData = Array.isArray(response.data) ? response.data : [];
+      } else if (response && Array.isArray(response)) {
+        categoriesData = response;
+      }
+
+      console.log("Categories Data after processing:", categoriesData);
+      setCategories(categoriesData);
+
+      // Tạo map categoryId -> categoryName để dễ dàng tra cứu
+      const categoryMapping = {};
+      if (Array.isArray(categoriesData)) {
+        categoriesData.forEach((category) => {
+          if (
+            category &&
+            category.id &&
+            (category.name || category.categoryName)
+          ) {
+            categoryMapping[category.id] =
+              category.categoryName || category.name;
+          }
+        });
+      }
+      console.log("Category Mapping:", categoryMapping);
+      setCategoryMap(categoryMapping);
+    } catch (error) {
+      console.error("Error fetching categories:", error);
+      message.error("Không thể tải danh sách danh mục");
+      setCategories([]);
+    }
+  };
+
+  const handleRefresh = () => {
+    setRefreshKey((oldKey) => oldKey + 1);
+    message.info("Đang làm mới dữ liệu...");
+  };
 
   const handleSearch = (value) => {
     setSearchText(value);
     if (value) {
-      const filteredProducts = mockProducts.filter(
+      const filteredProducts = products.filter(
         (product) =>
           product.name.toLowerCase().includes(value.toLowerCase()) ||
-          product.category.toLowerCase().includes(value.toLowerCase())
+          (product.categoryName &&
+            product.categoryName.toLowerCase().includes(value.toLowerCase()))
       );
       setProducts(filteredProducts);
     } else {
-      setProducts(mockProducts);
+      fetchProducts();
     }
   };
 
   const showAddModal = () => {
     setEditingProduct(null);
     form.resetFields();
+    setFileList([]);
     setIsModalVisible(true);
   };
 
@@ -116,42 +243,103 @@ const ProductManagement = () => {
     setEditingProduct(product);
     form.setFieldsValue({
       name: product.name,
-      price: product.price,
-      category: product.category,
-      stock: product.stock,
-      status: product.status,
+      description: product.description,
+      expiredMonthOffset: product.expiredMonthOffset || 24,
+      price: product.price || 0,
+      capacity: product.capacity || 0,
+      quantity: product.quantity || 0,
+      guide: product.guide || "",
+      categoryId: product.categoryId,
+      brandId: product.brandId,
+      madeIn: product.madeIn || "",
     });
+
+    // Set file list if product has images
+    if (product.productImages && product.productImages.length > 0) {
+      const files = product.productImages.map((img, index) => ({
+        uid: `-${index}`,
+        name: `image-${index}.jpg`,
+        status: "done",
+        url: img.imageUrl,
+      }));
+      setFileList(files);
+    } else {
+      setFileList([]);
+    }
+
     setIsModalVisible(true);
   };
 
   const handleCancel = () => {
     setIsModalVisible(false);
+    form.resetFields();
+    setFileList([]);
   };
 
-  const handleDelete = (id) => {
-    setProducts(products.filter((product) => product.id !== id));
-    message.success("Sản phẩm đã được xóa");
-  };
-
-  const onFinish = (values) => {
-    if (editingProduct) {
-      // Update existing product
-      const updatedProducts = products.map((product) =>
-        product.id === editingProduct.id ? { ...product, ...values } : product
-      );
-      setProducts(updatedProducts);
-      message.success("Sản phẩm đã được cập nhật");
-    } else {
-      // Add new product
-      const newProduct = {
-        id: Math.max(0, ...products.map((p) => p.id)) + 1,
-        ...values,
-        image: "https://via.placeholder.com/150", // Default image for new products
-      };
-      setProducts([...products, newProduct]);
-      message.success("Sản phẩm mới đã được thêm");
+  const handleDelete = async (id) => {
+    try {
+      await deleteProduct(id);
+      message.success("Sản phẩm đã được xóa");
+      fetchProducts();
+    } catch (error) {
+      console.error("Error deleting product:", error);
+      message.error("Không thể xóa sản phẩm");
     }
-    setIsModalVisible(false);
+  };
+
+  const onFinish = async (values) => {
+    console.log("Form values before submission:", values);
+    const formData = new FormData();
+
+    // Add all form values to FormData
+    Object.keys(values).forEach((key) => {
+      if (values[key] !== undefined && values[key] !== null) {
+        // Ensure categoryId and brandId are sent as numbers
+        if (key === "categoryId" || key === "brandId") {
+          formData.append(key, Number(values[key]));
+        } else {
+          formData.append(key, values[key]);
+        }
+      }
+    });
+
+    // Handle file uploads
+    fileList.forEach((file) => {
+      if (file.originFileObj) {
+        formData.append("productImagesFile", file.originFileObj);
+      }
+    });
+
+    // Add ID if editing
+    if (editingProduct) {
+      formData.append("id", editingProduct.id);
+    }
+
+    try {
+      setLoading(true);
+
+      if (editingProduct) {
+        await updateProduct(formData);
+        message.success("Sản phẩm đã được cập nhật");
+      } else {
+        await createProduct(formData);
+        message.success("Sản phẩm mới đã được thêm");
+      }
+
+      setIsModalVisible(false);
+      fetchProducts();
+      form.resetFields();
+      setFileList([]);
+    } catch (error) {
+      console.error("Error saving product:", error);
+      message.error("Không thể lưu sản phẩm");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleFileChange = ({ fileList: newFileList }) => {
+    setFileList(newFileList);
   };
 
   const columns = [
@@ -162,9 +350,15 @@ const ProductManagement = () => {
     },
     {
       title: "Hình ảnh",
-      dataIndex: "image",
+      dataIndex: "productImages",
       key: "image",
-      render: (image) => <Image src={image} width={50} />,
+      render: (images) => {
+        const imageUrl =
+          images && images.length > 0
+            ? images[0].imageUrl
+            : "https://via.placeholder.com/50";
+        return <Image src={imageUrl} width={50} />;
+      },
     },
     {
       title: "Tên sản phẩm",
@@ -175,27 +369,34 @@ const ProductManagement = () => {
       title: "Giá",
       dataIndex: "price",
       key: "price",
-      render: (price) => `${price.toLocaleString()}₫`,
+      render: (price) => `${price?.toLocaleString() || 0}₫`,
     },
     {
       title: "Danh mục",
-      dataIndex: "category",
+      dataIndex: "categoryId",
       key: "category",
+      render: (categoryId, record) => {
+        console.log("Category ID:", categoryId, "CategoryMap:", categoryMap);
+        // Thử lấy từ cả hai nguồn: categoryMap và record.categoryName
+        return (
+          categoryMap[categoryId] || record.categoryName || "Không xác định"
+        );
+      },
+    },
+    {
+      title: "Thương hiệu",
+      dataIndex: "brandId",
+      key: "brand",
+      render: (brandId, record) => {
+        console.log("Brand ID:", brandId, "BrandMap:", brandMap);
+        // Thử lấy từ cả hai nguồn: brandMap và record.brandName
+        return brandMap[brandId] || record.brandName || "Không xác định";
+      },
     },
     {
       title: "Tồn kho",
-      dataIndex: "stock",
-      key: "stock",
-    },
-    {
-      title: "Trạng thái",
-      dataIndex: "status",
-      key: "status",
-      render: (status) => (
-        <Tag color={status === "active" ? "green" : "red"}>
-          {status === "active" ? "Đang bán" : "Hết hàng"}
-        </Tag>
-      ),
+      dataIndex: "quantity",
+      key: "quantity",
     },
     {
       title: "Thao tác",
@@ -243,23 +444,32 @@ const ProductManagement = () => {
           value={searchText}
           onChange={(e) => handleSearch(e.target.value)}
         />
-        <Button type="primary" icon={<PlusOutlined />} onClick={showAddModal}>
-          Thêm sản phẩm mới
-        </Button>
+        <div style={{ display: "flex", gap: "10px" }}>
+          <Button type="primary" icon={<PlusOutlined />} onClick={showAddModal}>
+            Thêm sản phẩm mới
+          </Button>
+          <Button icon={<ReloadOutlined />} onClick={handleRefresh}>
+            Làm mới
+          </Button>
+        </div>
       </div>
 
-      <Table
-        dataSource={products}
-        columns={columns}
-        rowKey="id"
-        pagination={{ pageSize: 10 }}
-      />
+      <Spin spinning={loading} tip="Đang tải...">
+        <Table
+          dataSource={Array.isArray(products) ? products : []}
+          columns={columns}
+          rowKey={(record) => record.id || Math.random()}
+          pagination={{ pageSize: 10 }}
+          locale={{ emptyText: "Không có dữ liệu sản phẩm" }}
+        />
+      </Spin>
 
       <Modal
         title={editingProduct ? "Sửa sản phẩm" : "Thêm sản phẩm mới"}
         open={isModalVisible}
         onCancel={handleCancel}
         footer={null}
+        width={800}
       >
         <Form form={form} layout="vertical" onFinish={onFinish}>
           <Form.Item
@@ -271,59 +481,118 @@ const ProductManagement = () => {
           </Form.Item>
 
           <Form.Item
-            name="price"
-            label="Giá"
-            rules={[{ required: true, message: "Vui lòng nhập giá sản phẩm!" }]}
+            name="description"
+            label="Mô tả"
+            rules={[
+              { required: true, message: "Vui lòng nhập mô tả sản phẩm!" },
+            ]}
           >
+            <Input.TextArea rows={4} />
+          </Form.Item>
+
+          <Form.Item
+            name="expiredMonthOffset"
+            label="Thời hạn sử dụng (tháng)"
+            initialValue={24}
+          >
+            <InputNumber style={{ width: "100%" }} min={0} />
+          </Form.Item>
+
+          <Form.Item name="price" label="Giá" initialValue={0}>
             <InputNumber
               style={{ width: "100%" }}
               formatter={(value) =>
                 `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
               }
               parser={(value) => value.replace(/\$\s?|(,*)/g, "")}
-              addonAfter="₫"
+              min={0}
             />
           </Form.Item>
 
-          <Form.Item
-            name="category"
-            label="Danh mục"
-            rules={[{ required: true, message: "Vui lòng chọn danh mục!" }]}
-          >
-            <Select>
-              {mockCategories.map((category) => (
-                <Select.Option key={category.id} value={category.name}>
-                  {category.name}
-                </Select.Option>
-              ))}
-            </Select>
+          <Form.Item name="capacity" label="Dung tích" initialValue={0}>
+            <InputNumber style={{ width: "100%" }} min={0} />
           </Form.Item>
 
-          <Form.Item
-            name="stock"
-            label="Số lượng tồn kho"
-            rules={[
-              { required: true, message: "Vui lòng nhập số lượng tồn kho!" },
-            ]}
-          >
+          <Form.Item name="quantity" label="Số lượng" initialValue={0}>
             <InputNumber style={{ width: "100%" }} min={0} />
           </Form.Item>
 
           <Form.Item
-            name="status"
-            label="Trạng thái"
-            rules={[{ required: true, message: "Vui lòng chọn trạng thái!" }]}
-            initialValue="active"
+            name="guide"
+            label="Hướng dẫn sử dụng"
+            rules={[
+              { required: true, message: "Vui lòng nhập hướng dẫn sử dụng!" },
+            ]}
           >
-            <Select>
-              <Select.Option value="active">Đang bán</Select.Option>
-              <Select.Option value="out_of_stock">Hết hàng</Select.Option>
+            <Input.TextArea rows={4} />
+          </Form.Item>
+
+          <Form.Item
+            name="categoryId"
+            label="Danh mục"
+            rules={[{ required: true, message: "Vui lòng chọn danh mục!" }]}
+          >
+            <Select
+              placeholder="Chọn danh mục"
+              loading={categories.length === 0}
+              showSearch
+              optionFilterProp="children"
+              filterOption={(input, option) =>
+                option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+              }
+            >
+              {Array.isArray(categories) &&
+                categories.map((category) => (
+                  <Select.Option key={category.id} value={category.id}>
+                    {category.categoryName || category.name}
+                  </Select.Option>
+                ))}
             </Select>
           </Form.Item>
 
-          <Form.Item name="image" label="Hình ảnh">
-            <Upload listType="picture" maxCount={1} beforeUpload={() => false}>
-              <Button icon={<UploadOutlined />}>Tải ảnh lên</Button>
+          <Form.Item
+            name="brandId"
+            label="Thương hiệu"
+            rules={[{ required: true, message: "Vui lòng chọn thương hiệu!" }]}
+          >
+            <Select
+              placeholder="Chọn thương hiệu"
+              loading={brands.length === 0}
+              showSearch
+              optionFilterProp="children"
+              filterOption={(input, option) =>
+                option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+              }
+            >
+              {Array.isArray(brands) &&
+                brands.map((brand) => (
+                  <Select.Option key={brand.id} value={brand.id}>
+                    {brand.brandName || brand.name}
+                  </Select.Option>
+                ))}
+            </Select>
+          </Form.Item>
+
+          <Form.Item
+            name="madeIn"
+            label="Xuất xứ"
+            rules={[{ required: true, message: "Vui lòng nhập xuất xứ!" }]}
+          >
+            <Input />
+          </Form.Item>
+
+          <Form.Item name="productImagesFile" label="Hình ảnh sản phẩm">
+            <Upload
+              listType="picture-card"
+              fileList={fileList}
+              onChange={handleFileChange}
+              beforeUpload={() => false}
+              multiple
+            >
+              <div>
+                <PlusOutlined />
+                <div style={{ marginTop: 8 }}>Tải lên</div>
+              </div>
             </Upload>
           </Form.Item>
 
@@ -331,7 +600,7 @@ const ProductManagement = () => {
             <Button style={{ marginRight: 8 }} onClick={handleCancel}>
               Hủy
             </Button>
-            <Button type="primary" htmlType="submit">
+            <Button type="primary" htmlType="submit" loading={loading}>
               {editingProduct ? "Cập nhật" : "Thêm mới"}
             </Button>
           </Form.Item>

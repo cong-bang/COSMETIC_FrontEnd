@@ -36,14 +36,14 @@ export async function registerUser(data) {
 
 export const changePassword = async (data) => {
     try {
-        const response = await axiosInstance.put(
+        const response = await axiosInstance.post(
             "/authen/change-password",
             data
         );
         return response.data;
     } catch (error) {
-        console.error("Lỗi khi thay đổi mật khẩu:", error);
-        throw error;
+        const message = error.response?.data?.message || "Cập nhật thất bại!";
+        throw new Error(message);
     }
 };
 
@@ -110,3 +110,18 @@ export async function sendConfirmEmail(token) {
     throw error;
   }
 }
+
+export const googleAuth = async (idToken) => {
+  try {
+    const response = await axiosInstance.get(`/GoogleAuth/login`, null, {
+      params: {
+        idToken,
+      },
+    });
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.error("Error google auth:", error);
+    throw error;
+  }
+};

@@ -6,11 +6,15 @@ import { toast } from "react-toastify";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { loginUser } from "../../redux/userSlice";
-import { login, registerUser } from "../../services/authService";
+import { googleAuth, login, registerUser } from "../../services/authService";
 import styles from "./AuthForm.module.scss";
 import loginImage from 'images/login.png';
 import logo_fb from 'images/logo_fb_login.png';
 import logo_gg from 'images/logo_gg_login.png';
+import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
+
+const CLIENT_ID =
+  "749101402068-0jv96otqmnla2k4dgbs0pgo8e9hkaq5d.apps.googleusercontent.com";
 
 const AuthForm = ({ type }) => {
   const isLogin = type === "login";
@@ -89,7 +93,60 @@ const AuthForm = ({ type }) => {
     }
   };
 
+    const handleGoogleSuccess = async (credentialResponse) => {
+    try {
+      const idToken = credentialResponse.credential;
+      const response = await googleAuth(idToken);
+
+      if (response && response.token && response.token.accessToken) {
+        const token = response.token.accessToken;
+        const decodedToken = jwtDecode(token);
+        const user = {
+            token,
+            id: decodedToken.UserId,
+            username: decodedToken["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"],
+            email: decodedToken["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"],
+            role: decodedToken["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"],
+          };
+
+          dispatch(loginUser({ user }));
+          toast.success("Đăng nhập thành công!");
+
+          if (user.role === "ADMIN") {
+            navigate("/admin");
+          } else if (user.role === "STAFF") {
+            navigate("/");
+          } else {
+            navigate("/");
+          }
+
+        dispatch(loginUser({ user }));
+        toast.success("Đăng nhập với Google thành công!");
+
+      } else {
+        toast.error("Đăng nhập với Google thất bại!");
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error("Đăng nhập với Google thất bại!");
+    }
+  };
+
+  const handleGoogleError = () => {
+    toast.error("Đăng nhập với Google thất bại!");
+  };
+
+  //Login với Google:
+  // const loginGoogle = useGoogleLogin({
+  //   onSuccess: (response) => handleGoogleSuccess(response),
+  //   onError: () => handleGoogleError(),
+  // });
+
+
   return (
+    <>
+    <GoogleOAuthProvider clientId={CLIENT_ID}>
+
     <div className={styles.container_auth}>
       <div className={styles.container_left}>
         <div className={styles.ctn_form_link}>
@@ -214,6 +271,7 @@ const AuthForm = ({ type }) => {
                 </button>
 
                 {isLogin && (
+                  <>
                   <div className={styles.social_login}>
                     <p>Hoặc đăng nhập với</p>
                     <div className={styles.social_icons}>
@@ -221,6 +279,17 @@ const AuthForm = ({ type }) => {
                       <img src={logo_gg} alt="Google Login" />
                     </div>
                   </div>
+                  <div className={styles.login_gg}>
+                    <GoogleLogin
+                      clientId={CLIENT_ID}
+                      onSuccess={handleGoogleSuccess}
+                      onError={handleGoogleError}
+                      theme="outline"
+                      size="large"
+                    />
+
+                  </div>
+                  </>
                 )}
 
                 <p>
@@ -266,6 +335,8 @@ const AuthForm = ({ type }) => {
         <img src={loginImage} alt="Authentication" />
       </div>
     </div>
+    </GoogleOAuthProvider>
+  </>
   );
 };
 

@@ -13,6 +13,7 @@ import { toast } from "react-toastify";
 import { useParams } from "react-router-dom";
 import { addToCart } from "../../services/cartService";
 import Breadcrumb from "../../components/Breadcrumb";
+import { addWishList } from "../../services/wishListService";
 
 const DetailProduct = () => {
   const [selectedImage, setSelectedImage] = useState(detail1);
@@ -26,7 +27,7 @@ const DetailProduct = () => {
     const fetchProductById = async () => {
       try {
         const response = await getProductById(id);
-        console.log(response.data);
+        //console.log(response.data);
         setProduct(response.data);
       } catch (error) {
         toast.error("Lỗi khi lấy thông tin sản phẩm");
@@ -53,9 +54,6 @@ const DetailProduct = () => {
     }
   };
 
-  
-
-
   const handleImageClick = (image) => {
     setSelectedImage(image);
   };
@@ -67,6 +65,20 @@ const DetailProduct = () => {
   const decrementQuantity = () => {
     if (quantity > 1) {
       setQuantity(quantity - 1);
+    }
+  };
+
+  //Add to wish list
+  const handleAddWishList = async () => {
+    try {
+      const data = {
+        productId: product.id
+      }
+      const response = await addWishList(data);
+      toast.success(response.message);
+    } catch (error) {
+      //toast.error("Thêm vào wishlist thất bại!");
+      toast.error(error.message);
     }
   };
 
@@ -244,7 +256,7 @@ const DetailProduct = () => {
                 THÊM VÀO GIỎ HÀNG
               </button>
               <button className={styles.buyNow}>MUA NGAY</button>
-              <button className={styles.wishlist}>♡</button>
+              <button className={styles.wishlist} onClick={handleAddWishList}>♡</button>
             </div>
           </div>
         </div>

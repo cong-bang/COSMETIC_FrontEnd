@@ -5,16 +5,31 @@ import { axiosInstance } from "../apiConfig";
       const response = await axiosInstance.get(`product/`, {
         params: { 'page-index': pageIndex, 'page-size': pageSize },
       });
-      const paginationHeader = response.headers?.["x-pagination"];
-      const pagination = paginationHeader ? JSON.parse(paginationHeader) : null;
-  
+
       return {
         data: response.data.data.data,
-        pagination: pagination, 
+        pagination: response.data.data.metaData, 
       };
     } catch (error) {
-        console.error("Error fetching products:", error);
-        throw error;
+        const message = error.response?.data?.message || "Error!";
+        throw new Error(message);
+    }
+  };
+
+  
+  export const get12Products = async (pageIndex = 1, pageSize = 12) => {
+    try {
+      const response = await axiosInstance.get(`product/`, {
+        params: { 'page-index': pageIndex, 'page-size': pageSize },
+      });
+      
+      return {
+        data: response.data.data.data,
+        pagination: response.data.data.metaData, 
+      };
+    } catch (error) {
+        const message = error.response?.data?.message || "Error!";
+        throw new Error(message);
     }
   };
 
@@ -25,7 +40,56 @@ import { axiosInstance } from "../apiConfig";
         );
         return response.data;
     } catch (error) {
-        console.error("Error fetching product:", error);
-        throw error;
+        const message = error.response?.data?.message || "Error!";
+        throw new Error(message);
     }
+};
+
+
+export const getAllProducts = async () => {
+  try {
+    const response = await axiosInstance.get(`/product`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching all products:", error);
+    throw error;
+  }
+};
+
+export const createProduct = async (formData) => {
+  try {
+    const response = await axiosInstance.post("/product", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error creating product:", error);
+    throw error;
+  }
+};
+
+export const updateProduct = async (formData) => {
+  try {
+    const response = await axiosInstance.put("/product", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error updating product:", error);
+    throw error;
+  }
+};
+
+export const deleteProduct = async (id) => {
+  try {
+    const response = await axiosInstance.delete(`/product/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error(`Error deleting product with id ${id}:`, error);
+    throw error;
+  }
 };

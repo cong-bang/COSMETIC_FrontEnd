@@ -324,7 +324,6 @@ const Home = () => {
   const fetchFlashSale = async () => {
     try {
       const result = await get5Products(1, 5);
-      console.log(result.data);
       setProductCards(result.data);
     } catch (error) {
       console.log(error);
@@ -332,9 +331,6 @@ const Home = () => {
     } finally {
     }
   };
-
-  
-  
 
   const nextSlide = () =>
     setCurrent((prev) => (prev + 1) % bannerSlides.length);
@@ -569,39 +565,37 @@ const Home = () => {
               </div>
             ))}
             </> */}
-            
+
             {/* API Products */}
             {productCards.map((product) => (
-              
               <div className={cx("product-card")}>
                 <Link key={product.id} to={`/detail-product/${product.id}`}>
-                <div className={cx("product-image")}>
-                  <div className={cx("discount-label")}>
-                    -{20}%
+                  <div className={cx("product-image")}>
+                    <div className={cx("discount-label")}>-{20}%</div>
                   </div>
-                </div>
-                <div className={cx("product-info")}>
-                  <div className={cx("product-brand")}>{product.brand.name}</div>
-                  <h3 className={cx("product-name")}>{product.name}</h3>
-                  <div className={cx("product-rating")}>
-                    <div className={cx("stars")}>★★★★★</div>
-                    <span className={cx("review-count")}>
-                      ({product.categoryName})
-                    </span>
+                  <div className={cx("product-info")}>
+                    <div className={cx("product-brand")}>
+                      {product.brand.name}
+                    </div>
+                    <h3 className={cx("product-name")}>{product.name}</h3>
+                    <div className={cx("product-rating")}>
+                      <div className={cx("stars")}>★★★★★</div>
+                      <span className={cx("review-count")}>
+                        ({product.categoryName})
+                      </span>
+                    </div>
+                    <div className={cx("product-price")}>
+                      <span className={cx("sale-price")}>
+                        {product.price ? product.price.toLocaleString() : "0"} đ
+                      </span>
+                      <span className={cx("original-price")}>
+                        {product.price ? product.price.toLocaleString() : "0"} đ
+                      </span>
+                    </div>
                   </div>
-                  <div className={cx("product-price")}>
-                    <span className={cx("sale-price")}>
-                      {product.price} đ
-                    </span>
-                    <span className={cx("original-price")}>
-                      {product.price} đ
-                    </span>
-                  </div>
-                </div>
                 </Link>
               </div>
             ))}
-
           </div>
         </div>
 
@@ -703,10 +697,16 @@ const Home = () => {
                   </div>
                   <div className={cx("product-price")}>
                     <span className={cx("sale-price")}>
-                      {product.salePrice} đ
+                      {product.salePrice
+                        ? product.salePrice.toLocaleString()
+                        : "0"}{" "}
+                      đ
                     </span>
                     <span className={cx("original-price")}>
-                      {product.originalPrice} đ
+                      {product.originalPrice
+                        ? product.originalPrice.toLocaleString()
+                        : "0"}{" "}
+                      đ
                     </span>
                   </div>
                   <div className={cx("product-sold-count")}>
@@ -808,10 +808,16 @@ const Home = () => {
                     </div>
                     <div className={cx("product-price")}>
                       <span className={cx("sale-price")}>
-                        {product.salePrice} đ
+                        {product.salePrice
+                          ? product.salePrice.toLocaleString()
+                          : "0"}{" "}
+                        đ
                       </span>
                       <span className={cx("original-price")}>
-                        {product.originalPrice} đ
+                        {product.originalPrice
+                          ? product.originalPrice.toLocaleString()
+                          : "0"}{" "}
+                        đ
                       </span>
                     </div>
                     <div className={cx("selling-fast-tag")}>
@@ -901,8 +907,10 @@ const Home = () => {
                     </span>
                   </div>
                   <div className={cx("product-price")}>
-                    {" "}
-                    {product.salePrice} đ{" "}
+                    {product.salePrice
+                      ? product.salePrice.toLocaleString()
+                      : "0"}{" "}
+                    đ
                   </div>
                   <div className={cx("selling-fast-tag")}>
                     {" "}
@@ -1043,9 +1051,9 @@ const Home = () => {
               TIN TỨC & CẨM NANG LÀM ĐẸP
             </h2>
             <Link to="/blog">
-            <button className={cx("view-all-btn")}>
-              XEM TẤT CẢ <span>›</span>
-            </button>
+              <button className={cx("view-all-btn")}>
+                XEM TẤT CẢ <span>›</span>
+              </button>
             </Link>
           </div>
 

@@ -30,7 +30,13 @@ const Cart = () => {
   };
 
   const handleRemoveItem = async (id) => {
-    await removeFromCart(id);
+    try {
+      const res = await removeFromCart(id);
+      toast.success(res.message);
+    } catch (error) {
+      toast.error(error.message);
+    }
+    
     fetchCart();
   };
 

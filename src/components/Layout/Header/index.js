@@ -23,11 +23,11 @@ const Header = () => {
     "Chăm Sóc Da Mặt",
     "Trang Điểm",
     "Chăm Sóc Cơ Thể",
-    "Chăm Sóc Sức Khỏe",
-    "Chăm Sóc Tóc",
+    "Blogs",
     "Tất Cả Thương Hiệu",
     "Beauty Tools",
     "Voucher",
+    "About Us",
   ];
   const [activeCategory, setActiveCategory] = useState("Trang Điểm");
   const [showMenu, setShowMenu] = useState(false);
@@ -54,6 +54,10 @@ const Header = () => {
       navigate("/voucher");
     } else if (category == "Beauty Tools") {
       navigate("/beauty-tools");
+    } else if (category == "Blogs") {
+      navigate("/blog");
+    } else if (category == "About Us") {
+      navigate("/aboutus");
     } else {
       navigate("/products");
     }
@@ -159,7 +163,7 @@ const Header = () => {
                 Trang Điểm <span>&gt;</span>
               </div>
               <div className={styles.menu_col_item}>
-                Chăm Sóc Cơ Thể <span>&gt;</span>
+                <Link to="/bodycare">Chăm Sóc Cơ Thể</Link> <span>&gt;</span>
               </div>
               <div className={styles.menu_col_item}>
                 Chăm Sóc Tóc <span>&gt;</span>
@@ -172,7 +176,9 @@ const Header = () => {
               <div className={styles.menu_col_title}>CÁC SẢN PHẨM TẠI PURE</div>
               <div className={styles.menu_col_item}>Chăm Sóc Da</div>
               <div className={styles.menu_col_item}>Trang Điểm</div>
-              <div className={styles.menu_col_item}>Chăm Sóc Cơ Thể</div>
+              <div className={styles.menu_col_item}>
+                <Link to="/bodycare">Chăm Sóc Cơ Thể</Link>
+              </div>
               <div className={styles.menu_col_item}>Chăm Sóc Tóc</div>
               <div className={styles.menu_col_item}>Vệ Sinh Phụ Nữ</div>
               <div className={styles.menu_col_item}>

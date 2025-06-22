@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import styles from "./Blog.module.scss";
 import blog_intro from 'images/blog_intro.png'
 import chamsocda from 'images/chamsocda.png'
@@ -51,7 +51,6 @@ const Blog = () => {
             <div className={styles.category_label}>CHĂM SÓC DA</div>
             <div className={styles.category_bottom_line_1}></div>
           </Link>
-          
           <Link to="/blog-category" className={styles.category_card} style={{backgroundImage: `url(${chamsocsuckhoe})`}}>
             <div className={styles.category_label}>CHĂM SÓC SỨC KHỎE</div>
             <div className={styles.category_bottom_line_2}></div>

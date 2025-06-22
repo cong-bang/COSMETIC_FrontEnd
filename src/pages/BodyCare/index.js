@@ -1,8 +1,14 @@
-import React, { useEffect, useState } from "react";
-import styles from "./Products.module.scss";
-import { Search, ArrowDown } from "lucide-react";
-import { useNavigate } from "react-router-dom";
-import { get12Products } from "../../services/productService"
+import React, { useState } from "react";
+import styles from "./BodyCare.module.scss";
+import {
+  Search,
+  Filter,
+  ArrowDown,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
+import Header from "components/Layout/Header";
+import Footer from "components/Layout/Footer";
 
 // Import product images
 import product1 from "images/product1.png";
@@ -18,194 +24,148 @@ import product8 from "images/product8.png";
 import product9 from "images/product9.png";
 import product10 from "images/product10.png";
 import product11 from "images/product11.png";
-import { toast } from "react-toastify";
 
-const Products = () => {
-  const navigate = useNavigate();
+const BodyCare = () => {
   const [priceRange, setPriceRange] = useState([0, 1000000]);
   const [rating, setRating] = useState(null);
   const [isOnSale, setIsOnSale] = useState(false);
   const [sortOption, setSortOption] = useState("Sắp xếp");
-  const [productList, setProductList] = useState([]);
-  const [pagination, setPagination] = useState({});
-  const [currentPage, setCurrentPage] = useState(1);
-  const [pageSize] = useState(12);
-
-  //Get Product
-    useEffect(() => {
-      fetchProductList(currentPage);
-    }, [currentPage]);
-  
-  const fetchProductList = async (page) => {
-    try {
-      const result = await get12Products(page, pageSize);
-      setProductList(result.data);
-      setPagination(result.pagination);
-    } catch (error) {
-      console.log(error);
-      toast.error("Lỗi khi tải danh sách sản phẩm");
-    }
-  };
-
-  const handlePageChange = (page) => {
-    if (page < 1 || page > pagination.totalPages) return;
-    setCurrentPage(page);
-  };
-
-  const renderPageNumbers = () => {
-    const pages = [];
-    for (let i = 1; i <= pagination.totalPages; i++) {
-      pages.push(
-        <button
-          key={i}
-          className={`${styles.pagination_button} ${
-            currentPage === i ? styles.active : ""
-          }`}
-          onClick={() => handlePageChange(i)}
-        >
-          {i}
-        </button>
-      );
-    }
-    return pages;
-  };
-
 
   // Banner images
   const bannerImages = [
-    { id: 1, image: product9, alt: "CLIO EVERY FRUIT GROCERY EDITION" },
-    { id: 2, image: product10, alt: "Cocoon Nước Tẩy Trang" },
-    { id: 3, image: product11, alt: "CLIO PRO EYE PALETTE" },
+    { id: 1, image: product9, alt: "Sữa tắm dưỡng ẩm" },
+    { id: 2, image: product10, alt: "Dầu gội đầu" },
+    { id: 3, image: product11, alt: "Dầu xả dưỡng tóc" },
   ];
 
-  // Sample products data with the real images
+  // Sample body care products data
   const products = [
     {
       id: 1,
-      name: "Tinh Chất Ngăn Hăm Yến C22 Cocoon 30ml",
+      name: "Sữa Tắm Dưỡng Ẩm Cocoon 300ml",
       brand: "COCOON",
-      price: 372000,
-      originalPrice: 450000,
+      price: 189000,
+      originalPrice: 210000,
       image: product1,
     },
     {
       id: 2,
-      name: "Tẩy Chết Ngăn Hăm Yến C22 Cocoon 30ml",
+      name: "Dầu Gội Dưỡng Tóc Cocoon 300ml",
       brand: "COCOON",
-      price: 372000,
-      originalPrice: 450000,
+      price: 165000,
+      originalPrice: 195000,
       image: product2,
     },
     {
       id: 3,
-      name: "Tinh Chất Ngăn Hăm Yến C22 Cocoon 30ml",
+      name: "Dầu Xả Dưỡng Tóc Cocoon 250ml",
       brand: "COCOON",
-      price: 372000,
-      originalPrice: 450000,
+      price: 155000,
+      originalPrice: 180000,
       image: product3,
     },
     {
       id: 4,
-      name: "Tinh Chất Ngăn Hăm Yến C22 Cocoon 30ml",
+      name: "Sữa Tắm Hương Nước Hoa 300ml",
       brand: "COCOON",
-      price: 372000,
-      originalPrice: 450000,
+      price: 192000,
+      originalPrice: 220000,
       image: product4,
     },
     {
       id: 5,
-      name: "Tinh Chất Ngăn Hăm Yến C22 Cocoon 30ml",
+      name: "Tẩy Tế Bào Chết Toàn Thân 200ml",
       brand: "COCOON",
-      price: 372000,
-      originalPrice: 450000,
+      price: 175000,
+      originalPrice: 195000,
       image: product5,
     },
     {
       id: 6,
-      name: "Tẩy Chết Ngăn Hăm Yến C22 Cocoon 30ml",
+      name: "Dầu Gội Trị Gàu Cocoon 300ml",
       brand: "COCOON",
-      price: 372000,
-      originalPrice: 450000,
+      price: 172000,
+      originalPrice: 195000,
       image: product6,
     },
     {
       id: 7,
-      name: "Tinh Chất Ngăn Hăm Yến C22 Cocoon 30ml",
+      name: "Sữa Dưỡng Thể Cocoon 250ml",
       brand: "COCOON",
-      price: 372000,
-      originalPrice: 450000,
+      price: 162000,
+      originalPrice: 185000,
       image: product7,
     },
     {
       id: 8,
-      name: "Tinh Chất Ngăn Hăm Yến C22 Cocoon 30ml",
+      name: "Xà Phòng Tắm Dưỡng Ẩm 100g",
       brand: "COCOON",
-      price: 372000,
-      originalPrice: 450000,
+      price: 75000,
+      originalPrice: 89000,
       image: product8,
     },
     {
       id: 9,
-      name: "Tinh Chất Ngăn Hăm Yến C22 Cocoon 30ml",
+      name: "Sữa Tắm Dưỡng Ẩm Hương Hoa 300ml",
       brand: "COCOON",
-      price: 372000,
-      originalPrice: 450000,
+      price: 189000,
+      originalPrice: 210000,
       image: product1,
     },
     {
       id: 10,
-      name: "Tẩy Chết Ngăn Hăm Yến C22 Cocoon 30ml",
+      name: "Dầu Gội Dành Cho Tóc Khô 300ml",
       brand: "COCOON",
-      price: 372000,
-      originalPrice: 450000,
+      price: 165000,
+      originalPrice: 195000,
       image: product2,
     },
     {
       id: 11,
-      name: "Tinh Chất Ngăn Hăm Yến C22 Cocoon 30ml",
+      name: "Dầu Xả Dành Cho Tóc Nhuộm 250ml",
       brand: "COCOON",
-      price: 372000,
-      originalPrice: 450000,
+      price: 155000,
+      originalPrice: 180000,
       image: product3,
     },
     {
       id: 12,
-      name: "Tinh Chất Ngăn Hăm Yến C22 Cocoon 30ml",
+      name: "Sữa Tắm Dưỡng Trắng Da 300ml",
       brand: "COCOON",
-      price: 372000,
-      originalPrice: 450000,
+      price: 192000,
+      originalPrice: 220000,
       image: product4,
     },
     {
       id: 13,
-      name: "Tinh Chất Ngăn Hăm Yến C22 Cocoon 30ml",
+      name: "Tẩy Tế Bào Chết Cà Phê 200ml",
       brand: "COCOON",
-      price: 372000,
-      originalPrice: 450000,
+      price: 175000,
+      originalPrice: 195000,
       image: product5,
     },
     {
       id: 14,
-      name: "Tẩy Chết Ngăn Hăm Yến C22 Cocoon 30ml",
+      name: "Dầu Gội Dưỡng Màu Tóc 300ml",
       brand: "COCOON",
-      price: 372000,
-      originalPrice: 450000,
+      price: 172000,
+      originalPrice: 195000,
       image: product6,
     },
     {
       id: 15,
-      name: "Tinh Chất Ngăn Hăm Yến C22 Cocoon 30ml",
+      name: "Sữa Dưỡng Thể Trắng Da 250ml",
       brand: "COCOON",
-      price: 372000,
-      originalPrice: 450000,
+      price: 162000,
+      originalPrice: 185000,
       image: product7,
     },
     {
       id: 16,
-      name: "Tinh Chất Ngăn Hăm Yến C22 Cocoon 30ml",
+      name: "Xà Phòng Tắm Thảo Mộc 100g",
       brand: "COCOON",
-      price: 372000,
-      originalPrice: 450000,
+      price: 75000,
+      originalPrice: 89000,
       image: product8,
     },
   ];
@@ -219,29 +179,29 @@ const Products = () => {
     "Giá cao đến thấp",
   ];
 
-  // Filter categories for skincare
-  const skinCareCategories = [
-    { id: 1, name: "Làm sạch", expanded: true },
-    { id: 2, name: "Dưỡng da", expanded: true },
-    { id: 3, name: "Chống nắng", expanded: true },
-    { id: 4, name: "Mặt nạ", expanded: true },
-    { id: 5, name: "Chăm sóc chuyên sâu", expanded: true },
-    { id: 6, name: "Set Chăm sóc da", expanded: true },
-    { id: 7, name: "Chăm sóc da khác", expanded: true },
-    { id: 8, name: "Chăm sóc mắt", expanded: true },
-    { id: 9, name: "Chăm sóc môi", expanded: true },
+  // Filter categories for body care
+  const bodyCareCategories = [
+    { id: 1, name: "Sữa tắm", expanded: true },
+    { id: 2, name: "Dầu gội", expanded: true },
+    { id: 3, name: "Dầu xả", expanded: true },
+    { id: 4, name: "Tẩy tế bào chết", expanded: true },
+    { id: 5, name: "Sữa dưỡng thể", expanded: true },
+    { id: 6, name: "Xà phòng tắm", expanded: true },
+    { id: 7, name: "Khử mùi", expanded: true },
+    { id: 8, name: "Chăm sóc tóc", expanded: true },
+    { id: 9, name: "Set chăm sóc cơ thể", expanded: true },
   ];
 
   // Brands for the brand filter
   const brands = [
-    "9 Wishes",
-    "Acnes",
-    "Alba Skincare",
-    "Anesza",
-    "Angel's Liquid",
-    "Anir",
-    "Balance Active Formula",
-    "La roche-posay",
+    "Cocoon",
+    "Dove",
+    "Nivea",
+    "The Body Shop",
+    "Neutrogena",
+    "Pantene",
+    "Head & Shoulders",
+    "L'Oreal",
   ];
 
   // Handle sorting option change
@@ -287,17 +247,14 @@ const Products = () => {
     return originalPrice > price;
   };
 
-  const handleProductClick = () => {
-    navigate("/detail-product");
-  };
-
   return (
     <>
+      <Header />
       <div className={styles.products_page_wrapper}>
         <div className={styles.products_container}>
           {/* Left sidebar for filters - 20% width */}
           <div className={styles.filters_sidebar}>
-            <h2 className={styles.sidebar_title}>Chăm Sóc Da</h2>
+            <h2 className={styles.sidebar_title}>Chăm Sóc Cơ Thể</h2>
 
             {/* Search box */}
             <div className={styles.search_box}>
@@ -307,7 +264,7 @@ const Products = () => {
 
             {/* Categories accordion */}
             <div className={styles.filter_section}>
-              {skinCareCategories.map((category) => (
+              {bodyCareCategories.map((category) => (
                 <div key={category.id} className={styles.category_item}>
                   <div className={styles.category_header}>
                     <span>{category.name}</span>
@@ -409,7 +366,7 @@ const Products = () => {
             {/* Header with title and product count */}
             <div className={styles.products_header}>
               <div className={styles.title_section}>
-                <h1>Chăm Sóc Da</h1>
+                <h1>Chăm Sóc Cơ Thể</h1>
                 <span className={styles.product_count}>
                   {products.length} sản phẩm
                 </span>
@@ -444,21 +401,17 @@ const Products = () => {
             {/* Quick filter chips */}
             <div className={styles.quick_filters}>
               <div className={styles.filter_chip}>Sắp xếp</div>
-              <div className={styles.filter_chip}>HEITU</div>
-              <div className={styles.filter_chip}>Bán chạy</div>
+              <div className={styles.filter_chip}>Sữa tắm</div>
+              <div className={styles.filter_chip}>Dầu gội</div>
               <div className={styles.filter_chip}>Giá thấp đến cao</div>
               <div className={styles.filter_chip}>Giá cao đến thấp</div>
               <div className={styles.filter_chip}>Yêu thích nhiều</div>
             </div>
 
             {/* Products grid */}
-            {/* <div className={styles.products_grid}>
+            <div className={styles.products_grid}>
               {products.map((product) => (
-                <div
-                  key={product.id}
-                  className={styles.product_card}
-                  onClick={handleProductClick}
-                >
+                <div key={product.id} className={styles.product_card}>
                   <div className={styles.product_image}>
                     <img src={product.image} alt={product.name} />
                     {product.id === 8 && (
@@ -481,41 +434,10 @@ const Products = () => {
                   </div>
                 </div>
               ))}
-            </div> */}
-
-            <div className={styles.products_grid}>
-              {productList.map((product) => (
-                <div
-                  key={product.id}
-                  className={styles.product_card}
-                  onClick={handleProductClick}
-                >
-                  <div className={styles.product_image}>
-                    <img src={product1} alt="Product" />
-                    {/* {product.id === 8 && (
-                      <div className={styles.product_promo}>
-                        <span>1/5 - 1/6</span>
-                      </div>
-                    )} */}
-                  </div>
-                  <div className={styles.product_info}>
-                    <div className={styles.product_brand}>{product.brand.name}</div>
-                    <div className={styles.product_name}>{product.name}</div>
-                    <div className={styles.product_price_container}>
-                      <span className={styles.product_price}>
-                        {product.price} đ
-                      </span>
-                      <span className={styles.product_original_price}>
-                        {product.price} đ
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              ))}
             </div>
 
             {/* Pagination */}
-            {/* <div className={styles.pagination}>
+            <div className={styles.pagination}>
               <div className={styles.pagination_info}>1 - 16 / 1110</div>
               <div className={styles.pagination_controls}>
                 <button className={styles.pagination_button}>❮</button>
@@ -530,41 +452,7 @@ const Products = () => {
                 <button className={styles.pagination_button}>40</button>
                 <button className={styles.pagination_button}>❯</button>
               </div>
-            </div> */}
-
-                <div>
-              {/* Pagination */}
-              <div className={styles.pagination}>
-                <div className={styles.pagination_info}>
-                  {pagination.totalCount > 0
-                    ? `${(currentPage - 1) * pagination.pageSize + 1} - ${Math.min(
-                        currentPage * pagination.pageSize,
-                        pagination.totalCount
-                      )} / ${pagination.totalCount}`
-                    : "0 / 0"}
-                </div>
-                <div className={styles.pagination_controls}>
-                  <button
-                    className={styles.pagination_button}
-                    onClick={() => handlePageChange(currentPage - 1)}
-                    disabled={!pagination.hasPrevious}
-                  >
-                    ❮
-                  </button>
-
-                  {renderPageNumbers()}
-
-                  <button
-                    className={styles.pagination_button}
-                    onClick={() => handlePageChange(currentPage + 1)}
-                    disabled={!pagination.hasNext}
-                  >
-                    ❯
-                  </button>
-                </div>
-              </div>
             </div>
-
           </div>
         </div>
       </div>
@@ -594,8 +482,10 @@ const Products = () => {
           </div>
         </div>
       </div>
+
+      <Footer />
     </>
   );
 };
 
-export default Products;
+export default BodyCare;

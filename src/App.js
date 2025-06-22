@@ -8,12 +8,15 @@ import UserProfileLayout from './layouts/UserProfileLayout';
 import Instant from 'pages/Instant';
 import Admin from './pages/Admin';
 import ConfirmEmail from './components/AuthForm/ConfirmEmail';
+import ScrollToTop from './utils/scrollToTop';
+import RequireAdmin from './components/RequireAdmin';
 
 function App() {
   return (
     <Router>
       <div className="App">
         <ToastContainer />
+        <ScrollToTop/>
         <Routes>
           {/* Public routes with HomeLayout */}
           <Route element={<HomeLayout />}>
@@ -33,7 +36,14 @@ function App() {
             })}
           </Route>
           {/* Admin route */}
-          <Route path="/admin/*" element={<Admin />} />
+          <Route
+            path="/admin/*"
+            element={
+              <RequireAdmin>
+                <Admin />
+              </RequireAdmin>
+            }
+          />
           <Route path="/confirm-token/:id" element={<ConfirmEmail />} />
         </Routes>
       </div>

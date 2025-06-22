@@ -1,8 +1,12 @@
 import React from 'react';
 import styles from "./PaymentCard.module.scss"
 import visa from 'images/visa.png'
+import { useLocation } from 'react-router-dom';
 
 const PaymentCard = () => {
+  const location = useLocation();
+  const user = location.state?.user;
+  
   return (
     <>
     <div className={styles.container}>

@@ -386,12 +386,13 @@
       background: white;
       border-radius: 4px;
       overflow: hidden;
-      transition: all 0.2s ease;
+      transition: transform 0.2s, box-shadow 0.2s;
       border: 1px solid #f0f0f0;
+      cursor: pointer;
       
       &:hover {
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        transform: translateY(-3px);
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
       }
       
       .product_image {

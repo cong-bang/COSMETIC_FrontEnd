@@ -109,8 +109,10 @@ const Order = () => {
             } else {
                 toast.error("Không lấy được link thanh toán.");
             }
+        } else if (result && result.data && paymentMethod === "momo") {
+          toast.error("Hiện tại chỉ có thể thanh toán thông qua PayOS");
         } else {
-            navigate("/payment-success");
+            navigate("/payment-cancel");
         }
     } catch (error) {
         console.error("Order error:", error);

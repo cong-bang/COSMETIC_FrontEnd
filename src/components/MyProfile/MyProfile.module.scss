@@ -65,6 +65,7 @@
             border-radius: 24px;
             outline: none;
             font-size: 14px;
+            color: #5C5570;
 
             &:focus {
                 outline: none;
@@ -151,9 +152,29 @@
   }
 }
 
+.inputEdit {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
 
+.inputField {
+  padding: 6px 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
 
+.cancelButton, .changeButton {
+  background: none;
+  border: none;
+  color: #EE6983;
+  cursor: pointer;
+  font-size: 14px;
 
+  &:hover {
+    text-decoration: underline;
+  }
+}
 
 
 

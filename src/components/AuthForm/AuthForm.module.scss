@@ -151,12 +151,18 @@
                   display: flex;
                   justify-content: center;
                   gap: 15px;
+                  cursor: pointer;
               
                   & img {
                       width: 35px;
                       height: 35px;
                   }
                 }
+              }
+
+              & .login_gg {
+                margin: 0 20%;
+                margin-top: 1rem;
               }
             }
           }

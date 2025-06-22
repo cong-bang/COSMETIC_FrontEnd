@@ -30,7 +30,7 @@ const SuccessPayment = () => {
           <button className={`${styles.btn} ${styles.primary}`} onClick={() => navigate("/")}>
             Tiếp tục mua sắm
           </button>
-          <button className={`${styles.btn} ${styles.primary}`} onClick={() => navigate(`/order-detail/${orderId}`)}>
+          <button className={`${styles.btn} ${styles.primary}`} onClick={() => navigate("/my-order")}>
             Chi tiết đơn hàng
           </button>
         </div>

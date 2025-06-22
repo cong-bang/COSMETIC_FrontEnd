@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import styles from './NavLeft.module.scss';
-import user from 'images/user.png';
+import avatar_user from 'images/user/avatar_user.png';
 import photograph_icon from 'images/photograph_icon.png';
 import shopping_bag_icon from 'images/shopping_bag_icon.png';
 import bell_icon from 'images/bell_icon.png';
@@ -9,10 +9,27 @@ import ticket_icon from 'images/ticket_icon.png';
 import { toast } from 'react-toastify';
 import { FiLogOut } from 'react-icons/fi';
 import { useSelector } from "react-redux";
+import { getUserById } from '../../services/userService';
 
 const NavLeft = () => {
   const navigate = useNavigate();
-  const user = useSelector((state) => state.user.user);
+  const userFromLocal = useSelector((state) => state.user.user);
+  const [user, setUser] = useState({});
+
+      useEffect(() => {
+          if (userFromLocal != null) {
+              const fetchUserDetail = async () => {
+                  try {
+                      const response = await getUserById(userFromLocal.id);
+                      setUser(response.data);
+                  } catch (error) {
+                      toast.error(error);
+                      toast.error("Lấy thông tin người dùng thất bại!");
+                  }
+              }
+              fetchUserDetail();
+          }        
+      }, [userFromLocal])
 
   const handleLogout = () => {
     localStorage.removeItem("user");
@@ -25,10 +42,10 @@ const NavLeft = () => {
     <div className={styles.nav_left}>
       <div className={styles.profile}>
         <div className={styles.avatar}>
-          <img src={user} alt="avatar" />
+          <img src={user.avatar || avatar_user} alt="avatar" />
         </div>
         <div className={styles.info}>
-          <h3>Mya Tran</h3>
+          <h3>{userFromLocal.username}</h3>
           <div className={styles.status}>Online</div>
         </div>
       </div>
@@ -37,6 +54,7 @@ const NavLeft = () => {
         <h4>Tài khoản của tôi</h4>
         <div className={styles.account_menu}>
           <NavLink
+            state={{ user }}
             to="/my-profile"
             className={({ isActive }) =>
               isActive ? styles.active : styles.checkbox_empty
@@ -45,6 +63,7 @@ const NavLeft = () => {
             Hồ sơ
           </NavLink>
           <NavLink
+            state={{ user }}
             to="/paymentcard"
             className={({ isActive }) =>
               isActive ? styles.active : styles.checkbox_empty
@@ -53,6 +72,7 @@ const NavLeft = () => {
             Thanh toán
           </NavLink>
           <NavLink
+            state={{ user }}
             to="/address"
             className={({ isActive }) =>
               isActive ? styles.active : styles.checkbox_empty
@@ -61,6 +81,7 @@ const NavLeft = () => {
             Địa chỉ
           </NavLink>
           <NavLink
+            state={{ user }}
             to="/change-password"
             className={({ isActive }) =>
               isActive ? styles.active : styles.checkbox_empty
@@ -73,6 +94,7 @@ const NavLeft = () => {
 
       <div className={styles.button_group}>
         <NavLink
+          state={{ user }}
           to="/wishlist"
           className={({ isActive }) => (isActive ? styles.active : '')}
         >
@@ -80,6 +102,7 @@ const NavLeft = () => {
           Wishlist
         </NavLink>
         <NavLink
+          state={{ user }}
           to="/my-order"
           className={({ isActive }) => (isActive ? styles.active : '')}
         >
@@ -87,6 +110,7 @@ const NavLeft = () => {
           Đơn hàng
         </NavLink>
         <NavLink
+          state={{ user }}
           to="/notifications"
           className={({ isActive }) => (isActive ? styles.active : '')}
         >
@@ -94,6 +118,7 @@ const NavLeft = () => {
           Thông báo
         </NavLink>
         <NavLink
+          state={{ user }}
           to="/my-voucher"
           className={({ isActive }) => (isActive ? styles.active : '')}
         >

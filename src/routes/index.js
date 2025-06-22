@@ -11,8 +11,9 @@ import SuccessPayment from "pages/SuccessPayment";
 import FailurePayment from "pages/FailurePayment";
 import Cart from "pages/Cart";
 import Order from "pages/Order";
-import HomeLayout from '../layouts/HomeLayout';
-import UserProfileLayout from '../layouts/UserProfileLayout';
+import DetailProduct from "pages/DetailProduct";
+import HomeLayout from "../layouts/HomeLayout";
+import UserProfileLayout from "../layouts/UserProfileLayout";
 import MyProfile from "../components/MyProfile";
 import PaymentCard from "../components/PaymentCard";
 import Address from "../components/Address";
@@ -29,9 +30,7 @@ import Virtual from "../pages/Virtual";
 import Products from "../pages/Products";
 import Voucher from "../pages/Voucher";
 import Admin from "../pages/Admin";
-
 import { Fragment } from "react";
-import DetailProduct from "pages/DetailProduct";
 
 const publicRoutes = [
   { path: "/", component: Home, layout: HomeLayout },
@@ -52,9 +51,9 @@ const publicRoutes = [
   { path: "/beauty-tools", component: BeautyTools, layout: HomeLayout },
   { path: "/virtual", component: Virtual, layout: HomeLayout },
   { path: "/products", component: Products, layout: HomeLayout },
+  { path: "/detail-product/:id", component: DetailProduct, layout: HomeLayout },
   { path: "/voucher", component: Voucher, layout: HomeLayout },
   { path: "/admin/*", component: Admin, layout: Fragment },
-  { path: "/detail-product/:id", component: DetailProduct, layout: HomeLayout},
 ];
 
 const privateRoutes = [
@@ -62,12 +61,19 @@ const privateRoutes = [
   { path: "/my-profile", component: MyProfile, layout: UserProfileLayout },
   { path: "/paymentcard", component: PaymentCard, layout: UserProfileLayout },
   { path: "/address", component: Address, layout: UserProfileLayout },
-  { path: "/change-password", component: ChangePassword, layout: UserProfileLayout },
+  {
+    path: "/change-password",
+    component: ChangePassword,
+    layout: UserProfileLayout,
+  },
   { path: "/wishlist", component: Wishlist, layout: UserProfileLayout },
   { path: "/my-order", component: MyOrder, layout: UserProfileLayout },
-  { path: "/notifications", component: Notification, layout: UserProfileLayout },
+  {
+    path: "/notifications",
+    component: Notification,
+    layout: UserProfileLayout,
+  },
   { path: "/my-voucher", component: MyVoucher, layout: UserProfileLayout },
-
 ];
 
 export { publicRoutes, privateRoutes };
