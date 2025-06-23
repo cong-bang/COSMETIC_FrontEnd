@@ -3,7 +3,6 @@ import React, { useState, useRef, useEffect } from "react";
 import classNames from "classnames/bind";
 import styles from "./Home.module.scss";
 import { useNavigate } from "react-router-dom";
-
 // Import hình ảnh
 import img1 from "../../assets/images/imagehome/1.png";
 import img2 from "../../assets/images/imagehome/2.png";

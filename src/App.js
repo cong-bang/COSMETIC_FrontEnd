@@ -10,6 +10,7 @@ import Admin from './pages/Admin';
 import ConfirmEmail from './components/AuthForm/ConfirmEmail';
 import ScrollToTop from './utils/scrollToTop';
 import RequireAdmin from './components/RequireAdmin';
+import ChatBox from "pages/ChatBox";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <div className="App">
         <ToastContainer />
         <ScrollToTop/>
+        <ChatBox />
         <Routes>
           {/* Public routes with HomeLayout */}
           <Route element={<HomeLayout />}>

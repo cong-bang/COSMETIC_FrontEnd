@@ -111,17 +111,23 @@ export async function sendConfirmEmail(token) {
   }
 }
 
-export const googleAuth = async (idToken) => {
-  try {
-    const response = await axiosInstance.get(`/GoogleAuth/login`, null, {
-      params: {
-        idToken,
-      },
-    });
-    console.log(response.data);
-    return response.data;
-  } catch (error) {
-    console.error("Error google auth:", error);
-    throw error;
-  }
+// export const googleAuth = async (idToken) => {
+//   try {
+//     const response = await axiosInstance.get(`/GoogleAuth/login`, null, {
+//       params: {
+//         idToken,
+//       },
+//     });
+//     console.log(response.data);
+//     return response.data;
+//   } catch (error) {
+//     console.error("Error google auth:", error);
+//     throw error;
+//   }
+// };
+
+export const handleGoogleLogin = () => {
+  const API_BASE_URL = process.env.REACT_APP_COSMETIC_API_BASE_URL;
+  const loginUrl = `${API_BASE_URL}/GoogleAuth/login`;
+  window.location.href = loginUrl;
 };

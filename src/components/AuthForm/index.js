@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { jwtDecode } from "jwt-decode";
@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { loginUser } from "../../redux/userSlice";
-import { googleAuth, login, registerUser } from "../../services/authService";
+import { googleAuth, login, registerUser, handleGoogleLogin} from "../../services/authService";
 import styles from "./AuthForm.module.scss";
 import loginImage from 'images/login.png';
 import logo_fb from 'images/logo_fb_login.png';
@@ -93,45 +93,79 @@ const AuthForm = ({ type }) => {
     }
   };
 
-    const handleGoogleSuccess = async (credentialResponse) => {
-    try {
-      const idToken = credentialResponse.credential;
-      const response = await googleAuth(idToken);
+  //   const handleGoogleSuccess = async (credentialResponse) => {
+  //   try {
+  //     const idToken = credentialResponse.credential;
+  //     const response = await googleAuth(idToken);
 
-      if (response && response.token && response.token.accessToken) {
-        const token = response.token.accessToken;
-        const decodedToken = jwtDecode(token);
+  //     if (response && response.token && response.token.accessToken) {
+  //       const token = response.token.accessToken;
+  //       const decodedToken = jwtDecode(token);
+  //       const user = {
+  //           token,
+  //           id: decodedToken.UserId,
+  //           username: decodedToken["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"],
+  //           email: decodedToken["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"],
+  //           role: decodedToken["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"],
+  //         };
+
+  //         dispatch(loginUser({ user }));
+  //         toast.success("Đăng nhập thành công!");
+
+  //         if (user.role === "ADMIN") {
+  //           navigate("/admin");
+  //         } else if (user.role === "STAFF") {
+  //           navigate("/");
+  //         } else {
+  //           navigate("/");
+  //         }
+
+  //       dispatch(loginUser({ user }));
+  //       toast.success("Đăng nhập với Google thành công!");
+
+  //     } else {
+  //       toast.error("Đăng nhập với Google thất bại!");
+  //     }
+  //   } catch (error) {
+  //     console.error(error);
+  //     toast.error("Đăng nhập với Google thất bại!");
+  //   }
+  // };
+
+   useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const token = params.get("token");
+
+    if (token) {
+      try {
+        const decoded = jwtDecode(token);
+
         const user = {
-            token,
-            id: decodedToken.UserId,
-            username: decodedToken["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"],
-            email: decodedToken["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"],
-            role: decodedToken["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"],
-          };
-
-          dispatch(loginUser({ user }));
-          toast.success("Đăng nhập thành công!");
-
-          if (user.role === "ADMIN") {
-            navigate("/admin");
-          } else if (user.role === "STAFF") {
-            navigate("/");
-          } else {
-            navigate("/");
-          }
+          token,
+          id: decoded.UserId,
+          username: decoded["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"],
+          email: decoded["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"],
+          role: decoded["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"],
+        };
 
         dispatch(loginUser({ user }));
-        toast.success("Đăng nhập với Google thành công!");
+        toast.success("Đăng nhập Google thành công!");
 
-      } else {
-        toast.error("Đăng nhập với Google thất bại!");
+        // Xóa token khỏi URL
+        navigate(location.pathname, { replace: true });
+
+        if (user.role === "ADMIN") {
+          navigate("/admin");
+        } else {
+          navigate("/");
+        }
+      } catch (err) {
+        console.error("Token không hợp lệ", err);
+        toast.error("Token không hợp lệ!");
       }
-    } catch (error) {
-      console.error(error);
-      toast.error("Đăng nhập với Google thất bại!");
     }
-  };
-
+  }, [location.search]);
+  
   const handleGoogleError = () => {
     toast.error("Đăng nhập với Google thất bại!");
   };
@@ -276,17 +310,17 @@ const AuthForm = ({ type }) => {
                     <p>Hoặc đăng nhập với</p>
                     <div className={styles.social_icons}>
                       <img src={logo_fb} alt="Facebook Login" />
-                      <img src={logo_gg} alt="Google Login" />
+                      <img src={logo_gg} alt="Google Login" onClick={handleGoogleLogin}/>
                     </div>
                   </div>
                   <div className={styles.login_gg}>
-                    <GoogleLogin
+                    {/* <GoogleLogin
                       clientId={CLIENT_ID}
                       onSuccess={handleGoogleSuccess}
                       onError={handleGoogleError}
                       theme="outline"
                       size="large"
-                    />
+                    /> */}
 
                   </div>
                   </>

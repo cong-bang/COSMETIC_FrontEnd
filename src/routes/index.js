@@ -22,6 +22,7 @@ import Wishlist from "../components/Wishlist";
 import Notification from "../components/Notification";
 import MyVoucher from "../components/MyVoucher";
 import MyOrder from "../components/MyOrder";
+import ChatBox from "pages/ChatBox";
 
 import Lookup from "pages/Lookup";
 import OrderTracking from "pages/Ordertracking";
@@ -36,16 +37,25 @@ const publicRoutes = [
   { path: "/", component: Home, layout: HomeLayout },
   { path: "/login", component: Login, layout: HomeLayout },
   { path: "/register", component: Register, layout: HomeLayout },
-  { path: "/blog", component: Blog, layout: HomeLayout},
-  { path: "/blog-category", component: BlogCategory, layout: HomeLayout},
-  { path: "/blog-detail", component: BlogDetail, layout: HomeLayout},
-  { path: "/forgot-password", component: ForgotPassword, layout: HomeLayout},
-  { path: "/confirm-password", component: ConfirmPassword, layout: HomeLayout},
-  { path: "/aboutus", component: AboutUs, layout: HomeLayout},
-  { path: "/payment-success", component: SuccessPayment, layout: SuccessPayment},
-  { path: "/payment-cancel", component: FailurePayment, layout: FailurePayment},
-  { path: "/cart", component: Cart, layout: HomeLayout},
-  { path: "/order", component: Order, layout: HomeLayout},
+  { path: "/blog", component: Blog, layout: HomeLayout },
+  { path: "/chat-box", component: ChatBox, layout: HomeLayout },
+  { path: "/blog-category", component: BlogCategory, layout: HomeLayout },
+  { path: "/blog-detail", component: BlogDetail, layout: HomeLayout },
+  { path: "/forgot-password", component: ForgotPassword, layout: HomeLayout },
+  { path: "/confirm-password", component: ConfirmPassword, layout: HomeLayout },
+  { path: "/aboutus", component: AboutUs, layout: HomeLayout },
+  {
+    path: "/payment-success",
+    component: SuccessPayment,
+    layout: SuccessPayment,
+  },
+  {
+    path: "/payment-cancel",
+    component: FailurePayment,
+    layout: FailurePayment,
+  },
+  { path: "/cart", component: Cart, layout: HomeLayout },
+  { path: "/order", component: Order, layout: HomeLayout },
   { path: "/lookup", component: Lookup, layout: HomeLayout },
   { path: "/order-tracking", component: OrderTracking, layout: HomeLayout },
   { path: "/beauty-tools", component: BeautyTools, layout: HomeLayout },
