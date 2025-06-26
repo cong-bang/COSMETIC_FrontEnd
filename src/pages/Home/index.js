@@ -46,6 +46,7 @@ import img39 from "../../assets/images/imagehome/39.png";
 import img40 from "../../assets/images/imagehome/40.png";
 import img41 from "../../assets/images/imagehome/41.png";
 import img42 from "../../assets/images/imagehome/42.png";
+import notfound_product from "images/notfound_product.png";
 
 // Import Slick Carousel
 import Slider from "react-slick";
@@ -570,6 +571,10 @@ const Home = () => {
               <div className={cx("product-card")}>
                 <Link key={product.id} to={`/detail-product/${product.id}`}>
                   <div className={cx("product-image")}>
+                    <img
+                      src={product.productImages[0].link || notfound_product}
+                      alt={product.name}
+                    />
                     <div className={cx("discount-label")}>-{20}%</div>
                   </div>
                   <div className={cx("product-info")}>

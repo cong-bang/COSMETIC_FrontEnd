@@ -1,0 +1,148 @@
+/* --- Biến SCSS để dễ dàng quản lý --- */
+$primary-color: #fde2e4; // Hồng phấn nhẹ nhàng
+$secondary-color: #fff; // Trắng
+$text-color: #333; // Xám đậm cho chữ
+$accent-color: #c18c92; // Hồng đậm hơn cho accent
+$border-color: #e0b4b9; // Màu viền
+
+/* --- Font chữ (có thể đặt trong file biến chung) --- */
+$font-primary: "Montserrat", sans-serif;
+$font-headings: "Playfair Display", serif;
+
+/* --- Style cho component chính --- */
+.notFoundContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  padding: 40px 20px;
+  background-color: $secondary-color;
+  font-family: $font-primary;
+  text-align: center;
+}
+
+.notFoundContent {
+  max-width: 600px;
+  width: 100%;
+
+  .notFoundIllustration {
+    max-width: 150px;
+    margin-bottom: 2rem;
+    opacity: 0.8;
+  }
+
+  .notFoundTitle {
+    font-size: 2.5rem;
+    color: $accent-color;
+    font-family: $font-headings;
+    margin-bottom: 1rem;
+  }
+
+  .notFoundSubtitle {
+    font-size: 1.1rem;
+    color: $text-color;
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+  }
+}
+
+/* --- Lồng style cho thanh tìm kiếm --- */
+.searchBarContainer {
+  display: flex;
+  max-width: 450px;
+  margin: 0 auto 2.5rem;
+  border: 1px solid $border-color;
+  border-radius: 50px;
+  overflow: hidden;
+
+  .searchInput {
+    flex-grow: 1;
+    border: none;
+    padding: 15px 20px;
+    font-size: 1rem;
+    background-color: $secondary-color;
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 10px rgba($accent-color, 0.2);
+    }
+  }
+
+  .searchButton {
+    border: none;
+    background-color: $primary-color;
+    color: $accent-color;
+    padding: 0 25px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: $border-color;
+    }
+  }
+}
+
+/* --- Lồng style cho các link hành động --- */
+.actionLinks {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+
+  .homeButton {
+    display: inline-block;
+    background-color: $accent-color;
+    color: white;
+    padding: 15px 40px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+  }
+
+  .suggestionText {
+    color: #888;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .suggestionLinks {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    .suggestionLink {
+      color: $accent-color;
+      text-decoration: none;
+      font-weight: 600;
+      position: relative;
+      padding-bottom: 5px;
+
+      // Sử dụng &::after để chỉ định pseudo-element của parent
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: $primary-color;
+        transition: width 0.3s ease;
+      }
+
+      &:hover::after {
+        width: 100%;
+      }
+    }
+  }
+}

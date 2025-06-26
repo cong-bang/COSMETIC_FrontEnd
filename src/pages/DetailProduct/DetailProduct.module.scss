@@ -16,51 +16,59 @@
   margin-bottom: 30px;
 }
 
-.productImages {
+.product_Images {
   display: flex;
   flex-direction: column;
-  gap: 55px;
+  gap: 20px;
 }
 
 .mainImage {
   width: 100%;
   overflow: hidden;
-  
+  border-radius: 8px;
+  border: 1px solid #f0f0f0;
+
   img {
     width: 100%;
     height: auto;
     object-fit: contain;
+    border-radius: 8px;
   }
 }
 
 .thumbnails {
   display: flex;
-  width: 100%;
-  justify-content: space-between;
+  gap: 10px;
+  justify-content: flex-start;
+  flex-wrap: wrap;
 }
 
 .thumbnail {
-  width: calc(20% - 5px);
-  height: auto;
+  flex: 0 0 calc(20% - 8px);
+  aspect-ratio: 1;
+  border: 2px solid #e0e0e0;
+  border-radius: 6px;
   overflow: hidden;
-  border: 1px solid #e0e0e0;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: border 0.3s ease, transform 0.2s ease;
 
   &:hover {
-    border-color: #EE6983;
+    border-color: #ee6983;
+    transform: scale(1.02);
   }
 
   &.active {
-    border-color: #EE6983;
+    border-color: #ee6983;
   }
 
   img {
     width: 100%;
-    height: auto;
+    height: 100%;
     object-fit: contain;
+    border-radius: 4px;
   }
 }
 
@@ -99,12 +107,12 @@
   align-items: center;
   gap: 5px;
   margin-bottom: 5px;
-  
+
   span {
     color: #ffb800;
     font-size: 16px;
   }
-  
+
   .reviewCount {
     color: #999;
     font-size: 14px;
@@ -113,7 +121,7 @@
 
 .reviewLink {
   font-size: 13px;
-  color: #EE6983;
+  color: #ee6983;
   text-decoration: underline;
   cursor: pointer;
   margin-bottom: 15px;
@@ -125,9 +133,9 @@
 
 .price {
   margin-bottom: 5px;
-  
+
   .currentPrice {
-    color: #EE6983;
+    color: #ee6983;
     font-size: 24px;
     font-weight: 700;
   }
@@ -137,12 +145,12 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  
+
   .discount {
-    color: #EE6983;
+    color: #ee6983;
     font-size: 14px;
   }
-  
+
   .originalPrice {
     color: #999;
     font-size: 14px;
@@ -177,15 +185,15 @@
   cursor: pointer;
   transition: all 0.2s;
   font-size: 14px;
-  
+
   &:hover {
-    border-color: #EE6983;
+    border-color: #ee6983;
   }
-  
+
   &.active {
-    background-color: #EE6983;
+    background-color: #ee6983;
     color: white;
-    border-color: #EE6983;
+    border-color: #ee6983;
   }
 }
 
@@ -194,7 +202,7 @@
   border: 1px solid #ffccd5;
   border-radius: 5px;
   padding: 10px;
-  
+
   h3 {
     font-size: 14px;
     font-weight: 600;
@@ -213,14 +221,14 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  
+
   .radioButton {
     position: relative;
-    
+
     input[type="radio"] {
       opacity: 0;
       position: absolute;
-      
+
       &:checked + label:after {
         content: "";
         position: absolute;
@@ -229,24 +237,24 @@
         width: 6px;
         height: 6px;
         border-radius: 50%;
-        background: #EE6983;
+        background: #ee6983;
       }
     }
-    
+
     label {
       display: inline-block;
       position: relative;
       width: 12px;
       height: 12px;
       border-radius: 50%;
-      border: 1px solid #EE6983;
+      border: 1px solid #ee6983;
     }
   }
-  
+
   .deliveryText {
     font-size: 12px;
     color: #333;
-    
+
     strong {
       font-weight: 600;
     }
@@ -264,7 +272,7 @@
   align-items: center;
   width: 100px;
   height: 35px;
-  
+
   button {
     width: 35px;
     height: 35px;
@@ -275,20 +283,20 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    
+
     &:hover {
       background-color: #f5f5f5;
     }
-    
+
     &:first-child {
       border-radius: 4px 0 0 4px;
     }
-    
+
     &:last-child {
       border-radius: 0 4px 4px 0;
     }
   }
-  
+
   input {
     width: 30px;
     height: 35px;
@@ -298,7 +306,7 @@
     border-right: none;
     text-align: center;
     font-size: 14px;
-    
+
     &:focus {
       outline: none;
     }
@@ -308,7 +316,7 @@
 .actions {
   display: flex;
   gap: 10px;
-  
+
   button {
     height: 40px;
     border-radius: 4px;
@@ -317,47 +325,47 @@
     transition: all 0.2s;
     font-size: 14px;
   }
-  
+
   .addToCart {
     flex: 2;
     background-color: #fff;
-    border: 1px solid #EE6983;
-    color: #EE6983;
+    border: 1px solid #ee6983;
+    color: #ee6983;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
-    
+
     svg {
       margin-right: 5px;
     }
-    
+
     &:hover {
       background-color: #fff0f3;
     }
   }
-  
+
   .buyNow {
     flex: 2;
-    background-color: #EE6983;
+    background-color: #ee6983;
     color: white;
     border: none;
-    
+
     &:hover {
       background-color: #d65c76;
     }
   }
-  
+
   .wishlist {
     width: 40px;
     background-color: #fff;
     border: 1px solid #ddd;
     color: #999;
     font-size: 18px;
-    
+
     &:hover {
-      border-color: #EE6983;
-      color: #EE6983;
+      border-color: #ee6983;
+      color: #ee6983;
     }
   }
 }
@@ -383,34 +391,34 @@
   display: flex;
   align-items: flex-start;
   gap: 12px;
-  
+
   &:last-child {
     border-bottom: none;
   }
-  
+
   .iconWrapper {
     width: 24px;
     height: 24px;
     display: flex;
     align-items: center;
     justify-content: center;
-    
+
     svg {
-      color: #EE6983;
+      color: #ee6983;
     }
   }
-  
+
   .promotionContent {
     display: flex;
     flex-direction: column;
-    
+
     .promotionTitle {
       font-weight: 600;
       color: #666;
       margin-bottom: 4px;
       font-size: 15px;
     }
-    
+
     .promotionDetails {
       color: #999;
       font-size: 13px;
@@ -428,7 +436,7 @@
   padding: 40px;
   width: 100%;
   height: 200px;
-  
+
   img {
     max-width: 100%;
     height: auto;
@@ -458,23 +466,23 @@
   color: #999;
   cursor: pointer;
   position: relative;
-  
+
   &.active {
-    color: #EE6983;
-    
+    color: #ee6983;
+
     &:after {
-      content: '';
+      content: "";
       position: absolute;
       bottom: -1px;
       left: 0;
       width: 100%;
       height: 2px;
-      background-color: #EE6983;
+      background-color: #ee6983;
     }
   }
-  
+
   &:hover {
-    color: #EE6983;
+    color: #ee6983;
   }
 }
 
@@ -501,7 +509,7 @@
 
 .ratingsContainer {
   margin-top: 20px;
-  
+
   h3 {
     font-size: 16px;
     font-weight: 600;
@@ -514,13 +522,13 @@
   display: flex;
   align-items: center;
   margin-bottom: 10px;
-  
+
   .stars {
     color: #ffb800;
     font-size: 22px;
     margin-right: 10px;
   }
-  
+
   .ratingScore {
     font-size: 24px;
     font-weight: 700;
@@ -544,17 +552,17 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  
+
   .categoryName {
     font-size: 14px;
     color: #666;
   }
-  
+
   .categoryScore {
     font-size: 14px;
     font-weight: 600;
-    color: #EE6983;
-    
+    color: #ee6983;
+
     .outOf {
       font-weight: normal;
       color: #999;
@@ -570,7 +578,7 @@
 
 .promotionImage {
   width: 100%;
-  
+
   img {
     width: 100%;
     height: auto;
@@ -597,15 +605,15 @@
   color: #666;
   cursor: pointer;
   transition: all 0.2s;
-  
+
   &.active {
-    background-color: #EE6983;
+    background-color: #ee6983;
     color: white;
-    border-color: #EE6983;
+    border-color: #ee6983;
   }
-  
+
   &:hover {
-    border-color: #EE6983;
+    border-color: #ee6983;
   }
 }
 
@@ -628,7 +636,7 @@
 
 .additionalPromotion {
   width: 100%;
-  
+
   img {
     width: 100%;
     height: auto;
@@ -648,7 +656,7 @@
   border: 1px solid #f0f0f0;
   margin-bottom: 30px;
   background-color: #fff;
-  
+
   &:last-child {
     margin-bottom: 0;
   }
@@ -667,7 +675,7 @@
   border-radius: 50%;
   overflow: hidden;
   margin-bottom: 10px;
-  
+
   img {
     width: 100%;
     height: 100%;
@@ -740,7 +748,7 @@
   display: inline-block;
   padding: 3px 8px;
   background-color: #ffebee;
-  color: #EE6983;
+  color: #ee6983;
   font-size: 12px;
   border-radius: 4px;
   margin-bottom: 10px;
@@ -757,10 +765,10 @@
   color: #333;
   line-height: 1.6;
   margin-bottom: 15px;
-  
+
   p {
     margin: 0 0 10px;
-    
+
     &:last-child {
       margin-bottom: 0;
     }
@@ -781,7 +789,7 @@
   background-color: #f5f5f5;
   padding: 15px;
   border-radius: 8px;
-  
+
   p {
     font-size: 14px;
     color: #666;
@@ -832,24 +840,24 @@
   align-items: center;
   gap: 8px;
   margin-bottom: 8px;
-  
+
   .stars {
     color: #ffb800;
     font-size: 14px;
   }
-  
+
   .ratingCount {
     color: #999;
     font-size: 14px;
   }
-  
+
   .soldCount {
     color: #999;
     font-size: 14px;
     margin-left: auto;
-    
+
     &:before {
-      content: '';
+      content: "";
       display: inline-block;
       width: 18px;
       height: 18px;
@@ -904,16 +912,16 @@
   color: #666;
   font-size: 14px;
   cursor: pointer;
-  
+
   &:hover {
-    border-color: #EE6983;
-    color: #EE6983;
+    border-color: #ee6983;
+    color: #ee6983;
   }
-  
+
   &.active {
-    background-color: #EE6983;
+    background-color: #ee6983;
     color: white;
-    border-color: #EE6983;
+    border-color: #ee6983;
   }
 }
 
@@ -925,7 +933,7 @@
 .realStories {
   margin: 30px 0;
   text-align: center;
-  
+
   h3 {
     font-size: 24px;
     color: #333;
@@ -965,18 +973,18 @@
 .relatedProductImage {
   position: relative;
   height: 200px;
-  
+
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
-  
+
   .promoDate {
     position: absolute;
     bottom: 10px;
     right: 10px;
-    background: #EE6983;
+    background: #ee6983;
     color: #fff;
     padding: 4px 8px;
     font-size: 12px;
@@ -997,13 +1005,13 @@
   align-items: center;
   gap: 10px;
   margin-bottom: 6px;
-  
+
   .currentPrice {
     font-size: 18px;
     font-weight: 700;
     color: #d61c1f;
   }
-  
+
   .originalPrice {
     font-size: 14px;
     color: #999;
@@ -1029,24 +1037,24 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  
+
   .stars {
     color: #ffb800;
     font-size: 14px;
   }
-  
+
   .rateCount {
     font-size: 12px;
     color: #999;
   }
-  
+
   .soldCount {
     font-size: 12px;
     color: #999;
     margin-left: auto;
-    
+
     &:before {
-      content: '';
+      content: "";
       display: inline-block;
       width: 14px;
       height: 14px;
@@ -1085,7 +1093,7 @@
 .compareRow {
   display: grid;
   grid-template-columns: 100px repeat(4, 1fr);
-  
+
   &:not(:last-child) {
     margin-bottom: 20px;
   }
@@ -1110,7 +1118,7 @@
   position: relative;
   background-color: white;
   border-radius: 8px;
-  
+
   &.currentProduct {
     border: 2px solid #d61c1f;
   }
@@ -1136,7 +1144,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  
+
   img {
     max-width: 100%;
     max-height: 100%;
@@ -1172,12 +1180,12 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 5px;
-  
+
   .discountAmount {
     font-size: 14px;
     color: #d61c1f;
   }
-  
+
   .originalPrice {
     font-size: 14px;
     color: #999;
@@ -1192,7 +1200,7 @@
   justify-content: center;
   gap: 5px;
   align-items: center;
-  
+
   .ratingCount {
     color: #999;
     font-size: 14px;
@@ -1234,7 +1242,7 @@
   background-color: #ffebee;
   color: #d61c1f;
   cursor: pointer;
-  
+
   &.viewAll {
     background-color: #d61c1f;
     color: white;
@@ -1242,7 +1250,7 @@
     align-items: center;
     gap: 5px;
   }
-  
+
   .arrowRight {
     font-size: 18px;
   }
@@ -1267,7 +1275,7 @@
   color: #666;
   cursor: pointer;
   flex-shrink: 0;
-  
+
   &:hover {
     background-color: #f5f5f5;
   }
@@ -1287,7 +1295,7 @@
   background-color: white;
   border: 1px solid #f0f0f0;
   transition: all 0.3s;
-  
+
   &:hover {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     transform: translateY(-5px);
@@ -1297,13 +1305,13 @@
 .relatedItemImage {
   position: relative;
   height: 200px;
-  
+
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
-  
+
   .discountLabel {
     position: absolute;
     bottom: 40px;
@@ -1313,7 +1321,7 @@
     overflow: hidden;
     width: 100px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    
+
     .discountTop {
       font-size: 10px;
       font-weight: 600;
@@ -1322,7 +1330,7 @@
       padding: 3px 0;
       text-align: center;
     }
-    
+
     .discountPrice {
       font-size: 12px;
       font-weight: 700;
@@ -1331,7 +1339,7 @@
       text-align: center;
     }
   }
-  
+
   .dateLabel {
     position: absolute;
     bottom: 10px;
@@ -1368,24 +1376,24 @@
   align-items: center;
   gap: 8px;
   margin-bottom: 8px;
-  
+
   .stars {
     color: #ffb800;
     font-size: 14px;
   }
-  
+
   .ratingValue {
     font-size: 12px;
     color: #999;
   }
-  
+
   .soldValue {
     font-size: 12px;
     color: #999;
     margin-left: auto;
-    
+
     &:before {
-      content: '';
+      content: "";
       display: inline-block;
       width: 14px;
       height: 14px;
@@ -1402,13 +1410,13 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  
+
   .currentPrice {
     font-size: 16px;
     font-weight: 700;
     color: #d61c1f;
   }
-  
+
   .originalPrice {
     font-size: 14px;
     color: #999;
@@ -1442,7 +1450,7 @@
   width: 80px;
   height: 80px;
   margin-bottom: 15px;
-  
+
   img {
     width: 100%;
     height: 100%;
@@ -1465,7 +1473,8 @@
   max-width: 250px;
 }
 
-.trustPhone, .trustSupport {
+.trustPhone,
+.trustSupport {
   margin-bottom: 15px;
   width: 100%;
 }
@@ -1487,8 +1496,44 @@
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
-  
+
   &:hover {
     background-color: #c41c1f;
   }
-} 
+}
+
+.ctn_feedback {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin: 10px 0;
+
+  .btn_feedback {
+    background-color: #ff7ea0;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    width: 150px;
+    cursor: pointer;
+    transition: background 0.3s;
+    font-size: 14px;
+
+    &:hover {
+      background-color: #e6658a;
+    }
+  }
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  & span {
+    font-size: 14px;
+    color: #999;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}

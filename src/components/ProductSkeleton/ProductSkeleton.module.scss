@@ -1,0 +1,55 @@
+.skeleton_card {
+  width: 100%;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #fff;
+}
+
+.skeleton_image {
+  width: 100%;
+  padding-top: 100%;
+  background-color: #f0f0f0;
+}
+
+.skeleton_info {
+  padding: 12px;
+}
+
+.skeleton_text {
+  height: 16px;
+  margin-bottom: 8px;
+  border-radius: 4px;
+  background-color: #f0f0f0;
+}
+
+.skeleton_brand {
+  width: 40%;
+  height: 14px;
+}
+
+.skeleton_name {
+  width: 90%;
+}
+
+.skeleton_price {
+  width: 60%;
+  margin-top: 12px;
+}
+
+.skeleton_card,
+.skeleton_image,
+.skeleton_text {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}

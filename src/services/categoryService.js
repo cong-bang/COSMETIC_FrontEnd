@@ -49,3 +49,20 @@ export const deleteCategory = async (id) => {
     throw error;
   }
 };
+
+
+  export const get5Categories = async (pageIndex = 1, pageSize = 5) => {
+    try {
+      const response = await axiosInstance.get(`category/`, {
+        params: { 'page-index': pageIndex, 'page-size': pageSize },
+      });
+
+      return {
+        data: response.data.data.data,
+        pagination: response.data.data.metaData, 
+      };
+    } catch (error) {
+        const message = error.response?.data?.message || "Error!";
+        throw new Error(message);
+    }
+  };

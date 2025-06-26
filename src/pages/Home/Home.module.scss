@@ -1,5 +1,5 @@
 .wrapper-home {
-  background: #FFFFFF;
+  background: #ffffff;
   padding: 0 0 30px 0;
 }
 .main-banner {
@@ -47,7 +47,7 @@
 .deal {
   font-size: 48px;
   color: #ff5ca7;
-  font-family: 'Pacifico', cursive;
+  font-family: "Pacifico", cursive;
 }
 .date {
   background: #2d2dff;
@@ -241,8 +241,6 @@
   display: flex;
   justify-content: space-between;
   gap: 16px;
-  
-  
 }
 
 .product-card {
@@ -258,7 +256,7 @@
     text-decoration: none;
     color: inherit;
   }
-  
+
   &:hover {
     transform: translateY(-5px);
   }
@@ -267,25 +265,23 @@
 .product-image {
   position: relative;
   height: 240px;
-  background: #fff0f3; /* Lighter pink background */
+  background: #fff0f3;
   display: flex;
   align-items: center;
   justify-content: center;
 
   &::before {
-    content: 'Product Image';
+    content: "Product Image";
     color: #999;
     font-style: italic;
     display: block;
   }
 
   img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    position: relative;
-    z-index: 2;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    transition: transform 0.3s ease;
   }
 
   &:has(img) {
@@ -382,7 +378,7 @@
   height: 200px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
-  
+
   &:hover {
     transform: translateY(-5px);
   }
@@ -431,12 +427,12 @@
   cursor: pointer;
   display: flex;
   align-items: center;
-  
+
   span {
     font-size: 18px;
     margin-left: 5px;
   }
-  
+
   &:hover {
     background: #ff3366;
   }
@@ -455,9 +451,9 @@
   height: 200px;
   background: linear-gradient(to right, #ffadba, #ffcad4);
   position: relative;
-  
+
   &::before {
-    content: 'THÁNG CỦA NÀNG NGÀN ƯU ĐÃI';
+    content: "THÁNG CỦA NÀNG NGÀN ƯU ĐÃI";
     position: absolute;
     top: 50%;
     left: 50%;
@@ -468,9 +464,9 @@
     text-align: center;
     white-space: pre-wrap;
   }
-  
+
   &::after {
-    content: '01.03 ĐẾN 31.03';
+    content: "01.03 ĐẾN 31.03";
     position: absolute;
     top: 20px;
     left: 20px;
@@ -572,9 +568,9 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  
+
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     right: 0;
     top: 0;
@@ -582,9 +578,9 @@
     width: 20px;
     background: linear-gradient(90deg, transparent, rgba(255, 99, 132, 0.1));
   }
-  
+
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     right: -10px;
     top: 50%;
@@ -642,7 +638,7 @@
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.2s;
-  
+
   &:hover {
     background: #ffe835;
   }
@@ -685,7 +681,7 @@
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.2s;
-  
+
   &:hover {
     background: #ffd8df;
   }
@@ -704,7 +700,7 @@
   scroll-behavior: smooth;
   -ms-overflow-style: none;
   scrollbar-width: none;
-  
+
   &::-webkit-scrollbar {
     display: none;
   }
@@ -731,7 +727,7 @@
   cursor: pointer;
   z-index: 2;
   color: #ff3366;
-  
+
   &:hover {
     background: white;
   }
@@ -788,9 +784,9 @@
   background: linear-gradient(135deg, #ff5b79, #ff3366);
   position: relative;
   overflow: hidden;
-  
+
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     width: 80px;
     height: 80px;
@@ -799,9 +795,9 @@
     left: 30px;
     top: -20px;
   }
-  
+
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     width: 120px;
     height: 120px;
@@ -816,9 +812,9 @@
   background: linear-gradient(135deg, #ffd8b1, #ffcc80);
   position: relative;
   overflow: hidden;
-  
+
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     width: 80px;
     height: 80px;
@@ -827,9 +823,9 @@
     left: 20px;
     top: -30px;
   }
-  
+
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     width: 100px;
     height: 100px;
@@ -863,9 +859,9 @@
   background: rgba(255, 255, 255, 0.2);
   border-radius: 50%;
   position: relative;
-  
+
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     width: 30px;
     height: 30px;
@@ -875,9 +871,9 @@
     left: 50%;
     transform: translate(-50%, -50%);
   }
-  
+
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     width: 2px;
     height: 12px;
@@ -894,9 +890,9 @@
   background: rgba(255, 255, 255, 0.2);
   border-radius: 10px;
   position: relative;
-  
+
   &::before {
-    content: '31';
+    content: "31";
     position: absolute;
     color: white;
     font-weight: bold;
@@ -957,7 +953,7 @@
   display: flex;
   gap: 10px;
   margin: 10px 0;
-  
+
   span {
     background: white;
     color: #ff3366;
@@ -984,9 +980,9 @@
   top: 0;
   bottom: 0;
   width: 35%;
-  
+
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     width: 100%;
     height: 100%;
@@ -1028,10 +1024,10 @@
   width: 120px;
   text-decoration: none;
   transition: transform 0.2s ease;
-  
+
   &:hover {
     transform: translateY(-5px);
-    
+
     .category-name {
       color: #ff3366;
     }
@@ -1050,9 +1046,9 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
   position: relative;
   overflow: hidden;
-  
+
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     inset: 0;
     background-size: cover;
@@ -1117,7 +1113,7 @@
 }
 
 .services-title {
-  color: #E8373B;
+  color: #e8373b;
   font-size: 24px;
   font-weight: bold;
 }
@@ -1127,7 +1123,7 @@
   margin: 0;
   padding: 20px 0;
   overflow: hidden;
-  
+
   :global {
     .slick-list {
       overflow: visible;
@@ -1139,11 +1135,11 @@
       transform: scale(0.65);
       opacity: 0.5;
       margin: 0 -5px;
-      
+
       &.slick-active {
         opacity: 0.75;
       }
-      
+
       // First and last visible items - smallest size
       &.slick-active:first-child,
       &.slick-active:last-child {
@@ -1151,7 +1147,7 @@
         opacity: 0.5;
         z-index: 1;
       }
-      
+
       // Second and second-to-last visible items - medium size
       &.slick-active:nth-child(2),
       &.slick-active:nth-last-child(2) {
@@ -1159,24 +1155,24 @@
         opacity: 0.9;
         z-index: 2;
       }
-      
+
       // Center item - largest size
       &.slick-center {
         transform: scale(1.2);
         opacity: 1;
         z-index: 10;
-        
+
         .service-card {
           box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
         }
       }
     }
-    
+
     .slick-track {
       display: flex;
       padding: 50px 0;
     }
-    
+
     .slick-arrow {
       position: absolute;
       top: 50%;
@@ -1194,7 +1190,7 @@
       border: none;
       cursor: pointer;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-      
+
       &:hover {
         background: #ffffff;
         color: #ff0044;
@@ -1204,11 +1200,11 @@
         display: none;
       }
     }
-    
+
     .slick-prev {
       left: -10px;
     }
-    
+
     .slick-next {
       right: -10px;
     }
@@ -1229,7 +1225,7 @@
   transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
-  
+
   &:hover {
     transform: translateY(-5px);
   }
@@ -1241,7 +1237,7 @@
   width: 100%;
   flex: 1;
   overflow: hidden;
-  
+
   img {
     width: 100%;
     height: 100%;
@@ -1278,7 +1274,7 @@
 
 .detail-btn {
   margin-top: 5px;
-  background: #F15778;
+  background: #f15778;
   color: white;
   border: none;
   padding: 8px 15px;
@@ -1287,7 +1283,7 @@
   font-size: 12px;
   cursor: pointer;
   transition: background 0.3s ease;
-  
+
   &:hover {
     background: #ff3366;
   }
@@ -1307,7 +1303,7 @@
 }
 
 .brands-title {
-  color: #E8373B;
+  color: #e8373b;
   font-size: 24px;
   font-weight: bold;
 }
@@ -1316,22 +1312,22 @@
   position: relative;
   margin: 0 10px;
   padding: 10px 0;
-  
+
   :global {
     .slick-track {
       display: flex;
       align-items: stretch;
     }
-    
+
     .slick-slide {
       height: auto;
       padding: 0 10px;
-      
+
       & > div {
         height: 100%;
       }
     }
-    
+
     .slick-arrow {
       position: absolute;
       top: 50%;
@@ -1349,7 +1345,7 @@
       border: none;
       cursor: pointer;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-      
+
       &:hover {
         background: #ffffff;
         color: #ff0044;
@@ -1359,11 +1355,11 @@
         display: none;
       }
     }
-    
+
     .slick-prev {
       left: -18px;
     }
-    
+
     .slick-next {
       right: -18px;
     }
@@ -1431,7 +1427,7 @@
   padding: 6px 24px;
   border-radius: 25px;
   background-color: white;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
   min-width: 100px;
   letter-spacing: 0.5px;
 }
@@ -1450,7 +1446,7 @@
 }
 
 .section-title.news-title {
-  color: #E8373B;  /* Match the red color of the XEM TẤT CẢ button */
+  color: #e8373b; /* Match the red color of the XEM TẤT CẢ button */
   font-size: 24px;
   font-weight: bold;
 }
@@ -1458,19 +1454,19 @@
 .news-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 50px;  /* Increased gap for better spacing */
-  padding: 0 10%;  /* Reduced padding for a bit more width */
-  
+  gap: 50px; /* Increased gap for better spacing */
+  padding: 0 10%; /* Reduced padding for a bit more width */
+
   @media (max-width: 1200px) {
     padding: 0 5%;
     gap: 30px;
   }
-  
+
   @media (max-width: 992px) {
     grid-template-columns: repeat(2, 1fr);
     padding: 0 2%;
   }
-  
+
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
     padding: 0;
@@ -1486,7 +1482,7 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  
+
   &:hover {
     transform: translateY(-5px);
   }
@@ -1495,8 +1491,8 @@
 .news-image {
   position: relative;
   width: 100%;
-  height: 550px;  /* Adjusted for better proportion */
-  
+  height: 550px; /* Adjusted for better proportion */
+
   img {
     width: 100%;
     height: 100%;
@@ -1546,14 +1542,14 @@
 .learn-more-btn {
   background: transparent;
   border: none;
-  color: #F15778;
+  color: #f15778;
   padding: 0;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   text-transform: uppercase;
   align-self: flex-start;
-  
+
   &:hover {
     text-decoration: underline;
   }
@@ -1563,7 +1559,7 @@
 .trust-badges-section {
   margin: 50px 20px;
   padding: 30px 0;
-  background-color: #FFF5F7;
+  background-color: #fff5f7;
   border-radius: 10px;
   position: relative;
 }
@@ -1573,7 +1569,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 0 40px;
-  
+
   @media (max-width: 992px) {
     flex-direction: column;
     gap: 30px;
@@ -1585,7 +1581,7 @@
   flex: 1;
   justify-content: space-between;
   gap: 15px;
-  
+
   @media (max-width: 992px) {
     width: 100%;
     flex-wrap: wrap;
@@ -1595,51 +1591,52 @@
 
 .badge-item {
   flex: 1;
-  max-width: 280px;  /* Increased size */
+  max-width: 280px; /* Increased size */
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   background-color: white;
   border-radius: 10px;
-  padding: 30px 20px;  /* Increased padding */
+  padding: 30px 20px; /* Increased padding */
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-  min-height: 180px;  /* Added minimum height */
-  
+  min-height: 180px; /* Added minimum height */
+
   &.brand-identity {
     background-color: transparent;
     box-shadow: none;
     padding: 20px 0;
     max-width: none;
-    flex: 0 0 38%;  /* Slightly reduced to accommodate padding */
+    flex: 0 0 38%; /* Slightly reduced to accommodate padding */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    
-    .badge-title, .badge-subtitle {
-      color: #F15778;
+
+    .badge-title,
+    .badge-subtitle {
+      color: #f15778;
       text-align: center;
     }
-    
+
     .badge-title {
       font-size: 32px;
       margin-bottom: 20px;
       font-weight: bold;
     }
-    
+
     .badge-subtitle {
       font-weight: 600;
       margin-bottom: 20px;
       font-size: 18px;
     }
-    
+
     .badge-button {
       font-size: 18px;
       padding: 10px 30px;
     }
   }
-  
+
   @media (max-width: 992px) {
     margin: 0;
     min-height: auto;
@@ -1647,39 +1644,39 @@
 }
 
 .badge-icon {
-  width: 80px;  /* Increased size */
-  height: 80px;  /* Increased size */
+  width: 80px; /* Increased size */
+  height: 80px; /* Increased size */
   background: white;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 20px;  /* Increased spacing */
+  margin-bottom: 20px; /* Increased spacing */
   box-shadow: 0 2px 8px rgba(255, 99, 132, 0.2);
-  
+
   img {
-    width: 45px;  /* Increased size */
-    height: 45px;  /* Increased size */
+    width: 45px; /* Increased size */
+    height: 45px; /* Increased size */
     object-fit: contain;
   }
 }
 
 .badge-title {
   color: #333;
-  font-size: 18px;  /* Increased size */
+  font-size: 18px; /* Increased size */
   font-weight: bold;
-  margin: 0 0 12px 0;  /* Increased spacing */
+  margin: 0 0 12px 0; /* Increased spacing */
 }
 
 .badge-subtitle {
   color: #666;
-  font-size: 14px;  /* Increased size */
+  font-size: 14px; /* Increased size */
   line-height: 1.5;
-  margin: 0 0 15px 0;  /* Increased spacing */
+  margin: 0 0 15px 0; /* Increased spacing */
 }
 
 .badge-button {
-  background: #F15778;
+  background: #f15778;
   color: white;
   border: none;
   padding: 6px 20px;
@@ -1689,7 +1686,7 @@
   margin-top: 8px;
   cursor: pointer;
   transition: background-color 0.2s;
-  
+
   &:hover {
     background: #e63f63;
   }
@@ -1697,7 +1694,7 @@
 
 // Email Subscription Section
 .subscription-section {
-  background-color: #FFDDDF;
+  background-color: #ffdddf;
   padding: 40px 0;
   margin-top: 50px;
 }
@@ -1709,7 +1706,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 0 20px;
-  
+
   @media (max-width: 768px) {
     flex-direction: column;
     gap: 20px;
@@ -1722,7 +1719,7 @@
   font-size: 28px;
   font-weight: 600;
   margin: 0;
-  
+
   @media (max-width: 768px) {
     font-size: 24px;
     margin-bottom: 20px;
@@ -1734,7 +1731,7 @@
   flex: 1;
   max-width: 600px;
   margin-left: 20px;
-  
+
   @media (max-width: 768px) {
     margin-left: 0;
     width: 100%;
@@ -1750,14 +1747,14 @@
   font-size: 16px;
   outline: none;
   color: #666;
-  
+
   &::placeholder {
     color: #999;
   }
 }
 
 .subscribe-btn {
-  background-color: #F15778;
+  background-color: #f15778;
   color: white;
   border: none;
   border-radius: 25px;
@@ -1768,7 +1765,7 @@
   cursor: pointer;
   margin-left: 10px;
   transition: background-color 0.2s;
-  
+
   &:hover {
     background-color: #e63f63;
   }
