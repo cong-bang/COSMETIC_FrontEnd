@@ -45,6 +45,8 @@ const ConfirmPassword = () => {
       confirmPassword: confirmPassword,
     };
 
+    consolo.log(data);
+
     try {
       const res = await sendResetForgotPassword(data);
       console.log("Reset password thành công:", res);
