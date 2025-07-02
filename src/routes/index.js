@@ -41,8 +41,8 @@ const publicRoutes = [
   { path: "/chat-box", component: ChatBox, layout: HomeLayout },
   { path: "/blog-category", component: BlogCategory, layout: HomeLayout },
   { path: "/blog-detail", component: BlogDetail, layout: HomeLayout },
-  { path: "/forgot-password", component: ForgotPassword, layout: HomeLayout },
-  { path: "/confirm-password", component: ConfirmPassword, layout: HomeLayout },
+  { path: "/reset-password", component: ForgotPassword, layout: HomeLayout },
+  { path: "/forgot-password", component: ConfirmPassword, layout: HomeLayout },
   { path: "/aboutus", component: AboutUs, layout: HomeLayout },
   {
     path: "/payment-success",
