@@ -4,16 +4,14 @@ export const getUsers = async () => {
   try {
     const response = await axiosInstance.get("/user");
     console.log("Raw API response from userService:", response);
-    // Trả về response.data trực tiếp như categoryService
     return response.data;
   } catch (error) {
     console.error("Error fetching users:", error);
-    // Trả về một đối tượng với mảng rỗng để tránh lỗi khi component xử lý
     return {
       statusCode: 500,
       message: "Failed to fetch users",
       data: {
-        data: [], // Thêm cấu trúc data.data để phù hợp với cách xử lý trong component
+        data: [],
       },
     };
   }
@@ -33,8 +31,7 @@ export const getUserById = async (id) => {
       },
     };
   }
-}
-
+};
 
 export async function putUserProfile(data) {
   try {
@@ -46,11 +43,10 @@ export async function putUserProfile(data) {
   }
 }
 
-
 export async function putUserAddress(data) {
   try {
     const response = await axiosInstance.put(`/user/address`, data);
-    console.log(response.data)
+    console.log(response.data);
     return response.data;
   } catch (error) {
     const message = error.response?.data?.message || "Cập nhật thất bại!";
@@ -155,5 +151,23 @@ export const updateUserProfile = async (profileData) => {
         data: null,
       },
     };
+  }
+};
+
+export const uploadAvatar = async (file) => {
+  try {
+    const formData = new FormData();
+    formData.append("avatar", file);
+
+    const response = await axiosInstance.post("user/avatar", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+
+    return response.data;
+  } catch (error) {
+    const message = error.response?.data?.message || "Upload Error!";
+    throw new Error(message);
   }
 };

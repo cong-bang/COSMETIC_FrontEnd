@@ -21,6 +21,20 @@ axiosInstance.interceptors.request.use(
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
+
+    // Quan trọng: Khi gửi FormData, không thiết lập Content-Type
+    // Để axios tự động thiết lập Content-Type và boundary
+    if (config.data instanceof FormData) {
+      delete config.headers["Content-Type"];
+      console.log(
+        "FormData detected: Content-Type header removed to let axios handle it"
+      );
+    }
+
+    // Log request details
+    console.log(`Request: ${config.method.toUpperCase()} ${config.url}`);
+    console.log("Headers:", JSON.stringify(config.headers));
+
     return config;
   },
   (error) => {
@@ -39,6 +53,17 @@ axiosInstance.interceptors.response.use(
       // Lỗi từ server với mã trạng thái
       console.error("Status:", error.response.status);
       console.error("Data:", error.response.data);
+      console.error("Headers:", error.response.headers);
+
+      // Xử lý riêng cho lỗi 415 Unsupported Media Type
+      if (error.response.status === 415) {
+        console.error(
+          "Unsupported Media Type error. Check Content-Type header and request format."
+        );
+        console.error("Request headers:", error.config.headers);
+        console.error("Request method:", error.config.method);
+        console.error("Request URL:", error.config.url);
+      }
     } else if (error.request) {
       // Yêu cầu được gửi nhưng không nhận được phản hồi
       console.error("No response received:", error.request);

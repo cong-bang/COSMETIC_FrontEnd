@@ -55,11 +55,9 @@ export const getAllProducts = async () => {
 
 export const createProduct = async (formData) => {
   try {
-    const response = await axiosInstance.post("/product", formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    });
+    // Để axios tự động xử lý Content-Type và boundary khi gửi FormData
+    // KHÔNG thiết lập Content-Type header để tránh lỗi 415
+    const response = await axiosInstance.post("/product", formData);
     return response.data;
   } catch (error) {
     console.error("Error creating product:", error);
@@ -67,13 +65,15 @@ export const createProduct = async (formData) => {
   }
 };
 
-export const updateProduct = async (formData) => {
+export const updateProduct = async (data) => {
   try {
-    const response = await axiosInstance.put("/product", formData, {
+    // Gửi dữ liệu dưới dạng JSON
+    const response = await axiosInstance.put("/product", data, {
       headers: {
-        "Content-Type": "multipart/form-data",
+        "Content-Type": "application/json",
       },
     });
+
     return response.data;
   } catch (error) {
     console.error("Error updating product:", error);

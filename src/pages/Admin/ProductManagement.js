@@ -23,6 +23,7 @@ import {
   DeleteOutlined,
   UploadOutlined,
   ReloadOutlined,
+  GlobalOutlined,
 } from "@ant-design/icons";
 import {
   getAllProducts,
@@ -32,6 +33,12 @@ import {
 } from "../../services/productService";
 import { getBrands } from "../../services/brandService";
 import { getCategories } from "../../services/categoryService";
+import { getCountries } from "../../services/countryService";
+import { axiosInstance } from "../../apiConfig"; // Sửa lại import axiosInstance
+
+// Hình ảnh cờ mặc định khi không tải được
+const DEFAULT_FLAG =
+  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH5AYUBwwXIHBN6QAABKhJREFUeNrtmF1oHFUUx//nzuxukt3sbpJNUmtSk7YmJfWDtDVKQayiIohV+qCCpRXywAcFoaCID0UffBF98cEHC1J9qA9+UKiCIKJorS+tWrRprDUmbVKTbHY32exmdmfm+JCdbWaz2WR3J0Xw/+DOuXfOvb97zj33zB1ijOG/LNTuAHK5XC+AJwE8ACADoA9AD4AuABEAJoAigBsAZgFcAvADgG8AXGx3XNQOgLlcbgDAcwCeAXAfgI4mtlEA8DOAT5RSHxPRQrsCbRlgLpd7HMCrAB5t1UcNuQTgDaXUZ60u/ZYA5nK5BwG8DWC01b9oIOcBvKSU+nErk28KMJfLJQC8AeBlAKKVoBqIAvC+EOJlIrq+2aSGAHO5XBrAFwDGthpcE/IrgCeIaKqRc12AuVxuEMAPAHa0I7IG8ieAB4jo93qOdZ+DuVzuLgDfok1wALATwDd2rDWlJqDd7b4GkGxnZA3kBoBRIrrsNjaxW8j+HAAkLRjr5IqgLlc7iCAZ9sdVRPyrB2DQ6oCZm9aWqLDTshOyU7QTtROuKKLnZCdcEWXqoSI6Ao8YiKaIqJrRDRDRNeIaJqIFohoiYiKRGQSkcFEVCIi5fhYliUty5Jaa8u2NWzb1ratDdu2Rtu2Rtu2Ztm2Ztu2Ztm2Vr5iW2nbtgZjTDPGDMZYiTFWZIwVGGPzjLFZxtifAK4CuEJEfxDRLBEtEVGRiEwiYo7vEkIwIYQWQmghhBFCGEIIQwihpJRKSqmklFJKKaWUUlmWpbIsS1mWpSzLUlprpbVWWmtla621UkrZWmtba21prS2ttWlZlmFZlmFZlmFZVskwjJJhGEXDMIqGYRSKxeJyoVBYLhQKy/l8Pj8/P5+fn5+/mc/nF/P5/GI+n18oFAoLxWJxoVgsLhSLxYVisThfLBbnisXiXKlUmi2VSrOlUmmmVCrNlEqlm6VSaapUKk0Vi8XJUqk0WSqVJkul0mShUJgoFAoThUJholAoTOTz+Rv5fP56Pp+/ns/nr+WulUunq8vLy1eXl5StLS0uXl5aWLi8tLV1aXFy8tLi4eHFxcfHi4uLihYWFhfPz8/Pn5+fnz83NnZubmzs7Ozs7MzMzMz09PT09PT09NTU1NTk5OTk5OTl5/fr1yWvXrk1eu3bt6pUrV65euXLl8uXLly9dunTp4sWLFy9cuHDh/Pnz58+dO3fu7NmzZ8+cOXPm9OnTp0+dOnXq5MmTJ0+cOHHi+PHjx48dO3bs6NGjR48cOXLk8OHDhw8dOnTo4MGDB8fHx8fHx8fH9+/fv3/fvn379u7du3fPnj179uzZs3v37t27du3atWvXrl07d+7cuXPnzh07duzYsWPHjvT09I7h4eHh4eHh4aGhoaGhoaGhwcHBwcHBwcH+/v7+/v7+/r6+vr6+vr6+3t7e3t7e3t6enp6enp6ent7e3t7e3t7e7u7u7u7u7u7u7u7u7u7u7q6urq6urq6urq6urq5IJBKJRCKRSCQSCYVC4VAoFAqFQqFQKBQKBoNBJ2AwGAwGg8FgIBAIBAKBQCAQCAQCfr/f7/f7/X6/3+/z+Xw+n8/n8/l8Pp/P5/V6vV6v1+v1er0ej8fj8Xg8Ho/H4/F4PG63233bX7H/AZMpxgc+4K7jAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA2LTIwVDA3OjEyOjIzKzAwOjAwBnDRYgAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wNi0yMFQwNzoxMjoyMyswMDowMHctad4AAAAASUVORK5CYII=";
 
 const ProductManagement = () => {
   const [products, setProducts] = useState([]);
@@ -46,11 +53,13 @@ const ProductManagement = () => {
   const [refreshKey, setRefreshKey] = useState(0);
   const [categoryMap, setCategoryMap] = useState({});
   const [brandMap, setBrandMap] = useState({});
+  const [countries, setCountries] = useState([]);
 
   useEffect(() => {
     const loadData = async () => {
       await fetchBrands();
       await fetchCategories();
+      await fetchCountries();
       await fetchProducts();
     };
 
@@ -212,6 +221,17 @@ const ProductManagement = () => {
     }
   };
 
+  const fetchCountries = async () => {
+    try {
+      const countriesData = await getCountries();
+      console.log("Fetched countries:", countriesData.length);
+      setCountries(countriesData);
+    } catch (error) {
+      console.error("Error fetching countries:", error);
+      message.error("Không thể tải danh sách quốc gia");
+    }
+  };
+
   const handleRefresh = () => {
     setRefreshKey((oldKey) => oldKey + 1);
     message.info("Đang làm mới dữ liệu...");
@@ -289,50 +309,181 @@ const ProductManagement = () => {
 
   const onFinish = async (values) => {
     console.log("Form values before submission:", values);
-    const formData = new FormData();
-
-    // Add all form values to FormData
-    Object.keys(values).forEach((key) => {
-      if (values[key] !== undefined && values[key] !== null) {
-        // Ensure categoryId and brandId are sent as numbers
-        if (key === "categoryId" || key === "brandId") {
-          formData.append(key, Number(values[key]));
-        } else {
-          formData.append(key, values[key]);
-        }
-      }
-    });
-
-    // Handle file uploads
-    fileList.forEach((file) => {
-      if (file.originFileObj) {
-        formData.append("productImagesFile", file.originFileObj);
-      }
-    });
-
-    // Add ID if editing
-    if (editingProduct) {
-      formData.append("id", editingProduct.id);
-    }
 
     try {
       setLoading(true);
 
       if (editingProduct) {
-        await updateProduct(formData);
-        message.success("Sản phẩm đã được cập nhật");
+        // Cập nhật sản phẩm hiện có
+        // Thay vì sử dụng FormData, chuyển trực tiếp dữ liệu từ form
+        const updateData = {
+          ...values,
+          id: editingProduct.id,
+          // Đảm bảo categoryId và brandId là số
+          categoryId: Number(values.categoryId),
+          brandId: Number(values.brandId),
+        };
+
+        console.log("Sending update data:", updateData);
+
+        const response = await updateProduct(updateData);
+        console.log("Update product response:", response);
+
+        if (response && response.statusCode === 200) {
+          // Kiểm tra xem có cần upload hình ảnh mới không
+          const hasNewImages = fileList.some((file) => file.originFileObj);
+
+          if (hasNewImages) {
+            // Nếu có hình ảnh mới, tạo FormData chỉ để upload hình ảnh
+            try {
+              const imageFormData = new FormData();
+              imageFormData.append("productId", editingProduct.id); // Đổi tên trường theo yêu cầu API
+
+              fileList.forEach((file) => {
+                if (file.originFileObj) {
+                  imageFormData.append("file", file.originFileObj); // Đổi tên trường thành "file" theo yêu cầu API
+                }
+              });
+
+              console.log("Uploading product images separately");
+
+              // Sử dụng đúng endpoint và phương thức POST theo API
+              const uploadResponse = await axiosInstance.post(
+                "/product-image",
+                imageFormData,
+                {
+                  headers: {
+                    // Không đặt Content-Type để axios tự xử lý
+                  },
+                }
+              );
+
+              console.log("Image upload response:", uploadResponse);
+
+              // Nếu upload thành công, làm mới dữ liệu ngay lập tức
+              if (
+                uploadResponse.data &&
+                uploadResponse.data.statusCode === 200
+              ) {
+                fetchProducts();
+              }
+            } catch (imageError) {
+              console.error("Error uploading images:", imageError);
+              message.warning(
+                "Sản phẩm đã được cập nhật nhưng không thể tải lên hình ảnh"
+              );
+            }
+          }
+
+          message.success(
+            response.message || "Sản phẩm đã được cập nhật thành công"
+          );
+
+          // Cập nhật UI ngay lập tức
+          // Giữ lại thông tin hình ảnh từ sản phẩm cũ nếu không có hình ảnh mới
+          setProducts((prev) =>
+            Array.isArray(prev)
+              ? prev.map((item) => {
+                  if (item.id === editingProduct.id) {
+                    // Giữ lại thông tin hình ảnh cũ nếu không có hình ảnh mới
+                    const updatedProduct = {
+                      ...item,
+                      ...values,
+                      productImages: item.productImages, // Giữ nguyên thông tin hình ảnh
+                    };
+                    return updatedProduct;
+                  }
+                  return item;
+                })
+              : []
+          );
+
+          // Sau đó làm mới dữ liệu từ server để lấy thông tin mới nhất
+          setTimeout(() => {
+            fetchProducts();
+          }, 300);
+        } else {
+          message.error(response?.message || "Không thể cập nhật sản phẩm");
+        }
       } else {
-        await createProduct(formData);
-        message.success("Sản phẩm mới đã được thêm");
+        // Thêm sản phẩm mới (giữ nguyên code hiện tại)
+        const formData = new FormData();
+
+        // Add all form values to FormData
+        Object.keys(values).forEach((key) => {
+          if (values[key] !== undefined && values[key] !== null) {
+            // Ensure categoryId and brandId are sent as numbers
+            if (key === "categoryId" || key === "brandId") {
+              formData.append(key, Number(values[key]));
+            } else {
+              formData.append(key, values[key]);
+            }
+          }
+        });
+
+        // Handle file uploads
+        fileList.forEach((file) => {
+          if (file.originFileObj) {
+            formData.append("productImagesFile", file.originFileObj);
+          }
+        });
+
+        // Debug: Log FormData content
+        console.log("FormData content for create:");
+        for (let pair of formData.entries()) {
+          if (pair[0] === "productImagesFile" && pair[1] instanceof File) {
+            console.log(
+              `${pair[0]}: [File] ${pair[1].name} (${pair[1].type}, ${pair[1].size} bytes)`
+            );
+          } else {
+            console.log(`${pair[0]}: ${pair[1]}`);
+          }
+        }
+
+        const response = await createProduct(formData);
+        console.log("Create product response:", response);
+
+        if (response && response.statusCode === 200) {
+          message.success(
+            response.message || "Sản phẩm mới đã được thêm thành công"
+          );
+
+          // Cập nhật UI ngay lập tức nếu có dữ liệu trả về
+          if (response.data) {
+            setProducts((prev) =>
+              Array.isArray(prev) ? [...prev, response.data] : [response.data]
+            );
+          }
+
+          // Sau đó làm mới dữ liệu từ server
+          setTimeout(() => {
+            fetchProducts();
+          }, 300);
+        } else {
+          message.error(response?.message || "Không thể thêm sản phẩm mới");
+        }
       }
 
+      // Đóng modal và reset form
       setIsModalVisible(false);
-      fetchProducts();
       form.resetFields();
       setFileList([]);
     } catch (error) {
       console.error("Error saving product:", error);
-      message.error("Không thể lưu sản phẩm");
+
+      // Hiển thị thông báo lỗi
+      if (error.response) {
+        console.error("Error response status:", error.response.status);
+        console.error("Error response data:", error.response.data);
+
+        message.error(
+          `Lỗi ${error.response.status}: ${
+            error.response.statusText || "Không thể lưu sản phẩm"
+          }`
+        );
+      } else {
+        message.error("Không thể lưu sản phẩm. Vui lòng thử lại sau.");
+      }
     } finally {
       setLoading(false);
     }
@@ -352,12 +503,37 @@ const ProductManagement = () => {
       title: "Hình ảnh",
       dataIndex: "productImages",
       key: "image",
-      render: (images) => {
-        const imageUrl =
-          images && images.length > 0
-            ? images[0].imageUrl
-            : "https://via.placeholder.com/50";
-        return <Image src={imageUrl} width={50} />;
+      render: (images, record) => {
+        // Kiểm tra nhiều trường hợp để lấy URL hình ảnh
+        let imageUrl = "https://via.placeholder.com/50";
+
+        if (images && images.length > 0) {
+          // Trường hợp 1: Có mảng productImages với imageUrl
+          if (images[0].imageUrl) {
+            imageUrl = images[0].imageUrl;
+          }
+          // Trường hợp 2: Có mảng productImages với link
+          else if (images[0].link) {
+            imageUrl = images[0].link;
+          }
+        }
+        // Trường hợp 3: Có trường image hoặc imageUrl trực tiếp trên record
+        else if (record.image) {
+          imageUrl = record.image;
+        } else if (record.imageUrl) {
+          imageUrl = record.imageUrl;
+        }
+
+        return (
+          <Image
+            src={imageUrl}
+            width={50}
+            onError={(e) => {
+              e.target.onerror = null;
+              e.target.src = "https://via.placeholder.com/50";
+            }}
+          />
+        );
       },
     },
     {
@@ -391,6 +567,36 @@ const ProductManagement = () => {
         console.log("Brand ID:", brandId, "BrandMap:", brandMap);
         // Thử lấy từ cả hai nguồn: brandMap và record.brandName
         return brandMap[brandId] || record.brandName || "Không xác định";
+      },
+    },
+    {
+      title: "Xuất xứ",
+      dataIndex: "madeIn",
+      key: "madeIn",
+      render: (madeIn) => {
+        const foundCountry = countries.find((c) => c.name === madeIn);
+        const flagUrl = foundCountry?.flag || DEFAULT_FLAG;
+
+        return (
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <img
+              src={flagUrl}
+              alt={madeIn}
+              style={{
+                width: 24,
+                height: 18,
+                marginRight: 8,
+                objectFit: "cover",
+                border: "1px solid #eee",
+              }}
+              onError={(e) => {
+                e.target.onerror = null; // Tránh vòng lặp lỗi
+                e.target.src = DEFAULT_FLAG;
+              }}
+            />
+            {madeIn || "Không xác định"}
+          </div>
+        );
       },
     },
     {
@@ -576,9 +782,40 @@ const ProductManagement = () => {
           <Form.Item
             name="madeIn"
             label="Xuất xứ"
-            rules={[{ required: true, message: "Vui lòng nhập xuất xứ!" }]}
+            rules={[{ required: true, message: "Vui lòng chọn xuất xứ!" }]}
           >
-            <Input />
+            <Select
+              placeholder="Chọn quốc gia"
+              showSearch
+              optionFilterProp="children"
+              filterOption={(input, option) =>
+                option.value.toLowerCase().indexOf(input.toLowerCase()) >= 0
+              }
+              loading={countries.length === 0}
+            >
+              {countries.map((country) => (
+                <Select.Option key={country.name} value={country.name}>
+                  <div style={{ display: "flex", alignItems: "center" }}>
+                    <img
+                      src={country.flag}
+                      alt={country.name}
+                      style={{
+                        width: 24,
+                        height: 18,
+                        marginRight: 8,
+                        objectFit: "cover",
+                        border: "1px solid #eee",
+                      }}
+                      onError={(e) => {
+                        e.target.onerror = null; // Tránh vòng lặp lỗi
+                        e.target.src = DEFAULT_FLAG;
+                      }}
+                    />
+                    {country.name}
+                  </div>
+                </Select.Option>
+              ))}
+            </Select>
           </Form.Item>
 
           <Form.Item name="productImagesFile" label="Hình ảnh sản phẩm">

@@ -10,6 +10,7 @@ import {
   SettingOutlined,
   LogoutOutlined,
   TrademarkOutlined,
+  GiftOutlined,
 } from "@ant-design/icons";
 import { Link, Routes, Route } from "react-router-dom";
 import "./Admin.scss";
@@ -21,6 +22,8 @@ import BrandManagement from "./BrandManagement";
 import pureLogo from "../../assets/images/PURE_logo.png";
 import pureLogo2 from "../../assets/images/pure_logo_2.png";
 import BlogManagement from "./BlogManagement";
+import OrderManagement from "./OrderManagement";
+import VoucherManagement from "./VoucherManagement";
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -65,16 +68,21 @@ const Admin = () => {
     },
     {
       key: "7",
+      icon: <GiftOutlined />,
+      label: <Link to="/admin/vouchers">Voucher</Link>,
+    },
+    {
+      key: "8",
       icon: <FileTextOutlined />,
       label: <Link to="/admin/blog">Blog</Link>,
     },
     {
-      key: "8",
+      key: "9",
       icon: <SettingOutlined />,
       label: <Link to="/admin/settings">Cài đặt</Link>,
     },
     {
-      key: "9",
+      key: "10",
       icon: <LogoutOutlined />,
       label: "Đăng xuất",
     },
@@ -133,11 +141,12 @@ const Admin = () => {
               <Route path="/" element={<Dashboard />} />
               <Route path="products" element={<ProductManagement />} />
               <Route path="users" element={<UserManagement />} />
-              <Route path="orders" element={<div>Quản lý đơn hàng</div>} />
+              <Route path="orders" element={<OrderManagement />} />
               <Route path="categories" element={<CategoryManagement />} />
               <Route path="blog" element={<BlogManagement />} />
               <Route path="settings" element={<div>Cài đặt hệ thống</div>} />
               <Route path="brands" element={<BrandManagement />} />
+              <Route path="vouchers" element={<VoucherManagement />} />
             </Routes>
           </div>
         </Content>
