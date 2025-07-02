@@ -59,9 +59,7 @@ export async function sendOtpForgotPassword(email) {
 
 export async function sendResetForgotPassword(data) {
   try {
-    const response = await axiosInstance.post("/authen/reset-password", {
-      data,
-    });
+    const response = await axiosInstance.post("/authen/reset-password", data);
     return response.data;
   } catch (error) {
     const message = error.response?.data?.message || "Error!";
