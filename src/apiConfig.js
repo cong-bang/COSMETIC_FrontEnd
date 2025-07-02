@@ -32,8 +32,8 @@ axiosInstance.interceptors.request.use(
     }
 
     // Log request details
-    console.log(`Request: ${config.method.toUpperCase()} ${config.url}`);
-    console.log("Headers:", JSON.stringify(config.headers));
+    //console.log(`Request: ${config.method.toUpperCase()} ${config.url}`);
+    //console.log("Headers:", JSON.stringify(config.headers));
 
     return config;
   },

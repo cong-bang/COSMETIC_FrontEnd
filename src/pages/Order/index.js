@@ -80,22 +80,33 @@ const Order = () => {
       return;
     }
 
+    // Nếu đã có order
     if (order) {
       const voucher = {
         voucherId: voucherCode,
-        orderId: order.id,
+        orderId: order.orderId,
       };
-      console.log(order);
       try {
         const res = await getVoucherApply(voucher);
-        setOrder(res.data);
-        toast.success(res.message);
+        if (res.statusCode === 200) {
+          setOrder((prevOrder) => ({
+            ...prevOrder,
+            discount: res.data.discount,
+            totalAmount: res.data.totalAmount,
+            totalAfterDiscount: res.data.totalAfterDiscount,
+            voucher: res.data.voucher,
+          }));
+          toast.success(res.message);
+        } else {
+          toast.error(res.message || "Áp dụng voucher thất bại.");
+        }
       } catch (error) {
         toast.error(error.message);
       }
       return;
     }
 
+    // Nếu chưa có order thì phải tạo order trước
     if (!shippingAddress.trim()) {
       toast.error("Vui lòng nhập địa chỉ giao hàng");
       return;
@@ -134,8 +145,18 @@ const Order = () => {
 
       try {
         const res = await getVoucherApply(voucher);
-        setOrder(res.data);
-        toast.success(res.message);
+        if (res.statusCode === 200) {
+          setOrder((prevOrder) => ({
+            ...prevOrder,
+            discount: res.data.discount,
+            totalAmount: res.data.totalAmount,
+            totalAfterDiscount: res.data.totalAfterDiscount,
+            voucher: res.data.voucher,
+          }));
+          toast.success(res.message);
+        } else {
+          toast.error(res.message || "Áp dụng voucher thất bại.");
+        }
       } catch (error) {
         toast.error(error.message);
       }
@@ -178,14 +199,14 @@ const Order = () => {
         const result = await createOrder(newOrder);
         if (result && result.data) {
           setOrder(result.data);
-          await handlePayment(result.data.id);
+          await handlePayment(result.data.orderId);
         }
       } catch (error) {
         console.error("Order error:", error);
         toast.error("Lỗi khi đặt hàng. Vui lòng thử lại!");
       }
     } else {
-      await handlePayment(order.id);
+      await handlePayment(order.orderId);
     }
   };
 
