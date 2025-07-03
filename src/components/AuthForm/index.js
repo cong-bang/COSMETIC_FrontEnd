@@ -98,7 +98,7 @@ const AuthForm = ({ type }) => {
           phoneNumber: data.phone,
         };
         const response = await registerUser(registerData);
-        if (response && response.data) {
+        if (response) {
           toast.success(
             "Đăng ký thành công! Vui lòng xác nhận tài khoản qua email."
           );
