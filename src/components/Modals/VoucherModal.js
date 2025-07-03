@@ -21,9 +21,9 @@ const VoucherModal = ({ isOpen, onClose }) => {
     if (isOpen) fetchVouchers();
   }, [isOpen]);
 
-  const handleClaim = (id) => {
+  const handleClaim = (code) => {
     navigator.clipboard
-      .writeText(id)
+      .writeText(code)
       .then(() => {
         toast.success(`Copy mã giảm giá thành công!`);
       })
@@ -52,7 +52,7 @@ const VoucherModal = ({ isOpen, onClose }) => {
             </div>
             <button
               className={styles.claimButton}
-              onClick={() => handleClaim(item.id)}
+              onClick={() => handleClaim(item.code)}
             >
               Nhận ngay
             </button>

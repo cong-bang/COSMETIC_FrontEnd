@@ -85,7 +85,7 @@ const Order = () => {
     // Nếu đã có order
     if (order) {
       const voucher = {
-        voucherId: voucherCode,
+        vocherCode: voucherCode,
         orderId: order.orderId,
       };
       try {
@@ -141,7 +141,7 @@ const Order = () => {
       setOrder(result.data);
 
       const voucher = {
-        voucherId: voucherCode,
+        vocherCode: voucherCode,
         orderId: result.data.orderId,
       };
 

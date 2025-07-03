@@ -58,6 +58,9 @@
       margin-bottom: 10px;
 
       .faStore_icon {
+        display: flex;
+        align-items: center;
+        gap: 8px;
         color: #666;
 
         .icon {
@@ -69,10 +72,53 @@
       .order_status {
         display: flex;
         align-items: center;
-        gap: 10px;
+        gap: 8px;
         font-weight: 500;
-        color: #ee6983;
         font-size: 14px;
+
+        .shipping_status {
+          padding: 4px 10px;
+          border-radius: 6px;
+          font-size: 13px;
+          font-weight: 500;
+
+          &.pending {
+            color: #ff9800;
+            background: #fff3e0;
+          }
+          &.shipping {
+            color: #2196f3;
+            background: #e3f2fd;
+          }
+          &.completed {
+            color: #4caf50;
+            background: #e8f5e9;
+          }
+        }
+
+        .payment_status {
+          padding: 4px 10px;
+          border-radius: 6px;
+          font-size: 13px;
+          font-weight: 500;
+
+          &.unpaid {
+            color: #f44336;
+            background: #fdecea;
+          }
+          &.paid {
+            color: #4caf50;
+            background: #e8f5e9;
+          }
+          &.failed {
+            color: #ff9800;
+            background: #fff3e0;
+          }
+          &.refunded {
+            color: #2196f3;
+            background: #e3f2fd;
+          }
+        }
       }
     }
 

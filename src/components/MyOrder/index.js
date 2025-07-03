@@ -80,14 +80,43 @@ const MyOrder = () => {
             <div className={styles.faStore_icon}>
               <FontAwesomeIcon icon={faStore} className={styles.icon} />
             </div>
+
             <div className={styles.order_status}>
-              <FontAwesomeIcon icon={faTruck} />
-              <span>
+              <span
+                className={`${styles.shipping_status} ${
+                  order.status === 0
+                    ? styles.pending
+                    : order.status === 1
+                    ? styles.shipping
+                    : styles.completed
+                }`}
+              >
                 {order.status === 0
                   ? "Chờ xác nhận"
                   : order.status === 1
                   ? "Đang vận chuyển"
-                  : "Đã giao thành công"}
+                  : "Giao thành công"}
+              </span>
+              |
+              <span
+                className={`${styles.payment_status} ${
+                  order?.payment?.status === 0
+                    ? styles.unpaid
+                    : order?.payment?.status === 1
+                    ? styles.paid
+                    : order?.payment?.status === 2
+                    ? styles.failed
+                    : styles.refunded
+                }`}
+              >
+                {" "}
+                {order?.payment?.status === 0
+                  ? "Chưa thanh toán"
+                  : order?.payment?.status === 1
+                  ? "Đã thanh toán"
+                  : order?.payment?.status === 2
+                  ? "Thất bại"
+                  : "Hoàn tiền"}
               </span>
             </div>
           </div>
