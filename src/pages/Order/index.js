@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { getCart } from "../../services/cartService";
 import { getVoucherApply } from "../../services/voucherService";
+import VoucherModal from "../../components/Modals/VoucherModal";
 
 const Order = () => {
   const user = useSelector((state) => state.user.user);
@@ -28,6 +29,7 @@ const Order = () => {
   const [voucherCode, setVoucherCode] = useState("");
   const [order, setOrder] = useState(null);
   const [itemAmount, setItemAmount] = useState(0);
+  const [isVoucherModalOpen, setVoucherModalOpen] = useState(false);
   const navigate = useNavigate();
 
   //
@@ -305,9 +307,22 @@ const Order = () => {
               >
                 Áp dụng
               </button>
+              {/* 
               <Link to="/voucher" className={styles.change}>
                 <span>Nhận voucher</span>
               </Link>
+              */}
+              <span
+                className={styles.change}
+                onClick={() => setVoucherModalOpen(true)}
+              >
+                Nhận voucher
+              </span>
+
+              <VoucherModal
+                isOpen={isVoucherModalOpen}
+                onClose={() => setVoucherModalOpen(false)}
+              />
             </div>
           </div>
 

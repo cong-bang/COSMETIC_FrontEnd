@@ -11,6 +11,7 @@ export const getVoucherApply = async (data) => {
     throw new Error(message);
   }
 };
+
 export const getVouchers = async () => {
   try {
     const response = await axiosInstance.get("voucher");
@@ -107,6 +108,18 @@ export const applyVoucher = async (voucherCode) => {
         data: null,
       },
     };
+  }
+};
+
+export const get5Vouchers = async () => {
+  try {
+    const response = await axiosInstance.get(
+      `/voucher?IsExpired=false&page-index=1&page-size=5`
+    );
+    return response.data.data;
+  } catch (error) {
+    const message = error.response?.data?.message || "Error!";
+    throw new Error(message);
   }
 };
 

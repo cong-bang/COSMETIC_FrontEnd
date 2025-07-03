@@ -16,7 +16,7 @@ export const getOrderByUserId = async (
   newestFirst = true
 ) => {
   try {
-    const response = await axiosInstance.get(`order/userId`, {
+    const response = await axiosInstance.get(`/order/userId`, {
       params: {
         "page-index": pageIndex,
         "page-size": pageSize,

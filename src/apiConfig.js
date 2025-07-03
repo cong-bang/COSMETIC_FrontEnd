@@ -1,9 +1,10 @@
 // apiConfig.js
 import axios from "axios";
+import { refreshToken } from "./services/authService";
 
 // Sử dụng URL cố định thay vì biến môi trường
 const API_BASE_URL =
-  process.env.REACT_APP_COSMETIC_API_BASE_URL || "http://localhost:8080/api";
+  process.env.REACT_APP_COSMETIC_API_BASE_URL || "https://localhost:7082/api";
 
 export const axiosInstance = axios.create({
   baseURL: API_BASE_URL,
@@ -43,6 +44,8 @@ axiosInstance.interceptors.request.use(
 );
 
 // Thêm interceptor để xử lý lỗi phản hồi
+{
+  /*
 axiosInstance.interceptors.response.use(
   (response) => {
     return response;
@@ -71,6 +74,80 @@ axiosInstance.interceptors.response.use(
       // Lỗi khi thiết lập yêu cầu
       console.error("Error setting up request:", error.message);
     }
+    return Promise.reject(error);
+  }
+); */
+}
+
+let isRefreshing = false;
+let failedQueue = [];
+
+const processQueue = (error, token = null) => {
+  failedQueue.forEach((prom) => {
+    if (error) {
+      prom.reject(error);
+    } else {
+      prom.resolve(token);
+    }
+  });
+
+  failedQueue = [];
+};
+
+axiosInstance.interceptors.response.use(
+  (response) => response,
+  async (error) => {
+    const originalRequest = error.config;
+
+    // Nếu lỗi 401 và chưa retry
+    if (error.response?.status === 401 && !originalRequest._retry) {
+      if (isRefreshing) {
+        return new Promise(function (resolve, reject) {
+          failedQueue.push({ resolve, reject });
+        })
+          .then((token) => {
+            originalRequest.headers.Authorization = `Bearer ${token}`;
+            return axiosInstance(originalRequest);
+          })
+          .catch((err) => {
+            return Promise.reject(err);
+          });
+      }
+
+      originalRequest._retry = true;
+      isRefreshing = true;
+
+      const user = JSON.parse(localStorage.getItem("user"));
+      const refreshTokenValue = user?.refreshToken;
+
+      if (!refreshTokenValue) {
+        isRefreshing = false;
+        return Promise.reject(error);
+      }
+
+      try {
+        const data = await refreshToken(refreshTokenValue);
+        const newAccessToken = data.accessToken;
+        const newRefreshToken = data.refreshToken;
+
+        // Cập nhật lại localStorage và axios header
+        user.token = newAccessToken;
+        user.refreshToken = newRefreshToken;
+        localStorage.setItem("user", JSON.stringify(user));
+
+        axiosInstance.defaults.headers.common.Authorization = `Bearer ${newAccessToken}`;
+
+        processQueue(null, newAccessToken);
+
+        return axiosInstance(originalRequest);
+      } catch (err) {
+        processQueue(err, null);
+        return Promise.reject(err);
+      } finally {
+        isRefreshing = false;
+      }
+    }
+
     return Promise.reject(error);
   }
 );

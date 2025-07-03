@@ -130,6 +130,24 @@ export async function sendConfirmEmail(token) {
 //   }
 // };
 
+export const refreshToken = async (refreshTokenValue) => {
+  try {
+    const response = await axiosInstance.post("/authen/refresh-token", {
+      refreshToken: refreshTokenValue,
+    });
+
+    const { data } = response.data;
+
+    return {
+      accessToken: data.accessToken,
+      refreshToken: data.refreshToken,
+    };
+  } catch (error) {
+    const message = error.response?.data?.message || "Error";
+    throw new Error(message);
+  }
+};
+
 export const handleGoogleLogin = () => {
   const API_BASE_URL = process.env.REACT_APP_COSMETIC_API_BASE_URL;
   const loginUrl = `${API_BASE_URL}/GoogleAuth/login`;

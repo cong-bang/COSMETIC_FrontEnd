@@ -1,0 +1,79 @@
+.overlay {
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  max-width: 600px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  outline: none;
+}
+
+h2 {
+  color: red;
+}
+
+.voucherList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.voucherItem {
+  border: 1px solid #ddd;
+  padding: 16px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.voucherInfo {
+  h3 {
+    margin: 0 0 6px;
+  }
+  p {
+    margin: 2px 0;
+  }
+}
+
+.claimButton {
+  background: #ee6983;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #d75c76;
+  }
+}
+
+.closeButton {
+  margin: 24px 0 0 auto;
+  display: block;
+  background: #5c5c5c;
+  color: white;
+  padding: 8px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+
+  &:hover {
+    background: #3d3c3c;
+  }
+}

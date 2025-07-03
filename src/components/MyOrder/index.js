@@ -5,6 +5,7 @@ import styles from "./MyOrder.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTruck, faStore } from "@fortawesome/free-solid-svg-icons";
 import product_ordered from "images/product_ordered.png";
+import { toast } from "react-toastify";
 
 const MyOrder = () => {
   const tabs = ["Tất cả", "Xác nhận", "Vận chuyển", "Đã hoàn thành", "Đã huỷ"];
@@ -16,34 +17,37 @@ const MyOrder = () => {
 
   useEffect(() => {
     const fetchOrdersAndProducts = async () => {
-      const res = await getOrderByUserId(currentPage, 3);
-      if (res && res.data) {
-        const ordersData = res.data;
+      try {
+        const res = await getOrderByUserId(currentPage, 3);
+        if (res && res.data) {
+          const ordersData = res.data;
 
-        setOrders(ordersData);
-        setTotalPages(res.pagination.totalPages);
+          setOrders(ordersData);
+          setTotalPages(res.pagination.totalPages);
 
-        const productIds = [
-          ...new Set(
-            ordersData.flatMap((order) =>
-              order.orderDetails.map((item) => item.productId)
-            )
-          ),
-        ];
+          const productIds = [
+            ...new Set(
+              ordersData.flatMap((order) =>
+                order.orderDetails.map((item) => item.productId)
+              )
+            ),
+          ];
 
-        // Gọi API lấy thông tin từng product
-        const productPromises = productIds.map((id) => getProductById(id));
-        const productsResponses = await Promise.all(productPromises);
+          const productPromises = productIds.map((id) => getProductById(id));
+          const productsResponses = await Promise.all(productPromises);
 
-        const map = {};
-        productsResponses.forEach((productRes) => {
-          if (productRes.statusCode === 200) {
-            const product = productRes.data;
-            map[product.id] = product;
-          }
-        });
-        console.log(map);
-        setProductsMap(map);
+          const map = {};
+          productsResponses.forEach((productRes) => {
+            if (productRes.statusCode === 200) {
+              const product = productRes.data;
+              map[product.id] = product;
+            }
+          });
+          setProductsMap(map);
+        }
+      } catch (error) {
+        console.error("Lỗi khi lấy đơn hàng hoặc sản phẩm:", error);
+        toast.error("Không thể tải dữ liệu đơn hàng. Vui lòng thử lại sau.");
       }
     };
 

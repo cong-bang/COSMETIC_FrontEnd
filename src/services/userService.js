@@ -159,7 +159,7 @@ export const uploadAvatar = async (file) => {
     const formData = new FormData();
     formData.append("avatar", file);
 
-    const response = await axiosInstance.post("user/avatar", formData, {
+    const response = await axiosInstance.post("/user/avatar", formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },

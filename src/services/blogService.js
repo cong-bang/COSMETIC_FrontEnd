@@ -1,23 +1,22 @@
 import { axiosInstance } from "../apiConfig";
 
-  export const get5Blogs = async (pageIndex = 1, pageSize = 5) => {
-    try {
-      const response = await axiosInstance.get(`blog/`, {
-        params: { 'page-index': pageIndex, 'page-size': pageSize },
-      });
+export const get5Blogs = async (pageIndex = 1, pageSize = 5) => {
+  try {
+    const response = await axiosInstance.get(`/blog/`, {
+      params: { "page-index": pageIndex, "page-size": pageSize },
+    });
 
-      return {
-        data: response.data.data.data,
-        pagination: response.data.data.metaData, 
-      };
-    } catch (error) {
-        const message = error.response?.data?.message || "Error!";
-        throw new Error(message);
-    }
-  };
+    return {
+      data: response.data.data.data,
+      pagination: response.data.data.metaData,
+    };
+  } catch (error) {
+    const message = error.response?.data?.message || "Error!";
+    throw new Error(message);
+  }
+};
 
-
-  export const createBlog = async (formData) => {
+export const createBlog = async (formData) => {
   try {
     const response = await axiosInstance.post("/blog", formData, {
       headers: {
@@ -54,5 +53,3 @@ export const deleteBlog = async (id) => {
     throw error;
   }
 };
-
-

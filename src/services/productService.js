@@ -3,7 +3,7 @@ import qs from "qs";
 
 export const get5Products = async (pageIndex = 1, pageSize = 5) => {
   try {
-    const response = await axiosInstance.get(`product/`, {
+    const response = await axiosInstance.get(`/product/`, {
       params: { "page-index": pageIndex, "page-size": pageSize },
     });
 

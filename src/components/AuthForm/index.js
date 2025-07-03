@@ -51,10 +51,12 @@ const AuthForm = ({ type }) => {
           }
 
           const token = response.data.accessToken;
+          const refreshToken = response.data.refreshToken;
           const decodedToken = jwtDecode(token);
 
           const user = {
             token,
+            refreshToken,
             id: decodedToken.UserId,
             username:
               decodedToken[
