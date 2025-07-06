@@ -1,167 +1,219 @@
 .wrapper-home {
   background: #ffffff;
   padding: 0 0 30px 0;
+  color: #000000;
+  overflow-x: hidden;
 }
+
 .main-banner {
   display: flex;
-  justify-content: space-between;
-  background: none;
-  border-radius: 10px;
-  margin: 20px;
+  justify-content: center;
+  background: #000000;
+  border-radius: 0;
+  margin: 0;
   padding: 0;
-  height: 420px;
-  overflow: visible;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
 }
+
 .banner-left {
   flex: 2;
   display: flex;
   align-items: center;
   position: relative;
 }
+
 .arrow-btn {
   position: absolute;
   z-index: 10;
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.2);
   border: none;
   font-size: 24px;
   border-radius: 50%;
-  width: 36px;
-  height: 36px;
+  width: 50px;
+  height: 50px;
   cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  color: #ffffff;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.4);
+  }
 }
+
 .arrow-btn.left {
-  left: 15px;
+  left: 100px;
 }
+
 .arrow-btn.right {
-  right: 15px;
+  right: 100px;
 }
+
 .banner-content {
   flex: 1;
 }
+
 .banner-title {
   display: flex;
   align-items: center;
   gap: 20px;
 }
+
 .deal {
   font-size: 48px;
-  color: #ff5ca7;
+  color: #ffffff;
   font-family: "Pacifico", cursive;
 }
+
 .date {
-  background: #2d2dff;
+  background: #000000;
   color: #fff;
   padding: 8px 18px;
   border-radius: 10px;
   font-weight: bold;
   font-size: 22px;
 }
+
 .banner-subtitle {
   font-size: 64px;
-  color: #ff3366;
+  color: #ffffff;
   font-weight: bold;
   margin: 10px 0 20px 0;
-  text-shadow: 2px 2px 0 #fff;
+  text-shadow: 2px 2px 0 #000000;
 }
+
 .banner-promos {
   display: flex;
   gap: 20px;
 }
+
 .promo-item {
   background: #fff;
-  border: 3px solid #3a2fff;
+  border: 3px solid #000000;
   border-radius: 12px;
   padding: 10px 24px;
   text-align: center;
   font-size: 20px;
   min-width: 120px;
 }
+
 .highlight {
-  color: #ff3366;
+  color: #000000;
   font-size: 32px;
   font-weight: bold;
 }
+
 .banner-carousel-wrap {
   position: relative;
-  flex: 0 0 70%;
+  flex: 1;
   display: flex;
   align-items: center;
+  justify-content: center;
   height: 100%;
+  width: 100%;
 }
+
 .banner-carousel {
   width: 100%;
   height: 100%;
 }
-.banner-right {
-  flex: 0 0 30%;
-  height: 100%;
-}
+
 .banner-img {
   width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: block;
+  height: 500px;
+
 }
+
+//Ẩn phần banner-right vì chỉ sử dụng 1 banner
+.banner-right {
+  display: none;
+}
+
 .sale-50 {
   font-size: 48px;
-  color: #ff5ca7;
+  color: #ffffff;
   font-weight: bold;
   margin-bottom: 10px;
 }
+
 .sale-img img {
   width: 120px;
   margin-bottom: 10px;
 }
+
 .sale-desc {
-  background: #a48fff;
+  background: #000000;
   color: #fff;
   padding: 8px 18px;
   border-radius: 20px;
   font-weight: bold;
   font-size: 20px;
 }
+
 .dots {
   display: flex;
   justify-content: center;
   margin: 0;
   padding: 10px 0;
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  z-index: 10;
 }
+
 .dot {
-  width: 12px;
-  height: 12px;
-  background: #ffb6e6;
+  width: 10px;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.5);
   border-radius: 50%;
   margin: 0 6px;
   display: inline-block;
+  transition: all 0.3s ease;
 }
+
 .dot.active {
-  background: #ff3366;
+  background: #ffffff;
+  transform: scale(1.2);
 }
+
 .menu-row {
   display: flex;
   justify-content: space-around;
-  margin: 20px 20px 0 20px;
+  margin: 40px 80px 20px 80px;
 }
+
 .menu-item {
   display: flex;
   align-items: center;
-  background: #ffe6ea;
+  background: #f5f5f5;
   border-radius: 30px;
   padding: 0;
   min-width: 180px;
   height: 64px;
   margin: 0 10px;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: #e0e0e0;
+  }
 }
+
 .menu-item img {
   width: 64px;
   height: 64px;
   margin-right: 10px;
   border-radius: 50%;
   object-fit: cover;
+  filter: grayscale(100%);
 }
+
 .menu-item span {
-  color: #d9001b;
+  color: #000000;
   font-weight: bold;
   font-size: 18px;
   text-align: center;
@@ -170,11 +222,11 @@
 
 // Flash Sale Section
 .flash-sale-section {
-  background: linear-gradient(180deg, #e8f7ff 0%, #f2e8ff 100%);
+  background: #f5f5f5;
   margin: 30px 20px;
-  border-radius: 15px;
+  border-radius: 0;
   padding: 20px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  box-shadow: none;
 }
 
 .flash-sale-header {
@@ -192,12 +244,12 @@
 }
 
 .flash-icon {
-  color: #ff3366;
+  color: #000000;
   font-size: 24px;
 }
 
 .flash-sale-title h2 {
-  color: #ff3366;
+  color: #000000;
   font-size: 26px;
   margin: 0;
   font-weight: bold;
@@ -221,7 +273,7 @@
 }
 
 .timer-box {
-  background: #ff3366;
+  background: #000000;
   color: white;
   font-weight: bold;
   font-size: 20px;
@@ -232,7 +284,7 @@
 }
 
 .timer span {
-  color: #ff3366;
+  color: #000000;
   font-weight: bold;
   font-size: 20px;
 }
@@ -245,26 +297,22 @@
 
 .product-card {
   background: white;
-  border-radius: 10px;
+  border-radius: 0;
   overflow: hidden;
-  width: calc(20% - 13px); /* 5 cards with equal spacing */
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
-  cursor: pointer;
-
-  a {
-    text-decoration: none;
-    color: inherit;
-  }
+  width: calc(20% - 13px);
+  /* 5 cards with equal spacing */
+  transition: all 0.3s ease;
+  box-shadow: none;
+  border: 1px solid #e0e0e0;
 
   &:hover {
-    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   }
 }
 
 .product-image {
   position: relative;
-  height: 240px;
+  height: 260px; /* Giảm chiều cao từ 240px xuống 180px */
   background: #fff0f3;
   display: flex;
   align-items: center;
@@ -295,7 +343,7 @@
   position: absolute;
   top: 8px;
   right: 8px;
-  background: #ff3366;
+  background: #000000;
   color: white;
   padding: 4px 10px;
   border-radius: 20px;
@@ -304,21 +352,21 @@
 }
 
 .product-info {
-  padding: 15px;
+  padding: 10px; /* Giảm padding từ 15px xuống 10px */
 }
 
 .product-brand {
   color: #666;
-  font-size: 14px;
-  margin-bottom: 5px;
+  font-size: 12px; /* Giảm font-size từ 14px xuống 12px */
+  margin-bottom: 3px; /* Giảm margin từ 5px xuống 3px */
 }
 
 .product-name {
-  font-size: 15px;
+  font-size: 14px; /* Giảm font-size từ 15px xuống 14px */
   font-weight: bold;
-  margin: 0 0 8px 0;
-  line-height: 1.3;
-  height: 40px;
+  margin: 0 0 5px 0; /* Giảm margin từ 8px xuống 5px */
+  line-height: 1.2; /* Giảm line-height từ 1.3 xuống 1.2 */
+  height: 34px; /* Giảm height từ 40px xuống 34px */
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -328,18 +376,18 @@
 .product-rating {
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 5px; /* Giảm margin từ 10px xuống 5px */
   gap: 5px;
 }
 
 .stars {
   color: #ffbb00;
-  font-size: 14px;
+  font-size: 12px; /* Giảm font-size từ 14px xuống 12px */
 }
 
 .review-count {
   color: #888;
-  font-size: 12px;
+  font-size: 11px; /* Giảm font-size từ 12px xuống 11px */
 }
 
 .product-price {
@@ -349,15 +397,15 @@
 }
 
 .sale-price {
-  color: #ff3366;
+  color: #000000;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 16px; /* Giảm font-size từ 18px xuống 16px */
 }
 
 .original-price {
   color: #888;
   text-decoration: line-through;
-  font-size: 14px;
+  font-size: 12px; /* Giảm font-size từ 14px xuống 12px */
 }
 
 // Promotional Banners
@@ -367,7 +415,8 @@
 
 .promo-row {
   display: flex;
-  gap: 16px; /* Match the same gap as product cards */
+  gap: 16px;
+  /* Match the same gap as product cards */
   justify-content: space-between;
 }
 
@@ -417,7 +466,7 @@
 }
 
 .view-all-btn {
-  background: #ff5b79;
+  background: #000000;
   color: white;
   border: none;
   border-radius: 20px;
@@ -434,7 +483,7 @@
   }
 
   &:hover {
-    background: #ff3366;
+    background: #333333;
   }
 }
 
@@ -449,16 +498,16 @@
 .campaign-banner-image {
   width: 100%;
   height: 200px;
-  background: linear-gradient(to right, #ffadba, #ffcad4);
+  background: #000000;
   position: relative;
 
   &::before {
-    content: "THÁNG CỦA NÀNG NGÀN ƯU ĐÃI";
+    content: "SĂN HÈ - VOUCHER 15% ĐƠN TỪ 99K";
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    color: #ff3366;
+    color: #ffffff;
     font-size: 28px;
     font-weight: bold;
     text-align: center;
@@ -466,12 +515,12 @@
   }
 
   &::after {
-    content: "01.03 ĐẾN 31.03";
+    content: "01.06 ĐẾN 30.06";
     position: absolute;
     top: 20px;
     left: 20px;
-    background: #ff3366;
-    color: white;
+    background: #ffffff;
+    color: #000000;
     padding: 5px 12px;
     border-radius: 20px;
     font-size: 12px;
@@ -484,7 +533,7 @@
   position: fixed;
   left: 0;
   top: 50%;
-  background: #ff3366;
+  background: #000000;
   color: white;
   width: 40px;
   height: 80px;
@@ -530,8 +579,8 @@
   display: flex;
   justify-content: flex-end;
   color: #888;
-  font-size: 12px;
-  margin-top: 5px;
+  font-size: 11px; /* Giảm font-size từ 12px xuống 11px */
+  margin-top: 3px; /* Giảm margin từ 5px xuống 3px */
 }
 
 // Hot Voucher Section
@@ -547,7 +596,7 @@
 }
 
 .section-title {
-  color: #ff0000;
+  color: #000000;
   font-size: 22px;
   font-weight: bold;
   margin: 0;
@@ -561,7 +610,7 @@
 
 .voucher-card {
   flex: 1;
-  background: linear-gradient(to bottom, #fff6f7, #ffe0e4);
+  background: linear-gradient(to bottom, #f5f5f5, #e0e0e0);
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
@@ -576,7 +625,7 @@
     top: 0;
     height: 100%;
     width: 20px;
-    background: linear-gradient(90deg, transparent, rgba(255, 99, 132, 0.1));
+    background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.05));
   }
 
   &::after {
@@ -599,14 +648,14 @@
 }
 
 .voucher-label {
-  color: #ff5b79;
+  color: #000000;
   font-size: 14px;
   font-weight: 500;
   margin-bottom: 5px;
 }
 
 .discount-percent {
-  color: #ff3366;
+  color: #000000;
   font-size: 46px;
   font-weight: bold;
   margin-bottom: 5px;
@@ -629,8 +678,8 @@
 }
 
 .voucher-button {
-  background: #ffdd00;
-  color: #ff3366;
+  background: #000000;
+  color: #ffffff;
   border: none;
   width: 100%;
   padding: 10px 0;
@@ -640,7 +689,7 @@
   transition: background-color 0.2s;
 
   &:hover {
-    background: #ffe835;
+    background: #333333;
   }
 }
 
@@ -672,8 +721,8 @@
 }
 
 .tag-button {
-  background: #ffecee;
-  color: #ff3366;
+  background: #e0e0e0;
+  color: #000000;
   border: none;
   border-radius: 20px;
   padding: 8px 16px;
@@ -683,7 +732,12 @@
   transition: background-color 0.2s;
 
   &:hover {
-    background: #ffd8df;
+    background: #cccccc;
+  }
+
+  &.active {
+    background: #000000;
+    color: #ffffff;
   }
 }
 
@@ -718,7 +772,7 @@
   width: 36px;
   height: 36px;
   background: rgba(255, 255, 255, 0.8);
-  border: 1px solid #ffecee;
+  border: 1px solid #e0e0e0;
   border-radius: 50%;
   font-size: 24px;
   display: flex;
@@ -726,7 +780,7 @@
   justify-content: center;
   cursor: pointer;
   z-index: 2;
-  color: #ff3366;
+  color: #000000;
 
   &:hover {
     background: white;
@@ -746,7 +800,7 @@
 }
 
 .selling-fast-tag {
-  background: linear-gradient(90deg, #ff3366, #ff5b79);
+  background: #000000;
   color: white;
   text-align: center;
   padding: 5px;
@@ -781,7 +835,7 @@
 }
 
 .red-banner {
-  background: linear-gradient(135deg, #ff5b79, #ff3366);
+  background: linear-gradient(135deg, #333333, #000000);
   position: relative;
   overflow: hidden;
 
@@ -809,7 +863,7 @@
 }
 
 .orange-banner {
-  background: linear-gradient(135deg, #ffd8b1, #ffcc80);
+  background: linear-gradient(135deg, #e0e0e0, #cccccc);
   position: relative;
   overflow: hidden;
 
@@ -923,7 +977,7 @@
 }
 
 .banner-large-text {
-  color: #ff3366;
+  color: #000000;
   font-size: 56px;
   font-weight: bold;
   text-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
@@ -932,7 +986,7 @@
 }
 
 .banner-info {
-  color: #ff3366;
+  color: #000000;
   flex: 1;
 }
 
@@ -956,7 +1010,7 @@
 
   span {
     background: white;
-    color: #ff3366;
+    color: #000000;
     padding: 4px 8px;
     border-radius: 5px;
     font-size: 13px;
@@ -965,7 +1019,7 @@
 }
 
 .banner-date {
-  background: #ff996d;
+  background: #000000;
   color: white;
   border-radius: 20px;
   padding: 5px 15px;
@@ -1029,7 +1083,7 @@
     transform: translateY(-5px);
 
     .category-name {
-      color: #ff3366;
+      color: #000000;
     }
   }
 }
@@ -1054,6 +1108,7 @@
     background-size: cover;
     background-position: center;
     transform: scale(1.2);
+    filter: grayscale(100%);
   }
 }
 
@@ -1098,6 +1153,10 @@
   margin-top: 10px;
 }
 
+.category-item:hover .category-name {
+  color: #000000;
+}
+
 // Health & Beauty Services Section
 .health-beauty-section {
   margin: 40px 20px;
@@ -1110,12 +1169,6 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 30px;
-}
-
-.services-title {
-  color: #e8373b;
-  font-size: 24px;
-  font-weight: bold;
 }
 
 .services-slider-container {
@@ -1254,27 +1307,27 @@
   flex-direction: column;
   align-items: center;
   padding: 15px;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(0, 0, 0, 0.7);
   border-radius: 0 0 12px 12px;
   text-align: center;
 }
 
 .service-title {
-  color: #333;
+  color: #ffffff;
   font-size: 18px;
   font-weight: bold;
   margin: 0 0 4px 0;
 }
 
 .service-subtitle {
-  color: #666;
+  color: #cccccc;
   font-size: 12px;
   margin: 0 0 10px 0;
 }
 
 .detail-btn {
   margin-top: 5px;
-  background: #f15778;
+  background: #000000;
   color: white;
   border: none;
   padding: 8px 15px;
@@ -1285,8 +1338,13 @@
   transition: background 0.3s ease;
 
   &:hover {
-    background: #ff3366;
+    background: #333333;
   }
+}
+
+.div_border_bottom {
+  width: 100%;
+  border-bottom: 0.2rem solid #333333;
 }
 
 // Popular Brands Section
@@ -1303,7 +1361,7 @@
 }
 
 .brands-title {
-  color: #e8373b;
+  color: #000000;
   font-size: 24px;
   font-weight: bold;
 }
@@ -1323,7 +1381,7 @@
       height: auto;
       padding: 0 10px;
 
-      & > div {
+      &>div {
         height: 100%;
       }
     }
@@ -1394,6 +1452,7 @@
   background: none;
   box-shadow: none;
   height: 250px;
+
   img {
     width: 120px;
     height: 180px;
@@ -1410,6 +1469,7 @@
   text-align: center;
   position: relative;
   margin-top: 0;
+
   img {
     display: block;
     margin: 0 auto;
@@ -1422,7 +1482,7 @@
   margin: 0 auto;
   font-size: 20px;
   font-weight: bold;
-  color: #333;
+  color: #000000;
   display: inline-block;
   padding: 6px 24px;
   border-radius: 25px;
@@ -1446,7 +1506,8 @@
 }
 
 .section-title.news-title {
-  color: #e8373b; /* Match the red color of the XEM TẤT CẢ button */
+  color: #e8373b;
+  /* Match the red color of the XEM TẤT CẢ button */
   font-size: 24px;
   font-weight: bold;
 }
@@ -1454,8 +1515,10 @@
 .news-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 50px; /* Increased gap for better spacing */
-  padding: 0 10%; /* Reduced padding for a bit more width */
+  gap: 50px;
+  /* Increased gap for better spacing */
+  padding: 0 10%;
+  /* Reduced padding for a bit more width */
 
   @media (max-width: 1200px) {
     padding: 0 5%;
@@ -1491,7 +1554,8 @@
 .news-image {
   position: relative;
   width: 100%;
-  height: 550px; /* Adjusted for better proportion */
+  height: 550px;
+  /* Adjusted for better proportion */
 
   img {
     width: 100%;
@@ -1522,7 +1586,7 @@
 .news-title {
   margin: 0 0 10px 0;
   font-size: 18px;
-  color: #333;
+  color: #000000;
   font-weight: bold;
   line-height: 1.3;
 }
@@ -1542,7 +1606,7 @@
 .learn-more-btn {
   background: transparent;
   border: none;
-  color: #f15778;
+  color: #000000;
   padding: 0;
   font-size: 14px;
   font-weight: 600;
@@ -1559,7 +1623,7 @@
 .trust-badges-section {
   margin: 50px 20px;
   padding: 30px 0;
-  background-color: #fff5f7;
+  background-color: #f5f5f5;
   border-radius: 10px;
   position: relative;
 }
@@ -1591,23 +1655,27 @@
 
 .badge-item {
   flex: 1;
-  max-width: 280px; /* Increased size */
+  max-width: 280px;
+  /* Increased size */
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   background-color: white;
   border-radius: 10px;
-  padding: 30px 20px; /* Increased padding */
+  padding: 30px 20px;
+  /* Increased padding */
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-  min-height: 180px; /* Added minimum height */
+  min-height: 180px;
+  /* Added minimum height */
 
   &.brand-identity {
     background-color: transparent;
     box-shadow: none;
     padding: 20px 0;
     max-width: none;
-    flex: 0 0 38%; /* Slightly reduced to accommodate padding */
+    flex: 0 0 38%;
+    /* Slightly reduced to accommodate padding */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1644,39 +1712,44 @@
 }
 
 .badge-icon {
-  width: 80px; /* Increased size */
-  height: 80px; /* Increased size */
+  width: 80px;
+  /* Increased size */
+  height: 80px;
+  /* Increased size */
   background: white;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 20px; /* Increased spacing */
-  box-shadow: 0 2px 8px rgba(255, 99, 132, 0.2);
+  margin-bottom: 20px;
+  /* Increased spacing */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 
   img {
-    width: 45px; /* Increased size */
-    height: 45px; /* Increased size */
+    width: 45px;
+    /* Increased size */
+    height: 45px;
+    /* Increased size */
     object-fit: contain;
   }
 }
 
 .badge-title {
-  color: #333;
-  font-size: 18px; /* Increased size */
+  color: #000000;
+  font-size: 18px;
   font-weight: bold;
-  margin: 0 0 12px 0; /* Increased spacing */
+  margin: 0 0 12px 0;
 }
 
 .badge-subtitle {
   color: #666;
-  font-size: 14px; /* Increased size */
+  font-size: 14px;
   line-height: 1.5;
-  margin: 0 0 15px 0; /* Increased spacing */
+  margin: 0 0 15px 0;
 }
 
 .badge-button {
-  background: #f15778;
+  background: #000000;
   color: white;
   border: none;
   padding: 6px 20px;
@@ -1688,34 +1761,39 @@
   transition: background-color 0.2s;
 
   &:hover {
-    background: #e63f63;
+    background: #333333;
   }
 }
 
 // Email Subscription Section
 .subscription-section {
-  background-color: #ffdddf;
+  background-color: #000000;
   padding: 40px 0;
   margin-top: 50px;
 }
 
 .subscription-container {
-  max-width: 1200px;
+  max-width: 100%;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 20px;
+  padding: 0 80px;
+
+  & span {
+    color: #cccccc;
+  }
 
   @media (max-width: 768px) {
     flex-direction: column;
     gap: 20px;
     text-align: center;
+    padding: 0 20px;
   }
 }
 
 .subscription-title {
-  color: #666;
+  color: #ffffff;
   font-size: 28px;
   font-weight: 600;
   margin: 0;
@@ -1754,7 +1832,7 @@
 }
 
 .subscribe-btn {
-  background-color: #f15778;
+  background-color: #000000;
   color: white;
   border: none;
   border-radius: 25px;
@@ -1767,7 +1845,7 @@
   transition: background-color 0.2s;
 
   &:hover {
-    background-color: #e63f63;
+    background-color: #333333;
   }
 }
 
@@ -1783,14 +1861,310 @@
 .beauty-news-section,
 .trust-badges-section,
 .subscription-section {
-  max-width: 1700px;
+  max-width: 100%;
   margin: 30px auto;
   border-radius: 15px;
-  padding-left: 24px;
-  padding-right: 24px;
+  padding-left: 80px;
+  padding-right: 80px;
   box-sizing: border-box;
 }
 
 a {
   text-decoration: none;
+}
+
+.banner-content {
+  position: absolute;
+  top: 50%;
+  left: 80px;
+  transform: translateY(-50%);
+  text-align: left;
+  color: #ffffff;
+  z-index: 5;
+  width: 40%;
+  max-width: 500px;
+}
+
+.banner-title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.banner-subtitle {
+  font-size: 1.2rem;
+  font-weight: 400;
+  margin-bottom: 2rem;
+  letter-spacing: 1px;
+  color: #ffffff;
+}
+
+.banner-button {
+  background-color: #000000;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  padding: 12px 30px;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+
+  &:hover {
+    background-color: #ffffff;
+    color: #000000;
+  }
+}
+
+/* Bỏ overlay tối đi vì ảnh mẫu đã có màu phù hợp */
+.banner-carousel::before {
+  content: none;
+}
+
+.section-title,
+.voucher-title,
+.services-title,
+.brands-title,
+.news-title,
+.flash-sale-title h2,
+.services-header .services-title,
+.brands-header .brands-title,
+.news-header .section-title.news-title {
+  color: #000000;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.flash-sale-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 0 10px;
+}
+
+.flash-sale-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.flash-icon {
+  color: #000000;
+  font-size: 24px;
+}
+
+.flash-sale-title h2 {
+  color: #000000;
+  font-size: 26px;
+  margin: 0;
+  font-weight: bold;
+}
+
+.flash-sale-timer {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.flash-sale-timer span {
+  color: #666;
+  font-size: 16px;
+}
+
+.timer {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.timer-box {
+  background: #000000;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  min-width: 40px;
+  text-align: center;
+}
+
+.timer span {
+  color: #000000;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.voucher-header,
+.section-header,
+.services-header,
+.brands-header,
+.news-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.voucher-title,
+.section-title,
+.services-title,
+.brands-title,
+.news-title {
+  color: #000000;
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.badge-title {
+  color: #000000;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0 0 12px 0;
+}
+
+.badge-subtitle {
+  color: #666;
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0 0 15px 0;
+}
+
+.badge-item.brand-identity {
+  .badge-title,
+  .badge-subtitle {
+    color: #000000;
+    text-align: center;
+  }
+}
+
+// Thay đổi màu cho các icon mạng xã hội
+.div_icon_fb_insta_yt {
+  &.facebook {
+    background: #1877F2;
+  }
+
+  &.instagram {
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  }
+
+  &.youtube {
+    background: #FF0000;
+  }
+}
+
+// Thay đổi màu cho các icon danh mục
+.category-icon {
+  width: 110px;
+  height: 110px;
+  border-radius: 10px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    transform: scale(1.2);
+    filter: grayscale(100%);
+  }
+}
+
+// Thay đổi màu cho các tiêu đề đặc biệt
+.menu-col-title {
+  color: #000000;
+  font-weight: 700;
+  font-size: 16px;
+  margin-bottom: 15px;
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid #000000;
+  padding-bottom: 8px;
+  display: inline-block;
+}
+
+// Thay đổi màu cho các nút tag
+.tag-button {
+  background: #e0e0e0;
+  color: #000000;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background: #cccccc;
+  }
+
+  &.active {
+    background: #000000;
+    color: #ffffff;
+  }
+}
+
+// Thay đổi màu cho các slider arrow
+.slider-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid #e0e0e0;
+  border-radius: 50%;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2;
+  color: #000000;
+
+  &:hover {
+    background: white;
+  }
+}
+
+// Thay đổi màu cho news-title
+.news-title {
+  margin: 0 0 10px 0;
+  font-size: 18px;
+  color: #000000;
+  font-weight: bold;
+  line-height: 1.3;
+}
+
+// Thay đổi màu cho badge-icon
+.badge-icon {
+  width: 80px;
+  height: 80px;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+
+  img {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+    filter: grayscale(100%);
+  }
 }

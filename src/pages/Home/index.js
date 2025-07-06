@@ -46,6 +46,8 @@ import img39 from "../../assets/images/imagehome/39.png";
 import img40 from "../../assets/images/imagehome/40.png";
 import img41 from "../../assets/images/imagehome/41.png";
 import img42 from "../../assets/images/imagehome/42.png";
+import heroBanner from "../../assets/herobannerr.png";
+
 import notfound_product from "images/notfound_product.png";
 
 // Import Slick Carousel
@@ -53,13 +55,14 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-import { get5Products } from "../../services/productService";
+import { get5Products, get12Products } from "../../services/productService";
 import { Link, NavLink } from "react-router-dom";
 
 const cx = classNames.bind(styles);
 
+// Cập nhật bannerSlides để sử dụng heroBanner
 const bannerSlides = [
-  { img: img1, alt: "Săn Deal Yêu Thương" },
+  { img: heroBanner, alt: "Săn Deal Yêu Thương" },
   // Nếu có nhiều slide, thêm vào đây
 ];
 
@@ -312,6 +315,7 @@ const Home = () => {
   const [seconds, setSeconds] = useState(45);
   const [email, setEmail] = useState("");
   const [productCards, setProductCards] = useState([]);
+  const [voucherProducts, setVoucherProducts] = useState([]);
 
   const productsSliderRef = useRef(null);
   const navigate = useNavigate();
@@ -319,6 +323,7 @@ const Home = () => {
   //Get Product
   useEffect(() => {
     fetchFlashSale();
+    fetchVoucherProducts();
   }, []);
 
   const fetchFlashSale = async () => {
@@ -329,6 +334,16 @@ const Home = () => {
       console.log(error);
       //toast.error("Lỗi khi tải danh sách sản phẩm");
     } finally {
+    }
+  };
+
+  const fetchVoucherProducts = async () => {
+    try {
+      const result = await get5Products(2, 5); // Lấy page thứ 2 để có sản phẩm khác
+      setVoucherProducts(result.data);
+    } catch (error) {
+      console.log(error);
+      //toast.error("Lỗi khi tải danh sách sản phẩm voucher");
     }
   };
 
@@ -438,17 +453,14 @@ const Home = () => {
     <>
       <div className={cx("wrapper-home")}>
         {/* Side discount tag - fixed position */}
-        <div className={cx("side-discount-tag")}>
+        {/* <div className={cx("side-discount-tag")}>
           <div className={cx("discount-value")}>GIẢM</div>
           <div className={cx("discount-amount")}>10%</div>
-        </div>
+        </div> */}
 
-        {/* Banner chính - Carousel + Sale 50% */}
+        {/* Banner chính - Sử dụng hero-banner.png */}
         <div className={cx("main-banner")}>
           <div className={cx("banner-carousel-wrap")}>
-            <button className={cx("arrow-btn", "left")} onClick={prevSlide}>
-              &lt;
-            </button>
             <div className={cx("banner-carousel")}>
               <img
                 src={bannerSlides[current].img}
@@ -456,14 +468,9 @@ const Home = () => {
                 className={cx("banner-img")}
               />
             </div>
-            <button className={cx("arrow-btn", "right")} onClick={nextSlide}>
-              &gt;
-            </button>
-          </div>
-          <div className={cx("banner-right")}>
-            <img src={img2} alt="Sale 50%" className={cx("banner-img")} />
           </div>
         </div>
+
         {/* Dots chuyển slide */}
         <div className={cx("dots")}>
           {bannerSlides.map((_, idx) => (
@@ -474,29 +481,8 @@ const Home = () => {
             ></span>
           ))}
         </div>
+
         {/* Menu dưới banner */}
-        <div className={cx("menu-row")}>
-          <div className={cx("menu-item")}>
-            <img src={img3} alt="Săn tiệc hè" />
-            <span>SĂN TIỆC HÈ</span>
-          </div>
-          <div className={cx("menu-item")}>
-            <img src={img4} alt="Cổng voucher" />
-            <span>CỔNG VOUCHER</span>
-          </div>
-          <div className={cx("menu-item")}>
-            <img src={img5} alt="Mua 2 tặng 1" />
-            <span>MUA 2 TẶNG 1</span>
-          </div>
-          <div className={cx("menu-item")}>
-            <img src={img6} alt="Mua là có quà" />
-            <span>MUA LÀ CÓ QUÀ</span>
-          </div>
-          <div className={cx("menu-item")}>
-            <img src={img7} alt="Xem đơn hàng" />
-            <span>XEM ĐƠN HÀNG</span>
-          </div>
-        </div>
 
         {/* Flash Sale Section */}
         <div className={cx("flash-sale-section")}>
@@ -542,7 +528,7 @@ const Home = () => {
                       objectFit: "contain",
                     }}
                   />
-                 
+
                 </div>
                 <div className={cx("product-info")}>
                   <div className={cx("product-brand")}>COCOON</div>
@@ -672,51 +658,54 @@ const Home = () => {
 
           {/* Product cards - same style as flash sale */}
           <div className={cx("product-card-container")}>
-            {productCards.map((product, index) => (
-              <div key={index} className={cx("product-card")}>
-                <div className={cx("product-image", "blue-bg")}>
-                  <img
-                    src={img13}
-                    alt={product.name}
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "contain",
-                      display: "block",
-                    }}
-                  />
-                  {/* <div className={cx("price-tag")}>20.000đ</div>
-                  <div className={cx("discount-label")}>
-                    -{product.discount}%
-                  </div> */}
-                </div>
-                <div className={cx("product-info")}>
-                  <div className={cx("product-brand")}>COCOON</div>
-                  <h3 className={cx("product-name")}>{product.name}</h3>
-                  <div className={cx("product-rating")}>
-                    <div className={cx("stars")}>★★★★★</div>
-                    <span className={cx("review-count")}>
-                      ({product.reviews})
-                    </span>
+            {voucherProducts.map((product) => (
+              <div key={product.id} className={cx("product-card")}>
+                <Link to={`/detail-product/${product.id}`}>
+                  <div className={cx("product-image", "blue-bg")}>
+                    <img
+                      src={
+                        product.productImages &&
+                        product.productImages.length > 0
+                          ? product.productImages[0].link
+                          : notfound_product
+                      }
+                      alt={product.name}
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "contain",
+                        display: "block",
+                      }}
+                    />
+                 
                   </div>
-                  <div className={cx("product-price")}>
-                    <span className={cx("sale-price")}>
-                      {product.salePrice
-                        ? product.salePrice.toLocaleString()
-                        : "0"}{" "}
-                      đ
-                    </span>
-                    <span className={cx("original-price")}>
-                      {product.originalPrice
-                        ? product.originalPrice.toLocaleString()
-                        : "0"}{" "}
-                      đ
-                    </span>
+                  <div className={cx("product-info")}>
+                    <div className={cx("product-brand")}>
+                      {product.brand ? product.brand.name : "PURE"}
+                    </div>
+                    <h3 className={cx("product-name")}>{product.name}</h3>
+                    <div className={cx("product-rating")}>
+                      <div className={cx("stars")}>★★★★★</div>
+                      <span className={cx("review-count")}>
+                        ({product.categoryName || "Mỹ phẩm"})
+                      </span>
+                    </div>
+                    <div className={cx("product-price")}>
+                      <span className={cx("sale-price")}>
+                        {product.price
+                          ? (product.price * 0.85).toLocaleString()
+                          : "0"}{" "}
+                        đ
+                      </span>
+                      <span className={cx("original-price")}>
+                        {product.price ? product.price.toLocaleString() : "0"} đ
+                      </span>
+                    </div>
+                    <div className={cx("product-sold-count")}>
+                      <span>☑ {Math.floor(Math.random() * 500) + 100}</span>
+                    </div>
                   </div>
-                  <div className={cx("product-sold-count")}>
-                    <span>☑ 498</span>
-                  </div>
-                </div>
+                </Link>
               </div>
             ))}
           </div>

@@ -1,16 +1,5 @@
 import { axiosInstance } from "../apiConfig";
 
-  export const getBrandById = async (id) => {
-    try {
-        const response = await axiosInstance.get(
-            `/brand/${id}`
-        );
-        return response.data;
-    } catch (error) {
-        const message = error.response?.data?.message || "Error!";
-        throw new Error(message);
-    }
-};
 // Dữ liệu mẫu khi API không hoạt động
 const getSampleBrands = () => {
   return [
@@ -91,26 +80,26 @@ export const getBrands = async () => {
   }
 };
 
-// export const getBrandById = async (id) => {
-//   try {
-//     const response = await axiosInstance.get(`/brand/${id}`);
-//     return response.data;
-//   } catch (error) {
-//     console.error(`Error fetching brand with id ${id}:`, error);
-//     // Trả về dữ liệu mẫu khi API lỗi
-//     const brand = getSampleBrands().find((brand) => brand.id === id);
-//     return {
-//       statusCode: 200,
-//       data: brand || {
-//         id: id,
-//         name: "Unknown Brand",
-//         description: "No description",
-//         country: "Unknown",
-//       },
-//       message: "Dữ liệu mẫu (API không hoạt động)",
-//     };
-//   }
-// };
+export const getBrandById = async (id) => {
+  try {
+    const response = await axiosInstance.get(`/brand/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error(`Error fetching brand with id ${id}:`, error);
+    // Trả về dữ liệu mẫu khi API lỗi
+    const brand = getSampleBrands().find((brand) => brand.id === parseInt(id));
+    return {
+      statusCode: 200,
+      data: brand || {
+        id: id,
+        name: "Unknown Brand",
+        description: "No description",
+        country: "Unknown",
+      },
+      message: "Dữ liệu mẫu (API không hoạt động)",
+    };
+  }
+};
 
 export const createBrand = async (formData) => {
   try {
@@ -179,18 +168,18 @@ export const deleteBrand = async (id) => {
   }
 };
 
-  export const get5Brands = async (pageIndex = 1, pageSize = 5) => {
-    try {
-      const response = await axiosInstance.get(`brand/`, {
-        params: { 'page-index': pageIndex, 'page-size': pageSize },
-      });
+export const get5Brands = async (pageIndex = 1, pageSize = 5) => {
+  try {
+    const response = await axiosInstance.get(`brand/`, {
+      params: { "page-index": pageIndex, "page-size": pageSize },
+    });
 
-      return {
-        data: response.data.data.data,
-        pagination: response.data.data.metaData, 
-      };
-    } catch (error) {
-        const message = error.response?.data?.message || "Error!";
-        throw new Error(message);
-    }
-  };
+    return {
+      data: response.data.data.data,
+      pagination: response.data.data.metaData,
+    };
+  } catch (error) {
+    const message = error.response?.data?.message || "Error!";
+    throw new Error(message);
+  }
+};

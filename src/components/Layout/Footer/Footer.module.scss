@@ -1,5 +1,5 @@
 .container_1 {
-    background-image: linear-gradient(rgb(250, 225, 226) 100%, rgb(255, 191, 203) 78%);
+    background-color: #000000;
     padding: 5em 5rem 2rem;
     display: flex;
     justify-content: space-around;
@@ -7,12 +7,12 @@
 
     & .div_border_bottom {
         width: 100%;
-        border-bottom: 0.2rem solid rgb(238, 105, 131);
+        border-bottom: 0.2rem solid #333333;
     }
 }
 
 .container_2 {
-    background-image: linear-gradient(rgb(250, 225, 226) 100%, rgb(255, 191, 203) 78%);
+    background-color: #000000;
     padding: 0px 5rem 5rem;
 
     & .ctn_2_4col {
@@ -36,14 +36,32 @@
                         width: 40px;
                         height: 40px;
                         border-radius: 50%;
-                        background: rgb(238, 105, 131);
                         display: flex;
                         align-items: center;
                         justify-content: center;
+                        transition: all 0.3s ease;
+
+                        &:hover {
+                            transform: translateY(-3px);
+                            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+                        }
+
+                        &.facebook {
+                            background: #1877F2;
+                        }
+
+                        &.instagram {
+                            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+                        }
+
+                        &.youtube {
+                            background: #FF0000;
+                        }
 
                         & img {
                             height: 1.5rem;
                             width: 1.5rem;
+                            filter: brightness(0) invert(1);
                         }
                     }
                 }
@@ -52,13 +70,13 @@
             & h3 {
                 font-size: 14px;
                 font-weight: bold;
-                color: rgb(102, 102, 102);
+                color: #ffffff;
             }
 
             & .h3_chungnhan {
                 font-size: 14px;
                 font-weight: bold;
-                color: rgb(102, 102, 102);
+                color: #ffffff;
                 margin-top: 2rem;
             }
 
@@ -66,17 +84,23 @@
                 list-style: none;
                 padding: 0px;
                 margin-top: 12px;
-                color: rgb(51, 51, 51);
+                color: #cccccc;
                 font-size: 14px;
 
                 & li {
                     margin-bottom: 8px;
+                    cursor: pointer;
+                    
+                    &:hover {
+                        color: #ffffff;
+                        text-decoration: underline;
+                    }
                 }
             }
 
             & p {
                 font-size: 14px;
-                color: rgb(102, 102, 102);
+                color: #cccccc;
             }
 
             & .ctn_2_payImg {
@@ -86,6 +110,9 @@
 
                 & img {
                     height: 3rem;
+                    background-color: #ffffff;
+                    padding: 5px;
+                    border-radius: 5px;
                 }
             }
 
@@ -122,8 +149,8 @@
 }
 
 .container_3 {
-    background-color: rgba(255, 155, 159, 0.4);
-    color: rgb(238, 105, 131);
+    background-color: #111111;
+    color: #ffffff;
     text-align: center;
     padding: 10px 20px;
     font-size: 14px;
@@ -133,7 +160,7 @@
     position: relative;
 
     & .ctn_3_text_copyright {
-        color: rgb(136, 136, 136);
+        color: #cccccc;
         margin-left: 5%;
     }
 
@@ -147,6 +174,7 @@
             max-width: 500px;
             display: block;
             overflow-wrap: break-word;
+            color: #cccccc;
         }
 
         & .icon_up {
@@ -157,8 +185,13 @@
             justify-content: center;
             align-items: center;
             cursor: pointer;
-            color: rgb(238, 105, 131);
-            border: 1px solid rgb(238, 105, 131);
+            color: #ffffff;
+            border: 1px solid #ffffff;
+            
+            &:hover {
+                background-color: #EE6983;
+                border-color: #EE6983;
+            }
         }
     }
 }
