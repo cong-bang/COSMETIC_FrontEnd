@@ -122,7 +122,7 @@ const Header = () => {
               <div className={styles.user_link} onClick={handleAuthen}>
                 <span>
                   {JSON.parse(localStorage.getItem("user"))?.username ||
-                    "Sign in"}
+                    "Đăng Nhập"}
                 </span>
               </div>
 

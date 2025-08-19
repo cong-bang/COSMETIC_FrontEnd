@@ -35,8 +35,8 @@ import { Fragment } from "react";
 
 const publicRoutes = [
   { path: "/", component: Home, layout: HomeLayout },
-  { path: "/login", component: Login, layout: HomeLayout },
-  { path: "/register", component: Register, layout: HomeLayout },
+  { path: "/login", component: Login, layout: Fragment },
+  { path: "/register", component: Register, layout: Fragment },
   { path: "/blog", component: Blog, layout: HomeLayout },
   { path: "/chat-box", component: ChatBox, layout: HomeLayout },
   { path: "/blog-category", component: BlogCategory, layout: HomeLayout },

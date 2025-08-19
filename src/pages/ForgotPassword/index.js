@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./ForgotPassword.module.scss";
-import login from "images/login.png";
-import logo_fb from "images/logo_fb_login.png";
-import logo_gg from "images/logo_gg_login.png";
 import { sendOtpForgotPassword } from "../../services/authService";
 import { toast } from "react-toastify";
 
@@ -45,59 +42,80 @@ const ForgotPassword = () => {
   }, [countdown]);
 
   return (
-    <>
-      <div className={styles.container_auth}>
-        <div className={styles.container_left}>
-          <div className={styles.ctn_form_link}>
-            <div className={styles.div_form}>
-              <div className={styles.card_form}>
-                <h2>QUÊN MẬT KHẨU</h2>
-
-                <form className={styles.form}>
-                  <div className={styles.div_input}>
-                    <input
-                      type="text"
-                      placeholder="Email của bạn"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                    />
-                    <button
-                      type="submit"
-                      className={styles.auth_button}
-                      onClick={handleResetPassword}
-                      disabled={countdown > 0}
-                    >
-                      {countdown > 0
-                        ? `Gửi lại sau ${countdown}s`
-                        : "ĐẶT LẠI MẬT KHẨU"}
-                    </button>
-                  </div>
-
-                  <p>
-                    Quay về{" "}
-                    <Link to="/register" className={styles.link_login_regis}>
-                      Đăng ký
-                    </Link>
-                  </p>
-
-                  <div className={styles.social_login}>
-                    <p>Hoặc đăng nhập với</p>
-                    <div className={styles.social_icons}>
-                      <img src={logo_fb} alt="FB" />
-                      <img src={logo_gg} alt="GG" />
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className={styles.auth_img}>
-          <img src={login} alt="Authentication" />
-        </div>
+    <div className={styles.auth_wrapper}>
+      {/* Floating cosmetic elements */}
+      <div
+        className={styles.floating_element}
+        style={{ top: "10%", left: "5%" }}
+      >
+        💄
       </div>
-    </>
+      <div
+        className={styles.floating_element}
+        style={{ top: "20%", right: "10%" }}
+      >
+        💋
+      </div>
+      <div
+        className={styles.floating_element}
+        style={{ bottom: "30%", left: "8%" }}
+      >
+        ✨
+      </div>
+      <div
+        className={styles.floating_element}
+        style={{ bottom: "15%", right: "15%" }}
+      >
+        🌸
+      </div>
+      <div
+        className={styles.floating_element}
+        style={{ top: "60%", left: "3%" }}
+      >
+        💅
+      </div>
+      <div
+        className={styles.floating_element}
+        style={{ top: "40%", right: "5%" }}
+      >
+        🎀
+      </div>
+
+      <div className={styles.auth_container}>
+        <div className={styles.auth_header}>
+          <div className={styles.brand_logo}>PURE COSMETIC</div>
+          <h2>Quên mật khẩu?</h2>
+          <p>Nhập email để khôi phục mật khẩu của bạn</p>
+        </div>
+
+        <form className={styles.auth_form} onSubmit={handleResetPassword}>
+          <div className={styles.form_group}>
+            <label htmlFor="email">Email</label>
+            <input
+              id="email"
+              type="email"
+              placeholder="Nhập email của bạn"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+
+          <button
+            type="submit"
+            className={styles.submit_button}
+            disabled={countdown > 0}
+          >
+            {countdown > 0 ? `Gửi lại sau ${countdown}s` : "Gửi mã khôi phục"}
+          </button>
+
+          <div className={styles.auth_switch}>
+            <p>
+              Nhớ mật khẩu? <Link to="/login">Đăng nhập</Link>
+            </p>
+          </div>
+        </form>
+      </div>
+    </div>
   );
 };
 

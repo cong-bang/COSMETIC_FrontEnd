@@ -7,7 +7,6 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { loginUser } from "../../redux/userSlice";
 import {
-  googleAuth,
   login,
   registerUser,
   handleGoogleLogin,
@@ -16,13 +15,13 @@ import styles from "./AuthForm.module.scss";
 import loginImage from "images/login.png";
 import logo_fb from "images/logo_fb_login.png";
 import logo_gg from "images/logo_gg_login.png";
-import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 const CLIENT_ID =
   "749101402068-0jv96otqmnla2k4dgbs0pgo8e9hkaq5d.apps.googleusercontent.com";
 
 const AuthForm = ({ type }) => {
-  const isLogin = type === "login";
+  const [currentTab, setCurrentTab] = useState(type || "login");
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
   const location = useLocation();
@@ -36,8 +35,12 @@ const AuthForm = ({ type }) => {
     getValues,
   } = useForm();
 
+  useEffect(() => {
+    setCurrentTab(type || "login");
+  }, [type]);
+
   const onSubmit = async (data) => {
-    if (isLogin) {
+    if (currentTab === "login") {
       try {
         const response = await login({
           email: data.email,
@@ -113,45 +116,6 @@ const AuthForm = ({ type }) => {
     }
   };
 
-  //   const handleGoogleSuccess = async (credentialResponse) => {
-  //   try {
-  //     const idToken = credentialResponse.credential;
-  //     const response = await googleAuth(idToken);
-
-  //     if (response && response.token && response.token.accessToken) {
-  //       const token = response.token.accessToken;
-  //       const decodedToken = jwtDecode(token);
-  //       const user = {
-  //           token,
-  //           id: decodedToken.UserId,
-  //           username: decodedToken["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"],
-  //           email: decodedToken["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"],
-  //           role: decodedToken["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"],
-  //         };
-
-  //         dispatch(loginUser({ user }));
-  //         toast.success("Đăng nhập thành công!");
-
-  //         if (user.role === "ADMIN") {
-  //           navigate("/admin");
-  //         } else if (user.role === "STAFF") {
-  //           navigate("/");
-  //         } else {
-  //           navigate("/");
-  //         }
-
-  //       dispatch(loginUser({ user }));
-  //       toast.success("Đăng nhập với Google thành công!");
-
-  //     } else {
-  //       toast.error("Đăng nhập với Google thất bại!");
-  //     }
-  //   } catch (error) {
-  //     console.error(error);
-  //     toast.error("Đăng nhập với Google thất bại!");
-  //   }
-  // };
-
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const token = params.get("token");
@@ -192,240 +156,256 @@ const AuthForm = ({ type }) => {
         toast.error("Token không hợp lệ!");
       }
     }
-  }, [location.search]);
-
-  const handleGoogleError = () => {
-    toast.error("Đăng nhập với Google thất bại!");
-  };
-
-  //Login với Google:
-  // const loginGoogle = useGoogleLogin({
-  //   onSuccess: (response) => handleGoogleSuccess(response),
-  //   onError: () => handleGoogleError(),
-  // });
+  }, [location.search, dispatch, navigate, location.pathname]);
 
   return (
     <>
       <GoogleOAuthProvider clientId={CLIENT_ID}>
         <div className={styles.container_auth}>
-          <div className={styles.container_left}>
-            <div className={styles.ctn_form_link}>
-              {/* Cột form */}
-              <div className={styles.div_form}>
-                <div className={styles.card_form}>
-                  <h2>{isLogin ? "ĐĂNG NHẬP" : "ĐĂNG KÝ"}</h2>
-                  <form
-                    className={styles.form}
-                    onSubmit={handleSubmit(onSubmit)}
-                  >
-                    <div className={styles.div_input}>
-                      <input
-                        type="email"
-                        placeholder="Email của bạn"
-                        {...register("email", {
-                          required: "Email không được để trống",
-                          pattern: {
-                            value:
-                              /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-                            message: "Email không hợp lệ",
-                          },
-                        })}
-                        className={errors.email ? styles.input_error : ""}
-                      />
-                      {errors.email && (
-                        <p className={styles.error}>{errors.email.message}</p>
-                      )}
+          {/* Beautiful floating elements */}
+          <div className={`${styles.floating_element} ${styles.element1}`}>
+            🌸
+          </div>
+          <div className={`${styles.floating_element} ${styles.element2}`}>
+            💫
+          </div>
+          <div className={`${styles.floating_element} ${styles.element3}`}>
+            ✨
+          </div>
+          <div className={`${styles.floating_element} ${styles.element4}`}>
+            🦋
+          </div>
+          <div className={`${styles.floating_element} ${styles.element5}`}>
+            🌺
+          </div>
 
-                      {!isLogin && (
-                        <>
-                          <input
-                            type="text"
-                            placeholder="Tên đăng nhập"
-                            {...register("username", {
-                              required: "Tên đăng nhập không được để trống",
-                              minLength: {
-                                value: 4,
-                                message: "Tên đăng nhập phải từ 4 ký tự",
-                              },
-                            })}
-                            className={
-                              errors.username ? styles.input_error : ""
-                            }
-                          />
-                          {errors.username && (
-                            <p className={styles.error}>
-                              {errors.username.message}
-                            </p>
-                          )}
+          <div className={styles.auth_container}>
+            <div className={styles.auth_header}>
+              <div className={styles.brand_logo}>
+                <div className={styles.logo_text}>PURE</div>
+                <div className={styles.logo_subtitle}>COSMETIC</div>
+              </div>
+              <h2>
+                {currentTab === "login" ? "Chào mừng trở lại" : "Tạo tài khoản"}
+              </h2>
+              <p className={styles.subtitle}>
+                {currentTab === "login"
+                  ? "Đăng nhập để khám phá bộ sưu tập mỹ phẩm cao cấp của Pure"
+                  : "Tham gia Pure để trải nghiệm các sản phẩm làm đẹp tuyệt vời"}
+              </p>
 
-                          <input
-                            type="tel"
-                            placeholder="Số điện thoại của bạn"
-                            {...register("phone", {
-                              required: "Số điện thoại không được để trống",
-                              pattern: {
-                                value: /^[0-9]{10,}$/,
-                                message: "Số điện thoại không hợp lệ",
-                              },
-                            })}
-                            className={errors.phone ? styles.input_error : ""}
-                          />
-                          {errors.phone && (
-                            <p className={styles.error}>
-                              {errors.phone.message}
-                            </p>
-                          )}
-                        </>
-                      )}
-
-                      <div className={styles.passwordWrapper}>
-                        <input
-                          type={passwordVisible ? "text" : "password"}
-                          placeholder="Mật khẩu"
-                          {...register("passWord", {
-                            required: "Mật khẩu không được để trống",
-                            minLength: {
-                              value: 4,
-                              message: "Mật khẩu phải có ít nhất 4 ký tự",
-                            },
-                          })}
-                          className={errors.passWord ? styles.input_error : ""}
-                        />
-                        <span
-                          className={styles.eyeIcon}
-                          onClick={() => setPasswordVisible(!passwordVisible)}
-                        >
-                          {passwordVisible ? <FaEyeSlash /> : <FaEye />}
-                        </span>
-                      </div>
-                      {errors.passWord && (
-                        <p className={styles.error}>
-                          {errors.passWord.message}
-                        </p>
-                      )}
-
-                      {!isLogin && (
-                        <div className={styles.passwordWrapper}>
-                          <input
-                            type={confirmPasswordVisible ? "text" : "password"}
-                            placeholder="Xác nhận mật khẩu"
-                            {...register("confirmPassWord", {
-                              required: "Vui lòng xác nhận mật khẩu",
-                              validate: (value) =>
-                                value === getValues("passWord") ||
-                                "Mật khẩu xác nhận không khớp",
-                            })}
-                            className={
-                              errors.confirmPassWord ? styles.input_error : ""
-                            }
-                          />
-                          <span
-                            className={styles.eyeIcon}
-                            onClick={() =>
-                              setConfirmPasswordVisible(!confirmPasswordVisible)
-                            }
-                          >
-                            {confirmPasswordVisible ? (
-                              <FaEyeSlash />
-                            ) : (
-                              <FaEye />
-                            )}
-                          </span>
-                        </div>
-                      )}
-                      {errors.confirmPassWord && (
-                        <p className={styles.error}>
-                          {errors.confirmPassWord.message}
-                        </p>
-                      )}
-                    </div>
-
-                    <div className={styles.auth_options}>
-                      <label>
-                        <input type="checkbox" /> <span>Ghi nhớ mật khẩu</span>
-                      </label>
-                      {isLogin && (
-                        <Link to="/reset-password">Quên mật khẩu?</Link>
-                      )}
-                    </div>
-
-                    <button className={styles.auth_button} type="submit">
-                      {isLogin ? "ĐĂNG NHẬP" : "ĐĂNG KÝ"}
-                    </button>
-
-                    {isLogin && (
-                      <>
-                        <div className={styles.social_login}>
-                          <p>Hoặc đăng nhập với</p>
-                          <div className={styles.social_icons}>
-                            <img src={logo_fb} alt="Facebook Login" />
-                            <img
-                              src={logo_gg}
-                              alt="Google Login"
-                              onClick={handleGoogleLogin}
-                            />
-                          </div>
-                        </div>
-                        <div className={styles.login_gg}>
-                          {/* <GoogleLogin
-                      clientId={CLIENT_ID}
-                      onSuccess={handleGoogleSuccess}
-                      onError={handleGoogleError}
-                      theme="outline"
-                      size="large"
-                    /> */}
-                        </div>
-                      </>
-                    )}
-
-                    <p>
-                      {isLogin ? (
-                        <>
-                          Bạn chưa có tài khoản?{" "}
-                          <Link
-                            to="/register"
-                            className={styles.link_login_regis}
-                          >
-                            Đăng ký
-                          </Link>
-                        </>
-                      ) : (
-                        <>
-                          Bạn có tài khoản?{" "}
-                          <Link to="/login" className={styles.link_login_regis}>
-                            Đăng nhập
-                          </Link>
-                        </>
-                      )}
-                    </p>
-                  </form>
-                </div>
+              <div className={styles.auth_tabs}>
+                <button
+                  className={`${styles.tab_button} ${
+                    currentTab === "login" ? styles.active : ""
+                  }`}
+                  onClick={() => {
+                    setCurrentTab("login");
+                    navigate("/login");
+                  }}
+                >
+                  Đăng nhập
+                </button>
+                <button
+                  className={`${styles.tab_button} ${
+                    currentTab === "register" ? styles.active : ""
+                  }`}
+                  onClick={() => {
+                    setCurrentTab("register");
+                    navigate("/register");
+                  }}
+                >
+                  Đăng ký
+                </button>
               </div>
             </div>
 
-            <div className={styles.div_link}>
-              <Link
-                to="/login"
-                className={`${styles.login} ${
-                  location.pathname === "/login" ? styles.active : ""
-                }`}
-              >
-                ĐĂNG NHẬP
-              </Link>
-              <Link
-                to="/register"
-                className={`${styles.register} ${
-                  location.pathname === "/register" ? styles.active : ""
-                }`}
-              >
-                ĐĂNG KÝ
-              </Link>
-            </div>
-          </div>
+            <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+              <div className={styles.form_group}>
+                <label>Email</label>
+                <input
+                  type="email"
+                  placeholder="Nhập email của bạn"
+                  {...register("email", {
+                    required: "Email không được để trống",
+                    pattern: {
+                      value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                      message: "Email không hợp lệ",
+                    },
+                  })}
+                  className={errors.email ? styles.input_error : ""}
+                />
+                {errors.email && (
+                  <div className={styles.error_message}>
+                    ⚠️ {errors.email.message}
+                  </div>
+                )}
+              </div>
 
-          {/* Cột img */}
-          <div className={styles.auth_img}>
-            <img src={loginImage} alt="Authentication" />
+              {currentTab === "register" && (
+                <>
+                  <div className={styles.form_group}>
+                    <label>Tên đăng nhập</label>
+                    <input
+                      type="text"
+                      placeholder="Nhập tên đăng nhập"
+                      {...register("username", {
+                        required: "Tên đăng nhập không được để trống",
+                        minLength: {
+                          value: 4,
+                          message: "Tên đăng nhập phải từ 4 ký tự",
+                        },
+                      })}
+                      className={errors.username ? styles.input_error : ""}
+                    />
+                    {errors.username && (
+                      <div className={styles.error_message}>
+                        ⚠️ {errors.username.message}
+                      </div>
+                    )}
+                  </div>
+
+                  <div className={styles.form_group}>
+                    <label>Số điện thoại</label>
+                    <input
+                      type="tel"
+                      placeholder="Nhập số điện thoại"
+                      {...register("phone", {
+                        required: "Số điện thoại không được để trống",
+                        pattern: {
+                          value: /^[0-9]{10,}$/,
+                          message: "Số điện thoại không hợp lệ",
+                        },
+                      })}
+                      className={errors.phone ? styles.input_error : ""}
+                    />
+                    {errors.phone && (
+                      <div className={styles.error_message}>
+                        ⚠️ {errors.phone.message}
+                      </div>
+                    )}
+                  </div>
+                </>
+              )}
+
+              <div className={styles.form_group}>
+                <label>Mật khẩu</label>
+                <div className={styles.password_wrapper}>
+                  <input
+                    type={passwordVisible ? "text" : "password"}
+                    placeholder="Nhập mật khẩu"
+                    {...register("passWord", {
+                      required: "Mật khẩu không được để trống",
+                      minLength: {
+                        value: 4,
+                        message: "Mật khẩu phải có ít nhất 4 ký tự",
+                      },
+                    })}
+                    className={errors.passWord ? styles.input_error : ""}
+                  />
+                  <span
+                    className={styles.eye_icon}
+                    onClick={() => setPasswordVisible(!passwordVisible)}
+                  >
+                    {passwordVisible ? <FaEyeSlash /> : <FaEye />}
+                  </span>
+                </div>
+                {errors.passWord && (
+                  <div className={styles.error_message}>
+                    ⚠️ {errors.passWord.message}
+                  </div>
+                )}
+              </div>
+
+              {currentTab === "register" && (
+                <div className={styles.form_group}>
+                  <label>Xác nhận mật khẩu</label>
+                  <div className={styles.password_wrapper}>
+                    <input
+                      type={confirmPasswordVisible ? "text" : "password"}
+                      placeholder="Nhập lại mật khẩu"
+                      {...register("confirmPassWord", {
+                        required: "Vui lòng xác nhận mật khẩu",
+                        validate: (value) =>
+                          value === getValues("passWord") ||
+                          "Mật khẩu xác nhận không khớp",
+                      })}
+                      className={
+                        errors.confirmPassWord ? styles.input_error : ""
+                      }
+                    />
+                    <span
+                      className={styles.eye_icon}
+                      onClick={() =>
+                        setConfirmPasswordVisible(!confirmPasswordVisible)
+                      }
+                    >
+                      {confirmPasswordVisible ? <FaEyeSlash /> : <FaEye />}
+                    </span>
+                  </div>
+                  {errors.confirmPassWord && (
+                    <div className={styles.error_message}>
+                      ⚠️ {errors.confirmPassWord.message}
+                    </div>
+                  )}
+                </div>
+              )}
+
+              <div className={styles.form_options}>
+                <label className={styles.remember_me}>
+                  <input type="checkbox" />
+                  <span>Ghi nhớ mật khẩu</span>
+                </label>
+                {currentTab === "login" && (
+                  <Link to="/reset-password" className={styles.forgot_password}>
+                    Quên mật khẩu?
+                  </Link>
+                )}
+              </div>
+
+              <button className={styles.submit_button} type="submit">
+                {currentTab === "login" ? "Đăng nhập ngay" : "Tạo tài khoản"}
+              </button>
+
+              {currentTab === "login" && (
+                <div className={styles.social_login}>
+                  <div className={styles.divider}>
+                    <span>Hoặc đăng nhập với</span>
+                  </div>
+                  <div className={styles.social_buttons}>
+                    <div
+                      className={`${styles.social_button} ${styles.facebook}`}
+                    >
+                      <img src={logo_fb} alt="Facebook" />
+                    </div>
+                    <div
+                      className={`${styles.social_button} ${styles.google}`}
+                      onClick={handleGoogleLogin}
+                    >
+                      <img src={logo_gg} alt="Google" />
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              <div className={styles.auth_switch}>
+                {currentTab === "login" ? (
+                  <>
+                    Bạn chưa có tài khoản?
+                    <Link to="/register" className={styles.switch_link}>
+                      Đăng ký ngay
+                    </Link>
+                  </>
+                ) : (
+                  <>
+                    Bạn đã có tài khoản?
+                    <Link to="/login" className={styles.switch_link}>
+                      Đăng nhập
+                    </Link>
+                  </>
+                )}
+              </div>
+            </form>
           </div>
         </div>
       </GoogleOAuthProvider>

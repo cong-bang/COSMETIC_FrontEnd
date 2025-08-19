@@ -12,54 +12,48 @@ import ScrollToTop from "./utils/scrollToTop";
 import RequireAdmin from "./components/RequireAdmin";
 import ChatBox from "pages/ChatBox";
 import NotFoundPage from "./components/NotFoundPage";
-import { Analytics } from "@vercel/analytics/react";
 
 function App() {
   return (
-    <>
-      <Router>
-        <Analytics />
-        <div className="App">
-          <ToastContainer />
-          <ScrollToTop />
-          <ChatBox />
-          <Routes>
-            {/* Public routes with HomeLayout */}
-            <Route element={<HomeLayout />}>
-              {publicRoutes
-                .filter((route) => route.path !== "/admin/*")
-                .map((route, index) => {
-                  const Page = route.component;
-                  return (
-                    <Route key={index} path={route.path} element={<Page />} />
-                  );
-                })}
-              <Route path="/instant" element={<Instant />} />
-            </Route>
-            {/* Private routes with UserProfileLayout (which includes HomeLayout) */}
-            <Route element={<UserProfileLayout />}>
-              {privateRoutes.map((route, index) => {
+    <Router>
+      <div className="App">
+        <ToastContainer />
+        <ScrollToTop />
+        <ChatBox />
+        <Routes>
+          {/* Public routes with HomeLayout */}
+          <Route element={<HomeLayout />}>
+            {publicRoutes
+              .filter((route) => route.path !== "/admin/*")
+              .map((route, index) => {
                 const Page = route.component;
                 return (
                   <Route key={index} path={route.path} element={<Page />} />
                 );
               })}
-            </Route>
-            {/* Admin route */}
-            <Route
-              path="/admin/*"
-              element={
-                <RequireAdmin>
-                  <Admin />
-                </RequireAdmin>
-              }
-            />
-            <Route path="/confirm-token/:id" element={<ConfirmEmail />} />
-            <Route path="*" element={<NotFoundPage />} />
-          </Routes>
-        </div>
-      </Router>
-    </>
+            <Route path="/instant" element={<Instant />} />
+          </Route>
+          {/* Private routes with UserProfileLayout (which includes HomeLayout) */}
+          <Route element={<UserProfileLayout />}>
+            {privateRoutes.map((route, index) => {
+              const Page = route.component;
+              return <Route key={index} path={route.path} element={<Page />} />;
+            })}
+          </Route>
+          {/* Admin route */}
+          <Route
+            path="/admin/*"
+            element={
+              <RequireAdmin>
+                <Admin />
+              </RequireAdmin>
+            }
+          />
+          <Route path="/confirm-token/:id" element={<ConfirmEmail />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
