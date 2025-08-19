@@ -12,10 +12,12 @@ import ScrollToTop from "./utils/scrollToTop";
 import RequireAdmin from "./components/RequireAdmin";
 import ChatBox from "pages/ChatBox";
 import NotFoundPage from "./components/NotFoundPage";
+import { Analytics } from "@vercel/analytics/react";
 
 function App() {
   return (
     <Router>
+      <Analytics />
       <div className="App">
         <ToastContainer />
         <ScrollToTop />
